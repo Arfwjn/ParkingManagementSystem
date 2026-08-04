@@ -74,5 +74,13 @@ Namespace Controllers
 
             Return _parkingRepository.GetActiveParkingByPlate(plateNumber.Trim().ToUpper())
         End Function
+
+        Public Function GetActiveParkingCount() As Integer
+            Return _parkingRepository.GetActiveParkingCount()
+        End Function
+
+        Public Function GetTodayEntryCount() As Integer
+            Return _parkingRepository.GetTodayEntryCount()
+        End Function
     End Class
 End Namespace

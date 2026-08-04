@@ -29,11 +29,11 @@ Namespace Views
             End If
         End Sub
 
-        Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Private Sub LoginForm_FormClosed(sender As Object, e As FormClosedEventArgs)
             Application.Exit()
         End Sub
 
-        Private Sub LoginForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
             Application.Exit()
         End Sub
     End Class

@@ -193,5 +193,33 @@ Namespace Repositories
             End Using
             Return dt
         End Function
+
+        ''' <summary>
+        ''' Menghitung jumlah total kendaraan yang sedang aktif parkir (Status IN / OVERNIGHT)
+        ''' </summary>
+        Public Function GetActiveParkingCount() As Integer
+            Dim sql As String = "SELECT COUNT(*) FROM parking WHERE status IN ('IN', 'OVERNIGHT')"
+
+            Using conn As MySqlConnection = DbConnection.Instance.GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand(sql, conn)
+                    Return Convert.ToInt32(cmd.ExecuteScalar())
+                End Using
+            End Using
+        End Function
+
+        ''' <summary>
+        ''' Menghitung jumlah total kendaraan yang masuk pada hari ini
+        ''' </summary>
+        Public Function GetTodayEntryCount() As Integer
+            Dim sql As String = "SELECT COUNT(*) FROM parking WHERE DATE(entry_time) = CURDATE()"
+
+            Using conn As MySqlConnection = DbConnection.Instance.GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand(sql, conn)
+                    Return Convert.ToInt32(cmd.ExecuteScalar())
+                End Using
+            End Using
+        End Function
     End Class
 End Namespace

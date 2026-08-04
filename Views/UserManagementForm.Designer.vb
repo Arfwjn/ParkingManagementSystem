@@ -1,13 +1,13 @@
-﻿Imports System.Windows.Forms
-
-Namespace Views
+﻿Namespace Views
+    <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
     Partial Class UserManagementForm
-        Inherits Form
+        Inherits System.Windows.Forms.Form
 
+        <System.Diagnostics.DebuggerNonUserCode()>
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             Try
-                If disposing AndAlso Me.components IsNot Nothing Then
-                    Me.components.Dispose()
+                If disposing AndAlso components IsNot Nothing Then
+                    components.Dispose()
                 End If
             Finally
                 MyBase.Dispose(disposing)
@@ -18,237 +18,342 @@ Namespace Views
 
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-            Me.lblTitle = New Label()
-            Me.dgvUsers = New DataGridView()
-            Me.grpForm = New GroupBox()
-            Me.lblPasswordNote = New Label()
-            Me.txtPassword = New TextBox()
-            Me.lblPassword = New Label()
-            Me.cmbRole = New ComboBox()
-            Me.lblRole = New Label()
-            Me.txtFullname = New TextBox()
-            Me.lblFullname = New Label()
-            Me.txtUsername = New TextBox()
-            Me.lblUsername = New Label()
-            Me.btnSave = New Button()
-            Me.btnDelete = New Button()
-            Me.btnClear = New Button()
-            Me.btnClose = New Button()
+            Dim dataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim dataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim dataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Me.pnlHeader = New System.Windows.Forms.Panel()
+            Me.lblTitle = New System.Windows.Forms.Label()
+            Me.btnClose = New System.Windows.Forms.Button()
+            Me.pnlMain = New System.Windows.Forms.Panel()
+            Me.pnlGridCard = New System.Windows.Forms.Panel()
+            Me.dgvUsers = New System.Windows.Forms.DataGridView()
+            Me.pnlInputCard = New System.Windows.Forms.Panel()
+            Me.lblPasswordNote = New System.Windows.Forms.Label()
+            Me.btnClear = New System.Windows.Forms.Button()
+            Me.btnDelete = New System.Windows.Forms.Button()
+            Me.btnSave = New System.Windows.Forms.Button()
+            Me.cmbRole = New System.Windows.Forms.ComboBox()
+            Me.lblRole = New System.Windows.Forms.Label()
+            Me.txtPassword = New System.Windows.Forms.TextBox()
+            Me.lblPassword = New System.Windows.Forms.Label()
+            Me.txtFullname = New System.Windows.Forms.TextBox()
+            Me.lblFullname = New System.Windows.Forms.Label()
+            Me.txtUsername = New System.Windows.Forms.TextBox()
+            Me.lblUsername = New System.Windows.Forms.Label()
+            Me.pnlHeader.SuspendLayout()
+            Me.pnlMain.SuspendLayout()
+            Me.pnlGridCard.SuspendLayout()
             CType(Me.dgvUsers, System.ComponentModel.ISupportInitialize).BeginInit()
-            Me.grpForm.SuspendLayout()
+            Me.pnlInputCard.SuspendLayout()
             Me.SuspendLayout()
             '
-            ' lblTitle
+            'pnlHeader
+            '
+            Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            Me.pnlHeader.Controls.Add(Me.lblTitle)
+            Me.pnlHeader.Controls.Add(Me.btnClose)
+            Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
+            Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+            Me.pnlHeader.Name = "pnlHeader"
+            Me.pnlHeader.Size = New System.Drawing.Size(950, 60)
+            Me.pnlHeader.TabIndex = 0
+            '
+            'lblTitle
             '
             Me.lblTitle.AutoSize = True
             Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
-            Me.lblTitle.Location = New System.Drawing.Point(20, 15)
+            Me.lblTitle.ForeColor = System.Drawing.Color.White
+            Me.lblTitle.Location = New System.Drawing.Point(20, 18)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(202, 21)
+            Me.lblTitle.Size = New System.Drawing.Size(248, 21)
             Me.lblTitle.TabIndex = 0
-            Me.lblTitle.Text = "KELOLA DATA PETUGAS"
+            Me.lblTitle.Text = "Manajemen Pengguna / Petugas"
             '
-            ' dgvUsers
+            'btnClose
+            '
+            Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Me.btnClose.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.btnClose.FlatAppearance.BorderSize = 0
+            Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+            Me.btnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+            Me.btnClose.Location = New System.Drawing.Point(903, 12)
+            Me.btnClose.Name = "btnClose"
+            Me.btnClose.Size = New System.Drawing.Size(35, 35)
+            Me.btnClose.TabIndex = 1
+            Me.btnClose.Text = "X"
+            Me.btnClose.UseVisualStyleBackColor = True
+            '
+            'pnlMain
+            '
+            Me.pnlMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
+            Me.pnlMain.Controls.Add(Me.pnlGridCard)
+            Me.pnlMain.Controls.Add(Me.pnlInputCard)
+            Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.pnlMain.Location = New System.Drawing.Point(0, 60)
+            Me.pnlMain.Name = "pnlMain"
+            Me.pnlMain.Padding = New System.Windows.Forms.Padding(20)
+            Me.pnlMain.Size = New System.Drawing.Size(950, 520)
+            Me.pnlMain.TabIndex = 1
+            '
+            'pnlGridCard
+            '
+            Me.pnlGridCard.BackColor = System.Drawing.Color.White
+            Me.pnlGridCard.Controls.Add(Me.dgvUsers)
+            Me.pnlGridCard.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.pnlGridCard.Location = New System.Drawing.Point(360, 20)
+            Me.pnlGridCard.Name = "pnlGridCard"
+            Me.pnlGridCard.Padding = New System.Windows.Forms.Padding(10)
+            Me.pnlGridCard.Size = New System.Drawing.Size(570, 480)
+            Me.pnlGridCard.TabIndex = 1
+            '
+            'dgvUsers
             '
             Me.dgvUsers.AllowUserToAddRows = False
             Me.dgvUsers.AllowUserToDeleteRows = False
-            Me.dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            Me.dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-            Me.dgvUsers.Location = New System.Drawing.Point(23, 50)
+            Me.dgvUsers.AllowUserToResizeRows = False
+            Me.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+            Me.dgvUsers.BackgroundColor = System.Drawing.Color.White
+            Me.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None
+            Me.dgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+            Me.dgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            dataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+            dataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(5)
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+            Me.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1
+            Me.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+            dataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            dataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(5)
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(255, Byte), Integer))
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+            Me.dgvUsers.DefaultCellStyle = dataGridViewCellStyle2
+            Me.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.dgvUsers.EnableHeadersVisualStyles = False
+            Me.dgvUsers.GridColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
+            Me.dgvUsers.Location = New System.Drawing.Point(10, 10)
             Me.dgvUsers.MultiSelect = False
             Me.dgvUsers.Name = "dgvUsers"
             Me.dgvUsers.ReadOnly = True
-            Me.dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-            Me.dgvUsers.Size = New System.Drawing.Size(420, 370)
-            Me.dgvUsers.TabIndex = 1
+            Me.dgvUsers.RowHeadersVisible = False
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(252, Byte), Integer))
+            Me.dgvUsers.RowsDefaultCellStyle = dataGridViewCellStyle3
+            Me.dgvUsers.RowTemplate.Height = 35
+            Me.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+            Me.dgvUsers.Size = New System.Drawing.Size(550, 460)
+            Me.dgvUsers.TabIndex = 0
             '
-            ' grpForm
+            'pnlInputCard
             '
-            Me.grpForm.Controls.Add(Me.lblPasswordNote)
-            Me.grpForm.Controls.Add(Me.txtPassword)
-            Me.grpForm.Controls.Add(Me.lblPassword)
-            Me.grpForm.Controls.Add(Me.cmbRole)
-            Me.grpForm.Controls.Add(Me.lblRole)
-            Me.grpForm.Controls.Add(Me.txtFullname)
-            Me.grpForm.Controls.Add(Me.lblFullname)
-            Me.grpForm.Controls.Add(Me.txtUsername)
-            Me.grpForm.Controls.Add(Me.lblUsername)
-            Me.grpForm.Location = New System.Drawing.Point(460, 45)
-            Me.grpForm.Name = "grpForm"
-            Me.grpForm.Size = New System.Drawing.Size(300, 280)
-            Me.grpForm.TabIndex = 2
-            Me.grpForm.TabStop = False
-            Me.grpForm.Text = "Form Petugas"
+            Me.pnlInputCard.BackColor = System.Drawing.Color.White
+            Me.pnlInputCard.Controls.Add(Me.lblPasswordNote)
+            Me.pnlInputCard.Controls.Add(Me.btnClear)
+            Me.pnlInputCard.Controls.Add(Me.btnDelete)
+            Me.pnlInputCard.Controls.Add(Me.btnSave)
+            Me.pnlInputCard.Controls.Add(Me.cmbRole)
+            Me.pnlInputCard.Controls.Add(Me.lblRole)
+            Me.pnlInputCard.Controls.Add(Me.txtPassword)
+            Me.pnlInputCard.Controls.Add(Me.lblPassword)
+            Me.pnlInputCard.Controls.Add(Me.txtFullname)
+            Me.pnlInputCard.Controls.Add(Me.lblFullname)
+            Me.pnlInputCard.Controls.Add(Me.txtUsername)
+            Me.pnlInputCard.Controls.Add(Me.lblUsername)
+            Me.pnlInputCard.Dock = System.Windows.Forms.DockStyle.Left
+            Me.pnlInputCard.Location = New System.Drawing.Point(20, 20)
+            Me.pnlInputCard.Name = "pnlInputCard"
+            Me.pnlInputCard.Size = New System.Drawing.Size(340, 480)
+            Me.pnlInputCard.TabIndex = 0
             '
-            ' lblUsername
-            '
-            Me.lblUsername.AutoSize = True
-            Me.lblUsername.Location = New System.Drawing.Point(15, 25)
-            Me.lblUsername.Name = "lblUsername"
-            Me.lblUsername.Size = New System.Drawing.Size(63, 15)
-            Me.lblUsername.TabIndex = 0
-            Me.lblUsername.Text = "Username:"
-            '
-            ' txtUsername
-            '
-            Me.txtUsername.Location = New System.Drawing.Point(18, 43)
-            Me.txtUsername.Name = "txtUsername"
-            Me.txtUsername.Size = New System.Drawing.Size(260, 23)
-            Me.txtUsername.TabIndex = 1
-            '
-            ' lblFullname
-            '
-            Me.lblFullname.AutoSize = True
-            Me.lblFullname.Location = New System.Drawing.Point(15, 75)
-            Me.lblFullname.Name = "lblFullname"
-            Me.lblFullname.Size = New System.Drawing.Size(90, 15)
-            Me.lblFullname.TabIndex = 2
-            Me.lblFullname.Text = "Nama Lengkap:"
-            '
-            ' txtFullname
-            '
-            Me.txtFullname.Location = New System.Drawing.Point(18, 93)
-            Me.txtFullname.Name = "txtFullname"
-            Me.txtFullname.Size = New System.Drawing.Size(260, 23)
-            Me.txtFullname.TabIndex = 3
-            '
-            ' lblRole
-            '
-            Me.lblRole.AutoSize = True
-            Me.lblRole.Location = New System.Drawing.Point(15, 125)
-            Me.lblRole.Name = "lblRole"
-            Me.lblRole.Size = New System.Drawing.Size(33, 15)
-            Me.lblRole.TabIndex = 4
-            Me.lblRole.Text = "Role:"
-            '
-            ' cmbRole
-            '
-            Me.cmbRole.DropDownStyle = ComboBoxStyle.DropDownList
-            Me.cmbRole.FormattingEnabled = True
-            Me.cmbRole.Items.AddRange(New Object() {"Petugas", "Admin"})
-            Me.cmbRole.Location = New System.Drawing.Point(18, 143)
-            Me.cmbRole.Name = "cmbRole"
-            Me.cmbRole.Size = New System.Drawing.Size(260, 23)
-            Me.cmbRole.TabIndex = 5
-            '
-            ' lblPassword
-            '
-            Me.lblPassword.AutoSize = True
-            Me.lblPassword.Location = New System.Drawing.Point(15, 178)
-            Me.lblPassword.Name = "lblPassword"
-            Me.lblPassword.Size = New System.Drawing.Size(60, 15)
-            Me.lblPassword.TabIndex = 6
-            Me.lblPassword.Text = "Password:"
-            '
-            ' txtPassword
-            '
-            Me.txtPassword.Location = New System.Drawing.Point(18, 196)
-            Me.txtPassword.Name = "txtPassword"
-            Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-            Me.txtPassword.Size = New System.Drawing.Size(260, 23)
-            Me.txtPassword.TabIndex = 7
-            Me.txtPassword.UseSystemPasswordChar = True
-            '
-            ' lblPasswordNote
+            'lblPasswordNote
             '
             Me.lblPasswordNote.AutoSize = True
-            Me.lblPasswordNote.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Italic)
-            Me.lblPasswordNote.ForeColor = System.Drawing.Color.Gray
-            Me.lblPasswordNote.Location = New System.Drawing.Point(18, 225)
+            Me.lblPasswordNote.Font = New System.Drawing.Font("Segoe UI Italic", 8.0!)
+            Me.lblPasswordNote.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
+            Me.lblPasswordNote.Location = New System.Drawing.Point(20, 258)
             Me.lblPasswordNote.Name = "lblPasswordNote"
-            Me.lblPasswordNote.Size = New System.Drawing.Size(223, 13)
-            Me.lblPasswordNote.TabIndex = 8
-            Me.lblPasswordNote.Text = "* Kosongkan password jika tidak ingin diubah"
+            Me.lblPasswordNote.Size = New System.Drawing.Size(201, 13)
+            Me.lblPasswordNote.TabIndex = 11
+            Me.lblPasswordNote.Text = "*Kosongkan jika tidak ingin mengubah password"
+            Me.lblPasswordNote.Visible = False
             '
-            ' btnSave
+            'btnClear
             '
-            Me.btnSave.BackColor = System.Drawing.Color.SeaGreen
-            Me.btnSave.FlatStyle = FlatStyle.Flat
-            Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.btnSave.ForeColor = System.Drawing.Color.White
-            Me.btnSave.Location = New System.Drawing.Point(460, 335)
-            Me.btnSave.Name = "btnSave"
-            Me.btnSave.Size = New System.Drawing.Size(140, 35)
-            Me.btnSave.TabIndex = 3
-            Me.btnSave.Text = "SIMPAN"
-            Me.btnSave.UseVisualStyleBackColor = False
-            '
-            ' btnClear
-            '
-            Me.btnClear.BackColor = System.Drawing.Color.DodgerBlue
-            Me.btnClear.FlatStyle = FlatStyle.Flat
-            Me.btnClear.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.btnClear.ForeColor = System.Drawing.Color.White
-            Me.btnClear.Location = New System.Drawing.Point(610, 335)
+            Me.btnClear.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
+            Me.btnClear.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.btnClear.FlatAppearance.BorderSize = 0
+            Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnClear.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+            Me.btnClear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            Me.btnClear.Location = New System.Drawing.Point(20, 415)
             Me.btnClear.Name = "btnClear"
-            Me.btnClear.Size = New System.Drawing.Size(150, 35)
-            Me.btnClear.TabIndex = 4
-            Me.btnClear.Text = "RESET FORM"
+            Me.btnClear.Size = New System.Drawing.Size(300, 38)
+            Me.btnClear.TabIndex = 10
+            Me.btnClear.Text = "BATAL / RESET"
             Me.btnClear.UseVisualStyleBackColor = False
             '
-            ' btnDelete
+            'btnDelete
             '
-            Me.btnDelete.BackColor = System.Drawing.Color.Crimson
-            Me.btnDelete.FlatStyle = FlatStyle.Flat
-            Me.btnDelete.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+            Me.btnDelete.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+            Me.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.btnDelete.Enabled = False
+            Me.btnDelete.FlatAppearance.BorderSize = 0
+            Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnDelete.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnDelete.ForeColor = System.Drawing.Color.White
-            Me.btnDelete.Location = New System.Drawing.Point(460, 380)
+            Me.btnDelete.Location = New System.Drawing.Point(175, 365)
             Me.btnDelete.Name = "btnDelete"
-            Me.btnDelete.Size = New System.Drawing.Size(140, 35)
-            Me.btnDelete.TabIndex = 5
+            Me.btnDelete.Size = New System.Drawing.Size(145, 40)
+            Me.btnDelete.TabIndex = 9
             Me.btnDelete.Text = "HAPUS"
             Me.btnDelete.UseVisualStyleBackColor = False
             '
-            ' btnClose
+            'btnSave
             '
-            Me.btnClose.BackColor = System.Drawing.Color.Gray
-            Me.btnClose.FlatStyle = FlatStyle.Flat
-            Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.btnClose.ForeColor = System.Drawing.Color.White
-            Me.btnClose.Location = New System.Drawing.Point(610, 380)
-            Me.btnClose.Name = "btnClose"
-            Me.btnClose.Size = New System.Drawing.Size(150, 35)
-            Me.btnClose.TabIndex = 6
-            Me.btnClose.Text = "TUTUP"
-            Me.btnClose.UseVisualStyleBackColor = False
+            Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
+            Me.btnSave.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.btnSave.FlatAppearance.BorderSize = 0
+            Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnSave.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
+            Me.btnSave.ForeColor = System.Drawing.Color.White
+            Me.btnSave.Location = New System.Drawing.Point(20, 365)
+            Me.btnSave.Name = "btnSave"
+            Me.btnSave.Size = New System.Drawing.Size(145, 40)
+            Me.btnSave.TabIndex = 8
+            Me.btnSave.Text = "SIMPAN"
+            Me.btnSave.UseVisualStyleBackColor = False
             '
-            ' UserManagementForm
+            'cmbRole
             '
-            Me.ClientSize = New System.Drawing.Size(780, 440)
-            Me.Controls.Add(Me.btnClose)
-            Me.Controls.Add(Me.btnDelete)
-            Me.Controls.Add(Me.btnClear)
-            Me.Controls.Add(Me.btnSave)
-            Me.Controls.Add(Me.grpForm)
-            Me.Controls.Add(Me.dgvUsers)
-            Me.Controls.Add(Me.lblTitle)
-            Me.FormBorderStyle = FormBorderStyle.FixedDialog
-            Me.MaximizeBox = False
+            Me.cmbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+            Me.cmbRole.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+            Me.cmbRole.FormattingEnabled = True
+            Me.cmbRole.Items.AddRange(New Object() {"Petugas", "Admin"})
+            Me.cmbRole.Location = New System.Drawing.Point(20, 300)
+            Me.cmbRole.Name = "cmbRole"
+            Me.cmbRole.Size = New System.Drawing.Size(300, 25)
+            Me.cmbRole.TabIndex = 7
+            '
+            'lblRole
+            '
+            Me.lblRole.AutoSize = True
+            Me.lblRole.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+            Me.lblRole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            Me.lblRole.Location = New System.Drawing.Point(17, 280)
+            Me.lblRole.Name = "lblRole"
+            Me.lblRole.Size = New System.Drawing.Size(77, 15)
+            Me.lblRole.TabIndex = 6
+            Me.lblRole.Text = "Role / Hak Akses"
+            '
+            'txtPassword
+            '
+            Me.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+            Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+            Me.txtPassword.Location = New System.Drawing.Point(20, 230)
+            Me.txtPassword.Name = "txtPassword"
+            Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+            Me.txtPassword.Size = New System.Drawing.Size(300, 25)
+            Me.txtPassword.TabIndex = 5
+            '
+            'lblPassword
+            '
+            Me.lblPassword.AutoSize = True
+            Me.lblPassword.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+            Me.lblPassword.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            Me.lblPassword.Location = New System.Drawing.Point(17, 210)
+            Me.lblPassword.Name = "lblPassword"
+            Me.lblPassword.Size = New System.Drawing.Size(57, 15)
+            Me.lblPassword.TabIndex = 4
+            Me.lblPassword.Text = "Password"
+            '
+            'txtFullname
+            '
+            Me.txtFullname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+            Me.txtFullname.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+            Me.txtFullname.Location = New System.Drawing.Point(20, 160)
+            Me.txtFullname.Name = "txtFullname"
+            Me.txtFullname.Size = New System.Drawing.Size(300, 25)
+            Me.txtFullname.TabIndex = 3
+            '
+            'lblFullname
+            '
+            Me.lblFullname.AutoSize = True
+            Me.lblFullname.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+            Me.lblFullname.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            Me.lblFullname.Location = New System.Drawing.Point(17, 140)
+            Me.lblFullname.Name = "lblFullname"
+            Me.lblFullname.Size = New System.Drawing.Size(87, 15)
+            Me.lblFullname.TabIndex = 2
+            Me.lblFullname.Text = "Nama Lengkap"
+            '
+            'txtUsername
+            '
+            Me.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+            Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+            Me.txtUsername.Location = New System.Drawing.Point(20, 90)
+            Me.txtUsername.Name = "txtUsername"
+            Me.txtUsername.Size = New System.Drawing.Size(300, 25)
+            Me.txtUsername.TabIndex = 1
+            '
+            'lblUsername
+            '
+            Me.lblUsername.AutoSize = True
+            Me.lblUsername.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+            Me.lblUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            Me.lblUsername.Location = New System.Drawing.Point(17, 70)
+            Me.lblUsername.Name = "lblUsername"
+            Me.lblUsername.Size = New System.Drawing.Size(60, 15)
+            Me.lblUsername.TabIndex = 0
+            Me.lblUsername.Text = "Username"
+            '
+            'UserManagementForm
+            '
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+            Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+            Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
+            Me.ClientSize = New System.Drawing.Size(950, 580)
+            Me.Controls.Add(Me.pnlMain)
+            Me.Controls.Add(Me.pnlHeader)
+            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Name = "UserManagementForm"
-            Me.StartPosition = FormStartPosition.CenterScreen
-            Me.Text = "Parking App - Kelola Petugas"
+            Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+            Me.Text = "Manajemen Pengguna / Petugas"
+            Me.pnlHeader.ResumeLayout(False)
+            Me.pnlHeader.PerformLayout()
+            Me.pnlMain.ResumeLayout(False)
+            Me.pnlGridCard.ResumeLayout(False)
             CType(Me.dgvUsers, System.ComponentModel.ISupportInitialize).EndInit()
-            Me.grpForm.ResumeLayout(False)
-            Me.grpForm.PerformLayout()
+            Me.pnlInputCard.ResumeLayout(False)
+            Me.pnlInputCard.PerformLayout()
             Me.ResumeLayout(False)
-            Me.PerformLayout()
+
         End Sub
 
-        Friend WithEvents lblTitle As Label
-        Friend WithEvents dgvUsers As DataGridView
-        Friend WithEvents grpForm As GroupBox
-        Friend WithEvents lblUsername As Label
-        Friend WithEvents txtUsername As TextBox
-        Friend WithEvents lblFullname As Label
-        Friend WithEvents txtFullname As TextBox
-        Friend WithEvents lblRole As Label
-        Friend WithEvents cmbRole As ComboBox
-        Friend WithEvents lblPassword As Label
-        Friend WithEvents txtPassword As TextBox
-        Friend WithEvents lblPasswordNote As Label
-        Friend WithEvents btnSave As Button
-        Friend WithEvents btnClear As Button
-        Friend WithEvents btnDelete As Button
-        Friend WithEvents btnClose As Button
+        Friend WithEvents pnlHeader As System.Windows.Forms.Panel
+        Friend WithEvents lblTitle As System.Windows.Forms.Label
+        Friend WithEvents btnClose As System.Windows.Forms.Button
+        Friend WithEvents pnlMain As System.Windows.Forms.Panel
+        Friend WithEvents pnlInputCard As System.Windows.Forms.Panel
+        Friend WithEvents lblUsername As System.Windows.Forms.Label
+        Friend WithEvents txtUsername As System.Windows.Forms.TextBox
+        Friend WithEvents lblFullname As System.Windows.Forms.Label
+        Friend WithEvents txtFullname As System.Windows.Forms.TextBox
+        Friend WithEvents lblPassword As System.Windows.Forms.Label
+        Friend WithEvents txtPassword As System.Windows.Forms.TextBox
+        Friend WithEvents lblPasswordNote As System.Windows.Forms.Label
+        Friend WithEvents lblRole As System.Windows.Forms.Label
+        Friend WithEvents cmbRole As System.Windows.Forms.ComboBox
+        Friend WithEvents btnSave As System.Windows.Forms.Button
+        Friend WithEvents btnDelete As System.Windows.Forms.Button
+        Friend WithEvents btnClear As System.Windows.Forms.Button
+        Friend WithEvents pnlGridCard As System.Windows.Forms.Panel
+        Friend WithEvents dgvUsers As System.Windows.Forms.DataGridView
     End Class
 End Namespace

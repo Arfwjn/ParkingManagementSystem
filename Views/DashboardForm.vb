@@ -1,13 +1,18 @@
 ﻿Imports System
 Imports System.Windows.Forms
+Imports ParkingManagementSystem.Controllers
 Imports ParkingManagementSystem.Helpers
 
 Namespace Views
     Partial Public Class DashboardForm
         Inherits Form
 
+        Private ReadOnly _parkingController As ParkingController
+        Private Const TOTAL_CAPACITY As Integer = 50 ' Kapasitas total slot parkir
+
         Public Sub New()
             InitializeComponent()
+            _parkingController = New ParkingController()
         End Sub
 
         Private Sub DashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -20,6 +25,21 @@ Namespace Views
             lblWelcome.Text = $"Selamat Datang, {user.Fullname} [{user.Role}]"
 
             ApplyRolePermissions(user.Role)
+            LoadDashboardData()
+        End Sub
+
+        Public Sub LoadDashboardData()
+            Try
+                Dim activeCount As Integer = _parkingController.GetActiveParkingCount()
+                Dim todayCount As Integer = _parkingController.GetTodayEntryCount()
+                Dim availableSlots As Integer = Math.Max(0, TOTAL_CAPACITY - activeCount)
+
+                lblActiveValue.Text = activeCount.ToString()
+                lblTodayValue.Text = todayCount.ToString()
+                lblSlotsValue.Text = availableSlots.ToString()
+            Catch ex As Exception
+                MessageBox.Show("Gagal memuat statistik dashboard: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End Sub
 
         Private Sub ApplyRolePermissions(role As String)
@@ -29,28 +49,37 @@ Namespace Views
         End Sub
 
         Private Sub btnKendaraanMasuk_Click(sender As Object, e As EventArgs) Handles btnKendaraanMasuk.Click
-            Dim entryForm As New EntryForm()
-            entryForm.ShowDialog(Me)
+            Using entryForm As New EntryForm()
+                entryForm.ShowDialog(Me)
+            End Using
+            LoadDashboardData()
         End Sub
 
         Private Sub btnKendaraanKeluar_Click(sender As Object, e As EventArgs) Handles btnKendaraanKeluar.Click
-            Dim exitForm As New ExitForm()
-            exitForm.ShowDialog(Me)
+            Using exitForm As New ExitForm()
+                exitForm.ShowDialog(Me)
+            End Using
+            LoadDashboardData()
         End Sub
 
         Private Sub btnDataAktif_Click(sender As Object, e As EventArgs) Handles btnDataAktif.Click
-            Dim activeForm As New ActiveParkingForm()
-            activeForm.ShowDialog(Me)
+            Using activeForm As New ActiveParkingForm()
+                activeForm.ShowDialog(Me)
+            End Using
+            LoadDashboardData()
         End Sub
 
         Private Sub btnRiwayat_Click(sender As Object, e As EventArgs) Handles btnRiwayat.Click
-            Dim historyForm As New HistoryForm()
-            historyForm.ShowDialog(Me)
+            Using historyForm As New HistoryForm()
+                historyForm.ShowDialog(Me)
+            End Using
+            LoadDashboardData()
         End Sub
 
         Private Sub btnKelolaUser_Click(sender As Object, e As EventArgs) Handles btnKelolaUser.Click
-            Dim userForm As New UserManagementForm()
-            userForm.ShowDialog(Me)
+            Using userForm As New UserManagementForm()
+                userForm.ShowDialog(Me)
+            End Using
         End Sub
 
         Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
