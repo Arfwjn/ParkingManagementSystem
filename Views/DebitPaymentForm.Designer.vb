@@ -45,8 +45,9 @@
             Me.pnlHeader.Controls.Add(Me.lblTitle)
             Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
             Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlHeader.Name = "pnlHeader"
-            Me.pnlHeader.Size = New System.Drawing.Size(420, 55)
+            Me.pnlHeader.Size = New System.Drawing.Size(560, 68)
             Me.pnlHeader.TabIndex = 0
             '
             'lblTitle
@@ -54,9 +55,10 @@
             Me.lblTitle.AutoSize = True
             Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
             Me.lblTitle.ForeColor = System.Drawing.Color.White
-            Me.lblTitle.Location = New System.Drawing.Point(20, 16)
+            Me.lblTitle.Location = New System.Drawing.Point(27, 20)
+            Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(217, 21)
+            Me.lblTitle.Size = New System.Drawing.Size(284, 28)
             Me.lblTitle.TabIndex = 0
             Me.lblTitle.Text = "Pembayaran Debit / Transfer"
             '
@@ -65,10 +67,11 @@
             Me.pnlMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
             Me.pnlMain.Controls.Add(Me.pnlCard)
             Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.pnlMain.Location = New System.Drawing.Point(0, 55)
+            Me.pnlMain.Location = New System.Drawing.Point(0, 68)
+            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlMain.Name = "pnlMain"
-            Me.pnlMain.Padding = New System.Windows.Forms.Padding(15)
-            Me.pnlMain.Size = New System.Drawing.Size(420, 425)
+            Me.pnlMain.Padding = New System.Windows.Forms.Padding(20, 18, 20, 18)
+            Me.pnlMain.Size = New System.Drawing.Size(560, 523)
             Me.pnlMain.TabIndex = 1
             '
             'pnlCard
@@ -83,31 +86,35 @@
             Me.pnlCard.Controls.Add(Me.btnConfirm)
             Me.pnlCard.Controls.Add(Me.btnCancel)
             Me.pnlCard.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.pnlCard.Location = New System.Drawing.Point(15, 15)
+            Me.pnlCard.Location = New System.Drawing.Point(20, 18)
+            Me.pnlCard.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlCard.Name = "pnlCard"
-            Me.pnlCard.Padding = New System.Windows.Forms.Padding(15)
-            Me.pnlCard.Size = New System.Drawing.Size(390, 395)
+            Me.pnlCard.Padding = New System.Windows.Forms.Padding(20, 18, 20, 18)
+            Me.pnlCard.Size = New System.Drawing.Size(520, 487)
             Me.pnlCard.TabIndex = 0
             '
             'lblTransactionTitle
             '
             Me.lblTransactionTitle.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblTransactionTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-            Me.lblTransactionTitle.Location = New System.Drawing.Point(15, 10)
+            Me.lblTransactionTitle.Location = New System.Drawing.Point(20, 12)
+            Me.lblTransactionTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTransactionTitle.Name = "lblTransactionTitle"
-            Me.lblTransactionTitle.Size = New System.Drawing.Size(360, 20)
+            Me.lblTransactionTitle.Size = New System.Drawing.Size(480, 25)
             Me.lblTransactionTitle.TabIndex = 0
-            Me.lblTransactionTitle.Text = "Pembayaran Member Parkir"
+            Me.lblTransactionTitle.Text = "Pembayaran Parkirmas"
             Me.lblTransactionTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            Me.lblTransactionTitle.UseWaitCursor = True
             '
             'lblAmountTitle
             '
             Me.lblAmountTitle.AutoSize = True
             Me.lblAmountTitle.Font = New System.Drawing.Font("Segoe UI", 8.5!)
             Me.lblAmountTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblAmountTitle.Location = New System.Drawing.Point(150, 35)
+            Me.lblAmountTitle.Location = New System.Drawing.Point(200, 43)
+            Me.lblAmountTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblAmountTitle.Name = "lblAmountTitle"
-            Me.lblAmountTitle.Size = New System.Drawing.Size(91, 15)
+            Me.lblAmountTitle.Size = New System.Drawing.Size(117, 20)
             Me.lblAmountTitle.TabIndex = 1
             Me.lblAmountTitle.Text = "TOTAL TAGIHAN"
             '
@@ -115,9 +122,10 @@
             '
             Me.lblAmountValue.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold)
             Me.lblAmountValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
-            Me.lblAmountValue.Location = New System.Drawing.Point(15, 52)
+            Me.lblAmountValue.Location = New System.Drawing.Point(20, 64)
+            Me.lblAmountValue.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblAmountValue.Name = "lblAmountValue"
-            Me.lblAmountValue.Size = New System.Drawing.Size(360, 35)
+            Me.lblAmountValue.Size = New System.Drawing.Size(480, 43)
             Me.lblAmountValue.TabIndex = 2
             Me.lblAmountValue.Text = "Rp 0"
             Me.lblAmountValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -129,9 +137,10 @@
             Me.pnlBankInfo.Controls.Add(Me.lblBankTitle)
             Me.pnlBankInfo.Controls.Add(Me.lblAccountNo)
             Me.pnlBankInfo.Controls.Add(Me.lblAccountHolder)
-            Me.pnlBankInfo.Location = New System.Drawing.Point(15, 95)
+            Me.pnlBankInfo.Location = New System.Drawing.Point(20, 117)
+            Me.pnlBankInfo.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlBankInfo.Name = "pnlBankInfo"
-            Me.pnlBankInfo.Size = New System.Drawing.Size(360, 90)
+            Me.pnlBankInfo.Size = New System.Drawing.Size(479, 110)
             Me.pnlBankInfo.TabIndex = 3
             '
             'lblBankTitle
@@ -139,52 +148,57 @@
             Me.lblBankTitle.AutoSize = True
             Me.lblBankTitle.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblBankTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-            Me.lblBankTitle.Location = New System.Drawing.Point(12, 10)
+            Me.lblBankTitle.Location = New System.Drawing.Point(16, 12)
+            Me.lblBankTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblBankTitle.Name = "lblBankTitle"
-            Me.lblBankTitle.Size = New System.Drawing.Size(130, 15)
+            Me.lblBankTitle.Size = New System.Drawing.Size(78, 20)
             Me.lblBankTitle.TabIndex = 0
-            Me.lblBankTitle.Text = "Bank Mandiri / EDC"
+            Me.lblBankTitle.Text = "Bank BCA"
             '
             'lblAccountNo
             '
             Me.lblAccountNo.AutoSize = True
             Me.lblAccountNo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
             Me.lblAccountNo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
-            Me.lblAccountNo.Location = New System.Drawing.Point(11, 30)
+            Me.lblAccountNo.Location = New System.Drawing.Point(15, 37)
+            Me.lblAccountNo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblAccountNo.Name = "lblAccountNo"
-            Me.lblAccountNo.Size = New System.Drawing.Size(180, 21)
+            Me.lblAccountNo.Size = New System.Drawing.Size(148, 28)
             Me.lblAccountNo.TabIndex = 1
-            Me.lblAccountNo.Text = "139-00-8899-7711"
+            Me.lblAccountNo.Text = "358-119-4089"
             '
             'lblAccountHolder
             '
             Me.lblAccountHolder.AutoSize = True
             Me.lblAccountHolder.Font = New System.Drawing.Font("Segoe UI", 8.5!)
             Me.lblAccountHolder.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblAccountHolder.Location = New System.Drawing.Point(12, 58)
+            Me.lblAccountHolder.Location = New System.Drawing.Point(16, 71)
+            Me.lblAccountHolder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblAccountHolder.Name = "lblAccountHolder"
-            Me.lblAccountHolder.Size = New System.Drawing.Size(193, 15)
+            Me.lblAccountHolder.Size = New System.Drawing.Size(195, 20)
             Me.lblAccountHolder.TabIndex = 2
-            Me.lblAccountHolder.Text = "a.n. PT SYSTEM MANAGEMENT PARKIR"
+            Me.lblAccountHolder.Text = "a.n. ARIEF SIDIK WIJAYANTO"
             '
             'lblCardOrRefTitle
             '
             Me.lblCardOrRefTitle.AutoSize = True
             Me.lblCardOrRefTitle.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
             Me.lblCardOrRefTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-            Me.lblCardOrRefTitle.Location = New System.Drawing.Point(15, 200)
+            Me.lblCardOrRefTitle.Location = New System.Drawing.Point(20, 246)
+            Me.lblCardOrRefTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblCardOrRefTitle.Name = "lblCardOrRefTitle"
-            Me.lblCardOrRefTitle.Size = New System.Drawing.Size(201, 15)
+            Me.lblCardOrRefTitle.Size = New System.Drawing.Size(253, 20)
             Me.lblCardOrRefTitle.TabIndex = 4
-            Me.lblCardOrRefTitle.Text = "Nomor Kartu Debit / Ref Transaksi (*):"
+            Me.lblCardOrRefTitle.Text = "Nomor Kartu Debit / Ref Transaksi*:"
             '
             'txtCardOrRefNo
             '
             Me.txtCardOrRefNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.txtCardOrRefNo.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-            Me.txtCardOrRefNo.Location = New System.Drawing.Point(15, 220)
+            Me.txtCardOrRefNo.Location = New System.Drawing.Point(20, 271)
+            Me.txtCardOrRefNo.Margin = New System.Windows.Forms.Padding(4)
             Me.txtCardOrRefNo.Name = "txtCardOrRefNo"
-            Me.txtCardOrRefNo.Size = New System.Drawing.Size(360, 25)
+            Me.txtCardOrRefNo.Size = New System.Drawing.Size(479, 30)
             Me.txtCardOrRefNo.TabIndex = 5
             '
             'btnConfirm
@@ -195,9 +209,10 @@
             Me.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnConfirm.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnConfirm.ForeColor = System.Drawing.Color.White
-            Me.btnConfirm.Location = New System.Drawing.Point(15, 280)
+            Me.btnConfirm.Location = New System.Drawing.Point(20, 345)
+            Me.btnConfirm.Margin = New System.Windows.Forms.Padding(4)
             Me.btnConfirm.Name = "btnConfirm"
-            Me.btnConfirm.Size = New System.Drawing.Size(360, 42)
+            Me.btnConfirm.Size = New System.Drawing.Size(480, 52)
             Me.btnConfirm.TabIndex = 6
             Me.btnConfirm.Text = "Konfirmasi Pembayaran Debit"
             Me.btnConfirm.UseVisualStyleBackColor = False
@@ -210,22 +225,24 @@
             Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnCancel.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
             Me.btnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.btnCancel.Location = New System.Drawing.Point(15, 330)
+            Me.btnCancel.Location = New System.Drawing.Point(20, 406)
+            Me.btnCancel.Margin = New System.Windows.Forms.Padding(4)
             Me.btnCancel.Name = "btnCancel"
-            Me.btnCancel.Size = New System.Drawing.Size(360, 35)
+            Me.btnCancel.Size = New System.Drawing.Size(480, 43)
             Me.btnCancel.TabIndex = 7
             Me.btnCancel.Text = "Batal Pembayaran"
             Me.btnCancel.UseVisualStyleBackColor = False
             '
             'DebitPaymentForm
             '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
-            Me.ClientSize = New System.Drawing.Size(420, 480)
+            Me.ClientSize = New System.Drawing.Size(560, 591)
             Me.Controls.Add(Me.pnlMain)
             Me.Controls.Add(Me.pnlHeader)
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+            Me.Margin = New System.Windows.Forms.Padding(4)
             Me.MaximizeBox = False
             Me.MinimizeBox = False
             Me.Name = "DebitPaymentForm"

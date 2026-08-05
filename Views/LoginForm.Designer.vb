@@ -54,24 +54,24 @@
             Me.lblBrandSubtitle.AutoSize = True
             Me.lblBrandSubtitle.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.lblBrandSubtitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-            Me.lblBrandSubtitle.Location = New System.Drawing.Point(53, 314)
+            Me.lblBrandSubtitle.Location = New System.Drawing.Point(89, 309)
             Me.lblBrandSubtitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblBrandSubtitle.Name = "lblBrandSubtitle"
-            Me.lblBrandSubtitle.Size = New System.Drawing.Size(279, 23)
+            Me.lblBrandSubtitle.Size = New System.Drawing.Size(232, 23)
             Me.lblBrandSubtitle.TabIndex = 1
-            Me.lblBrandSubtitle.Text = "Enterprise Parking Management V1"
+            Me.lblBrandSubtitle.Text = "Parking Management System"
             '
             'lblBrandTitle
             '
             Me.lblBrandTitle.AutoSize = True
-            Me.lblBrandTitle.Font = New System.Drawing.Font("Segoe UI", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.lblBrandTitle.Font = New System.Drawing.Font("Segoe UI", 28.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.lblBrandTitle.ForeColor = System.Drawing.Color.White
-            Me.lblBrandTitle.Location = New System.Drawing.Point(48, 258)
+            Me.lblBrandTitle.Location = New System.Drawing.Point(56, 249)
             Me.lblBrandTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblBrandTitle.Name = "lblBrandTitle"
-            Me.lblBrandTitle.Size = New System.Drawing.Size(268, 50)
+            Me.lblBrandTitle.Size = New System.Drawing.Size(298, 62)
             Me.lblBrandTitle.TabIndex = 0
-            Me.lblBrandTitle.Text = "PARK SYSTEM"
+            Me.lblBrandTitle.Text = "PARKIRMAS"
             '
             'pnlMain
             '
@@ -140,7 +140,7 @@
             Me.btnLogin.Name = "btnLogin"
             Me.btnLogin.Size = New System.Drawing.Size(413, 52)
             Me.btnLogin.TabIndex = 6
-            Me.btnLogin.Text = "Sign In"
+            Me.btnLogin.Text = "Login"
             Me.btnLogin.UseVisualStyleBackColor = False
             '
             'txtPassword
@@ -208,9 +208,9 @@
             Me.lblLoginHeader.Location = New System.Drawing.Point(40, 43)
             Me.lblLoginHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblLoginHeader.Name = "lblLoginHeader"
-            Me.lblLoginHeader.Size = New System.Drawing.Size(111, 41)
+            Me.lblLoginHeader.Size = New System.Drawing.Size(97, 41)
             Me.lblLoginHeader.TabIndex = 0
-            Me.lblLoginHeader.Text = "Masuk"
+            Me.lblLoginHeader.Text = "Login"
             '
             'LoginForm
             '

@@ -63,7 +63,7 @@
             Me.pnlHeader.Controls.Add(Me.btnClose)
             Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
             Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlHeader.Name = "pnlHeader"
             Me.pnlHeader.Size = New System.Drawing.Size(907, 74)
             Me.pnlHeader.TabIndex = 0
@@ -89,7 +89,7 @@
             Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
             Me.btnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
             Me.btnClose.Location = New System.Drawing.Point(844, 15)
-            Me.btnClose.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnClose.Margin = New System.Windows.Forms.Padding(4)
             Me.btnClose.Name = "btnClose"
             Me.btnClose.Size = New System.Drawing.Size(47, 43)
             Me.btnClose.TabIndex = 1
@@ -104,7 +104,7 @@
             Me.pnlMain.Controls.Add(Me.pnlSearchCard)
             Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
             Me.pnlMain.Location = New System.Drawing.Point(0, 74)
-            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlMain.Name = "pnlMain"
             Me.pnlMain.Padding = New System.Windows.Forms.Padding(27, 25, 27, 25)
             Me.pnlMain.Size = New System.Drawing.Size(907, 689)
@@ -119,7 +119,7 @@
             Me.pnlPaymentCard.Controls.Add(Me.lblTotalPay)
             Me.pnlPaymentCard.Controls.Add(Me.lblTotalPayTitle)
             Me.pnlPaymentCard.Location = New System.Drawing.Point(467, 142)
-            Me.pnlPaymentCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlPaymentCard.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlPaymentCard.Name = "pnlPaymentCard"
             Me.pnlPaymentCard.Size = New System.Drawing.Size(413, 517)
             Me.pnlPaymentCard.TabIndex = 2
@@ -133,7 +133,7 @@
             Me.btnProcessPayment.Font = New System.Drawing.Font("Segoe UI Semibold", 10.5!, System.Drawing.FontStyle.Bold)
             Me.btnProcessPayment.ForeColor = System.Drawing.Color.White
             Me.btnProcessPayment.Location = New System.Drawing.Point(27, 418)
-            Me.btnProcessPayment.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnProcessPayment.Margin = New System.Windows.Forms.Padding(4)
             Me.btnProcessPayment.Name = "btnProcessPayment"
             Me.btnProcessPayment.Size = New System.Drawing.Size(360, 62)
             Me.btnProcessPayment.TabIndex = 4
@@ -147,7 +147,7 @@
             Me.cmbPaymentMethod.FormattingEnabled = True
             Me.cmbPaymentMethod.Items.AddRange(New Object() {"Tunai", "QRIS", "Transfer / Debit"})
             Me.cmbPaymentMethod.Location = New System.Drawing.Point(27, 302)
-            Me.cmbPaymentMethod.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.cmbPaymentMethod.Margin = New System.Windows.Forms.Padding(4)
             Me.cmbPaymentMethod.Name = "cmbPaymentMethod"
             Me.cmbPaymentMethod.Size = New System.Drawing.Size(359, 31)
             Me.cmbPaymentMethod.TabIndex = 3
@@ -207,7 +207,7 @@
             Me.pnlDetailsCard.Controls.Add(Me.lblTypeVal)
             Me.pnlDetailsCard.Controls.Add(Me.lblTypeTitle)
             Me.pnlDetailsCard.Location = New System.Drawing.Point(27, 142)
-            Me.pnlDetailsCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlDetailsCard.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlDetailsCard.Name = "pnlDetailsCard"
             Me.pnlDetailsCard.Size = New System.Drawing.Size(420, 517)
             Me.pnlDetailsCard.TabIndex = 1
@@ -266,9 +266,9 @@
             Me.lblOvernightTitle.Location = New System.Drawing.Point(27, 338)
             Me.lblOvernightTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblOvernightTitle.Name = "lblOvernightTitle"
-            Me.lblOvernightTitle.Size = New System.Drawing.Size(119, 21)
+            Me.lblOvernightTitle.Size = New System.Drawing.Size(135, 21)
             Me.lblOvernightTitle.TabIndex = 10
-            Me.lblOvernightTitle.Text = "Biaya Inap/Mlm"
+            Me.lblOvernightTitle.Text = "Biaya Inap/Malam"
             '
             'lblFineVal
             '
@@ -399,7 +399,7 @@
             Me.pnlSearchCard.Controls.Add(Me.lblPlateNumber)
             Me.pnlSearchCard.Dock = System.Windows.Forms.DockStyle.Top
             Me.pnlSearchCard.Location = New System.Drawing.Point(27, 25)
-            Me.pnlSearchCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlSearchCard.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlSearchCard.Name = "pnlSearchCard"
             Me.pnlSearchCard.Size = New System.Drawing.Size(853, 98)
             Me.pnlSearchCard.TabIndex = 0
@@ -410,7 +410,7 @@
             Me.chkLostTicket.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.chkLostTicket.ForeColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
             Me.chkLostTicket.Location = New System.Drawing.Point(660, 37)
-            Me.chkLostTicket.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.chkLostTicket.Margin = New System.Windows.Forms.Padding(4)
             Me.chkLostTicket.Name = "chkLostTicket"
             Me.chkLostTicket.Size = New System.Drawing.Size(118, 24)
             Me.chkLostTicket.TabIndex = 3
@@ -426,7 +426,7 @@
             Me.btnSearch.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnSearch.ForeColor = System.Drawing.Color.White
             Me.btnSearch.Location = New System.Drawing.Point(487, 31)
-            Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnSearch.Margin = New System.Windows.Forms.Padding(4)
             Me.btnSearch.Name = "btnSearch"
             Me.btnSearch.Size = New System.Drawing.Size(147, 37)
             Me.btnSearch.TabIndex = 2
@@ -438,7 +438,7 @@
             Me.txtPlateNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.txtPlateNumber.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
             Me.txtPlateNumber.Location = New System.Drawing.Point(187, 32)
-            Me.txtPlateNumber.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.txtPlateNumber.Margin = New System.Windows.Forms.Padding(4)
             Me.txtPlateNumber.Name = "txtPlateNumber"
             Me.txtPlateNumber.Size = New System.Drawing.Size(279, 32)
             Me.txtPlateNumber.TabIndex = 1
@@ -464,7 +464,7 @@
             Me.Controls.Add(Me.pnlMain)
             Me.Controls.Add(Me.pnlHeader)
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-            Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.Margin = New System.Windows.Forms.Padding(4)
             Me.Name = "ExitForm"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
             Me.Text = "Registrasi Parkir Keluar & Pembayaran"

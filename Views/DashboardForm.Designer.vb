@@ -18,9 +18,9 @@
 
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-            Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-            Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-            Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Me.pnlSidebar = New System.Windows.Forms.Panel()
             Me.btnLogout = New System.Windows.Forms.Button()
             Me.btnMemberLevelManagement = New System.Windows.Forms.Button()
@@ -107,8 +107,7 @@
             Me.btnLogout.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnLogout.Size = New System.Drawing.Size(240, 50)
             Me.btnLogout.TabIndex = 9
-            Me.btnLogout.Text = "Keluar / Logout"
-            Me.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+            Me.btnLogout.Text = "Logout"
             Me.btnLogout.UseVisualStyleBackColor = True
             '
             'btnMemberLevelManagement
@@ -259,13 +258,13 @@
             'lblLogoText
             '
             Me.lblLogoText.AutoSize = True
-            Me.lblLogoText.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+            Me.lblLogoText.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.lblLogoText.ForeColor = System.Drawing.Color.White
-            Me.lblLogoText.Location = New System.Drawing.Point(20, 22)
+            Me.lblLogoText.Location = New System.Drawing.Point(22, 18)
             Me.lblLogoText.Name = "lblLogoText"
-            Me.lblLogoText.Size = New System.Drawing.Size(175, 32)
+            Me.lblLogoText.Size = New System.Drawing.Size(191, 41)
             Me.lblLogoText.TabIndex = 0
-            Me.lblLogoText.Text = "PARK SYSTEM"
+            Me.lblLogoText.Text = "PARKIRMAS"
             '
             'pnlHeader
             '
@@ -284,7 +283,7 @@
             Me.lblWelcome.AutoSize = True
             Me.lblWelcome.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold)
             Me.lblWelcome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblWelcome.Location = New System.Drawing.Point(750, 26)
+            Me.lblWelcome.Location = New System.Drawing.Point(628, 27)
             Me.lblWelcome.Name = "lblWelcome"
             Me.lblWelcome.Size = New System.Drawing.Size(144, 23)
             Me.lblWelcome.TabIndex = 1
@@ -338,24 +337,24 @@
             Me.dgvRecentActivity.BorderStyle = System.Windows.Forms.BorderStyle.None
             Me.dgvRecentActivity.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
             Me.dgvRecentActivity.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-            DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-            DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-            DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-            DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-            DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
-            DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-            Me.dgvRecentActivity.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+            DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            DataGridViewCellStyle16.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+            DataGridViewCellStyle16.ForeColor = System.Drawing.Color.White
+            DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White
+            DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+            Me.dgvRecentActivity.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle16
             Me.dgvRecentActivity.ColumnHeadersHeight = 32
             Me.dgvRecentActivity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-            DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-            DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-            DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-            DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(255, Byte), Integer))
-            DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-            DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-            Me.dgvRecentActivity.DefaultCellStyle = DataGridViewCellStyle2
+            DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle17.BackColor = System.Drawing.Color.White
+            DataGridViewCellStyle17.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+            DataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(255, Byte), Integer))
+            DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+            DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+            Me.dgvRecentActivity.DefaultCellStyle = DataGridViewCellStyle17
             Me.dgvRecentActivity.Dock = System.Windows.Forms.DockStyle.Fill
             Me.dgvRecentActivity.EnableHeadersVisualStyles = False
             Me.dgvRecentActivity.GridColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
@@ -365,8 +364,8 @@
             Me.dgvRecentActivity.ReadOnly = True
             Me.dgvRecentActivity.RowHeadersVisible = False
             Me.dgvRecentActivity.RowHeadersWidth = 51
-            DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(252, Byte), Integer))
-            Me.dgvRecentActivity.RowsDefaultCellStyle = DataGridViewCellStyle3
+            DataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(252, Byte), Integer))
+            Me.dgvRecentActivity.RowsDefaultCellStyle = DataGridViewCellStyle18
             Me.dgvRecentActivity.RowTemplate.Height = 30
             Me.dgvRecentActivity.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
             Me.dgvRecentActivity.Size = New System.Drawing.Size(954, 250)

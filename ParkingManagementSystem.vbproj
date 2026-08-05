@@ -244,6 +244,9 @@
     <EmbeddedResource Include="Views\DashboardForm.resx">
       <DependentUpon>DashboardForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\DebitPaymentForm.resx">
+      <DependentUpon>DebitPaymentForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\EntryForm.resx">
       <DependentUpon>EntryForm.vb</DependentUpon>
     </EmbeddedResource>

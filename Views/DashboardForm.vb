@@ -17,7 +17,7 @@ Namespace Views
 
         Private Sub DashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             If SessionManager.IsLoggedIn() Then
-                lblWelcome.Text = $"Selamat Datang, {SessionManager.CurrentUser.Username} [{SessionManager.CurrentUser.Role}]"
+                lblWelcome.Text = $"Selamat Datang, {SessionManager.CurrentUser.Fullname} [{SessionManager.CurrentUser.Role}]"
             End If
 
             ' Terapkan Hak Akses Berdasarkan Role Pengguna

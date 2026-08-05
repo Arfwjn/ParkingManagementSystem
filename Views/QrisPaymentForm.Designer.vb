@@ -41,7 +41,7 @@
             Me.pnlHeader.Controls.Add(Me.lblTitle)
             Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
             Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlHeader.Name = "pnlHeader"
             Me.pnlHeader.Size = New System.Drawing.Size(560, 68)
             Me.pnlHeader.TabIndex = 0
@@ -54,9 +54,9 @@
             Me.lblTitle.Location = New System.Drawing.Point(27, 20)
             Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(238, 28)
+            Me.lblTitle.Size = New System.Drawing.Size(179, 28)
             Me.lblTitle.TabIndex = 0
-            Me.lblTitle.Text = "Pembayaran QRIS Statis"
+            Me.lblTitle.Text = "Pembayaran QRIS"
             '
             'pnlMain
             '
@@ -64,7 +64,7 @@
             Me.pnlMain.Controls.Add(Me.pnlCard)
             Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
             Me.pnlMain.Location = New System.Drawing.Point(0, 68)
-            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlMain.Name = "pnlMain"
             Me.pnlMain.Padding = New System.Windows.Forms.Padding(20, 18, 20, 18)
             Me.pnlMain.Size = New System.Drawing.Size(560, 597)
@@ -82,7 +82,7 @@
             Me.pnlCard.Controls.Add(Me.btnCancel)
             Me.pnlCard.Dock = System.Windows.Forms.DockStyle.Fill
             Me.pnlCard.Location = New System.Drawing.Point(20, 18)
-            Me.pnlCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlCard.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlCard.Name = "pnlCard"
             Me.pnlCard.Padding = New System.Windows.Forms.Padding(20, 18, 20, 18)
             Me.pnlCard.Size = New System.Drawing.Size(520, 561)
@@ -97,7 +97,7 @@
             Me.lblTransactionTitle.Name = "lblTransactionTitle"
             Me.lblTransactionTitle.Size = New System.Drawing.Size(480, 25)
             Me.lblTransactionTitle.TabIndex = 0
-            Me.lblTransactionTitle.Text = "Pembayaran Member Parkir"
+            Me.lblTransactionTitle.Text = "Pembayaran Parkirmas"
             Me.lblTransactionTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             '
             'lblAmountTitle
@@ -129,7 +129,7 @@
             Me.picQrisCode.BackColor = System.Drawing.Color.White
             Me.picQrisCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.picQrisCode.Location = New System.Drawing.Point(127, 117)
-            Me.picQrisCode.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.picQrisCode.Margin = New System.Windows.Forms.Padding(4)
             Me.picQrisCode.Name = "picQrisCode"
             Me.picQrisCode.Size = New System.Drawing.Size(266, 246)
             Me.picQrisCode.TabIndex = 3
@@ -157,7 +157,7 @@
             Me.btnConfirm.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnConfirm.ForeColor = System.Drawing.Color.White
             Me.btnConfirm.Location = New System.Drawing.Point(20, 431)
-            Me.btnConfirm.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnConfirm.Margin = New System.Windows.Forms.Padding(4)
             Me.btnConfirm.Name = "btnConfirm"
             Me.btnConfirm.Size = New System.Drawing.Size(480, 52)
             Me.btnConfirm.TabIndex = 5
@@ -173,7 +173,7 @@
             Me.btnCancel.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
             Me.btnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
             Me.btnCancel.Location = New System.Drawing.Point(20, 492)
-            Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnCancel.Margin = New System.Windows.Forms.Padding(4)
             Me.btnCancel.Name = "btnCancel"
             Me.btnCancel.Size = New System.Drawing.Size(480, 43)
             Me.btnCancel.TabIndex = 6
@@ -189,7 +189,7 @@
             Me.Controls.Add(Me.pnlMain)
             Me.Controls.Add(Me.pnlHeader)
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-            Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.Margin = New System.Windows.Forms.Padding(4)
             Me.MaximizeBox = False
             Me.MinimizeBox = False
             Me.Name = "QrisPaymentForm"
