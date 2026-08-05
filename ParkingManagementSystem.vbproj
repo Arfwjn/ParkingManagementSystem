@@ -119,15 +119,23 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DashboardController.vb" />
     <Compile Include="Controllers\HistoryController.vb" />
     <Compile Include="Controllers\LoginController.vb" />
+    <Compile Include="Controllers\MemberController.vb" />
+    <Compile Include="Controllers\MemberLevelController.vb" />
     <Compile Include="Controllers\ParkingController.vb" />
     <Compile Include="Controllers\PaymentController.vb" />
+    <Compile Include="Controllers\TariffController.vb" />
     <Compile Include="Controllers\UserController.vb" />
     <Compile Include="Database\DbConnection.vb" />
     <Compile Include="Helpers\TicketPrinterHelper.vb" />
+    <Compile Include="Models\MemberLevel.vb" />
+    <Compile Include="Models\Tariffs.vb" />
+    <Compile Include="Repositories\MemberLevelRepository.vb" />
     <Compile Include="Repositories\MemberRepository.vb" />
     <Compile Include="Repositories\ParkingRepository.vb" />
+    <Compile Include="Repositories\TariffRepository.vb" />
     <Compile Include="Repositories\UserRepository.vb" />
     <Compile Include="Helpers\SecurityHelper.vb" />
     <Compile Include="Helpers\SessionManager.vb" />
@@ -165,6 +173,12 @@
     <Compile Include="Views\DashboardForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\DebitPaymentForm.Designer.vb">
+      <DependentUpon>DebitPaymentForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DebitPaymentForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\EntryForm.Designer.vb">
       <DependentUpon>EntryForm.vb</DependentUpon>
     </Compile>
@@ -189,6 +203,30 @@
     <Compile Include="Views\LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\MemberLevelManagementForm.Designer.vb">
+      <DependentUpon>MemberLevelManagementForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MemberLevelManagementForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MemberRegistrationForm.Designer.vb">
+      <DependentUpon>MemberRegistrationForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MemberRegistrationForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\QrisPaymentForm.Designer.vb">
+      <DependentUpon>QrisPaymentForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QrisPaymentForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TariffManagementForm.Designer.vb">
+      <DependentUpon>TariffManagementForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TariffManagementForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\UserManagementForm.Designer.vb">
       <DependentUpon>UserManagementForm.vb</DependentUpon>
     </Compile>
@@ -209,8 +247,26 @@
     <EmbeddedResource Include="Views\EntryForm.resx">
       <DependentUpon>EntryForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ExitForm.resx">
+      <DependentUpon>ExitForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MemberLevelManagementForm.resx">
+      <DependentUpon>MemberLevelManagementForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MemberRegistrationForm.resx">
+      <DependentUpon>MemberRegistrationForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\QrisPaymentForm.resx">
+      <DependentUpon>QrisPaymentForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TariffManagementForm.resx">
+      <DependentUpon>TariffManagementForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserManagementForm.resx">
+      <DependentUpon>UserManagementForm.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

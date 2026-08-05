@@ -6,6 +6,8 @@ Imports ParkingManagementSystem.Repositories
 Namespace Controllers
     Public Class ParkingController
         Private ReadOnly _parkingRepository As ParkingRepository
+        Private ReadOnly _memberRepository As MemberRepository
+        Private ReadOnly _tariffRepository As TariffRepository
 
         ' Konfigurasi Batas Kapasitas Parkir (Business Rules 5.9)
         Public Const MAX_CAR_CAPACITY As Integer = 50
@@ -13,6 +15,8 @@ Namespace Controllers
 
         Public Sub New()
             _parkingRepository = New ParkingRepository()
+            _memberRepository = New MemberRepository()
+            _tariffRepository = New TariffRepository()
         End Sub
 
         ''' <summary>
@@ -53,8 +57,8 @@ Namespace Controllers
             Dim currentUserId As Integer? = If(SessionManager.IsLoggedIn(), SessionManager.CurrentUser.Id, CType(Nothing, Integer?))
 
             Dim newEntry As New Parking With {
-                .plateNumber = cleanPlate,
-                .vehicleType = vehicleType,
+                .PlateNumber = cleanPlate,
+                .VehicleType = vehicleType,
                 .EntryTime = DateTime.Now,
                 .Status = "IN",
                 .PaymentStatus = "Belum Dibayar",
@@ -81,6 +85,67 @@ Namespace Controllers
 
         Public Function GetTodayEntryCount() As Integer
             Return _parkingRepository.GetTodayEntryCount()
+        End Function
+
+        ''' <summary>
+        ''' Memeriksa apakah plat nomor terdaftar sebagai member dan mengembalikan data info member
+        ''' </summary>
+        Public Function CheckMemberStatus(plateNumber As String) As Tuple(Of Boolean, String, String, Decimal)
+            ' Returns: Tuple(IsMember, OwnerName, LevelName, DiscountPercentage)
+            If String.IsNullOrWhiteSpace(plateNumber) Then
+                Return Tuple.Create(False, "", "Non-Member", 0D)
+            End If
+
+            Dim memberData = _memberRepository.GetMemberWithLevelByPlate(plateNumber.Trim())
+            If memberData IsNot Nothing Then
+                Return Tuple.Create(True, memberData.Item1.OwnerName, memberData.Item2, memberData.Item3)
+            End If
+
+            Return Tuple.Create(False, "", "Non-Member", 0D)
+        End Function
+
+        ''' <summary>
+        ''' Mengambil estimasi tarif per jam dari database berdasarkan tipe kendaraan
+        ''' </summary>
+        Public Function GetTariffInfo(vehicleType As String) As Tariff
+            Return _tariffRepository.GetByVehicleType(vehicleType)
+        End Function
+
+        ''' <summary>
+        ''' Memproses transaksi kendaraan masuk baru
+        ''' </summary>
+        Public Function ProcessEntry(plateNumber As String, vehicleType As String, userId As Nullable(Of Integer), ByRef errorMessage As String) As Boolean
+            errorMessage = String.Empty
+
+            If String.IsNullOrWhiteSpace(plateNumber) Then
+                errorMessage = "Plat nomor kendaraan wajib diisi."
+                Return False
+            End If
+
+            If String.IsNullOrWhiteSpace(vehicleType) Then
+                errorMessage = "Pilih jenis kendaraan terlebih dahulu."
+                Return False
+            End If
+
+            ' Cek apakah kendaraan masih berada di dalam area parkir
+            If _parkingRepository.IsPlateActive(plateNumber.Trim()) Then
+                errorMessage = $"Kendaraan dengan plat nomor '{plateNumber.Trim().ToUpper()}' saat ini masih terdaftar aktif berada di dalam area parkir."
+                Return False
+            End If
+
+            Dim parking As New Parking() With {
+                .PlateNumber = plateNumber.Trim().ToUpper(),
+                .VehicleType = vehicleType,
+                .EntryTime = DateTime.Now,
+                .UserId = userId
+            }
+
+            If Not _parkingRepository.InsertEntry(parking) Then
+                errorMessage = "Gagal menyimpan transaksi parkir masuk ke database."
+                Return False
+            End If
+
+            Return True
         End Function
     End Class
 End Namespace

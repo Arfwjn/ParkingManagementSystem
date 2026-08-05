@@ -1,5 +1,6 @@
 ﻿Imports System
 Imports System.Collections.Generic
+Imports System.Drawing
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
 Imports ParkingManagementSystem.Models
@@ -79,9 +80,11 @@ Namespace Views
                 lblTotalPay.Text = $"Rp {_currentParking.TotalPayment:N0}"
 
                 If activeMember IsNot Nothing Then
-                    lblMemberInfo.Text = $"* Terdeteksi Member {activeMember.MemberLevel} ({activeMember.OwnerName})"
+                    lblMemberInfo.Text = $"* Terdeteksi Member ({activeMember.OwnerName})"
+                    lblMemberInfo.ForeColor = Color.FromArgb(16, 185, 129)
                 Else
                     lblMemberInfo.Text = "* Bukan Member"
+                    lblMemberInfo.ForeColor = Color.FromArgb(100, 116, 139)
                 End If
             Else
                 MessageBox.Show(errorMessage, "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -89,6 +92,9 @@ Namespace Views
             End If
         End Sub
 
+        ''' <summary>
+        ''' Memproses transaksi pembayaran parkir keluar dengan pemicu dialog QRIS / Debit
+        ''' </summary>
         Private Sub btnProcessPayment_Click(sender As Object, e As EventArgs) Handles btnProcessPayment.Click
             If _currentParking Is Nothing Then
                 MessageBox.Show("Silakan cari kendaraan terlebih dahulu.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -96,17 +102,43 @@ Namespace Views
             End If
 
             Dim errorMessage As String = String.Empty
-            Dim selectedMethod As String = If(cmbPaymentMethod.SelectedItem IsNot Nothing, cmbPaymentMethod.SelectedItem.ToString(), "")
+            Dim selectedMethod As String = If(cmbPaymentMethod.SelectedItem IsNot Nothing, cmbPaymentMethod.SelectedItem.ToString(), "Tunai")
+            Dim referenceNumber As String = String.Empty
 
+            ' 1. PEMICU DIALOG PEMBAYARAN NON-TUNAI (QRIS & DEBIT)
+            If selectedMethod.Equals("QRIS", StringComparison.OrdinalIgnoreCase) Then
+                ' Tampilkan Form QRIS jika nominal tagihan lebih dari 0
+                Using qrisForm As New QrisPaymentForm(_currentParking.TotalPayment, $"Parkir Keluar - {_currentParking.PlateNumber}")
+                    Dim result As DialogResult = qrisForm.ShowDialog(Me)
+                    If result <> DialogResult.OK Then
+                        MessageBox.Show("Pembayaran QRIS dibatalkan. Transaksi parkir keluar dihentikan.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Return
+                    End If
+                    referenceNumber = qrisForm.GeneratedReferenceNumber
+                End Using
+
+            ElseIf selectedMethod.Equals("Transfer / Debit", StringComparison.OrdinalIgnoreCase) Then
+                ' Tampilkan Form Debit jika nominal tagihan lebih dari 0
+                Using debitForm As New DebitPaymentForm(_currentParking.TotalPayment, $"Parkir Keluar - {_currentParking.PlateNumber}")
+                    Dim result As DialogResult = debitForm.ShowDialog(Me)
+                    If result <> DialogResult.OK Then
+                        MessageBox.Show("Pembayaran Debit dibatalkan. Transaksi parkir keluar dihentikan.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Return
+                    End If
+                    referenceNumber = debitForm.CardOrReferenceNumber
+                End Using
+            End If
+
+            ' 2. EKSEKUSI PENYIMPANAN TRANSAKSI PARKIR KELUAR
             Dim isSuccess As Boolean = _paymentController.ProcessPayment(_currentParking, selectedMethod, errorMessage)
 
             If isSuccess Then
                 Dim askReceipt As DialogResult = MessageBox.Show(
-            $"Pembayaran Berhasil!{vbCrLf}Total: Rp {_currentParking.TotalPayment:N0}{vbCrLf}{vbCrLf}Cetak struk bukti pembayaran?",
-            "Sukses",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Information
-        )
+                    $"Pembayaran Berhasil!{vbCrLf}Metode: {selectedMethod}{vbCrLf}Total: Rp {_currentParking.TotalPayment:N0}{vbCrLf}{vbCrLf}Cetak struk bukti pembayaran?",
+                    "Sukses",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information
+                )
 
                 If askReceipt = DialogResult.Yes Then
                     Helpers.TicketPrinterHelper.PrintExitReceipt(_currentParking)
@@ -136,5 +168,6 @@ Namespace Views
         Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
             Me.Close()
         End Sub
+
     End Class
 End Namespace

@@ -63,8 +63,9 @@
             Me.pnlHeader.Controls.Add(Me.btnClose)
             Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
             Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.pnlHeader.Name = "pnlHeader"
-            Me.pnlHeader.Size = New System.Drawing.Size(680, 60)
+            Me.pnlHeader.Size = New System.Drawing.Size(907, 74)
             Me.pnlHeader.TabIndex = 0
             '
             'lblTitle
@@ -72,9 +73,10 @@
             Me.lblTitle.AutoSize = True
             Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
             Me.lblTitle.ForeColor = System.Drawing.Color.White
-            Me.lblTitle.Location = New System.Drawing.Point(20, 18)
+            Me.lblTitle.Location = New System.Drawing.Point(27, 22)
+            Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(288, 21)
+            Me.lblTitle.Size = New System.Drawing.Size(379, 28)
             Me.lblTitle.TabIndex = 0
             Me.lblTitle.Text = "Registrasi Parkir Keluar && Pembayaran"
             '
@@ -86,9 +88,10 @@
             Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
             Me.btnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
-            Me.btnClose.Location = New System.Drawing.Point(633, 12)
+            Me.btnClose.Location = New System.Drawing.Point(844, 15)
+            Me.btnClose.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.btnClose.Name = "btnClose"
-            Me.btnClose.Size = New System.Drawing.Size(35, 35)
+            Me.btnClose.Size = New System.Drawing.Size(47, 43)
             Me.btnClose.TabIndex = 1
             Me.btnClose.Text = "X"
             Me.btnClose.UseVisualStyleBackColor = True
@@ -100,10 +103,11 @@
             Me.pnlMain.Controls.Add(Me.pnlDetailsCard)
             Me.pnlMain.Controls.Add(Me.pnlSearchCard)
             Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.pnlMain.Location = New System.Drawing.Point(0, 60)
+            Me.pnlMain.Location = New System.Drawing.Point(0, 74)
+            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.pnlMain.Name = "pnlMain"
-            Me.pnlMain.Padding = New System.Windows.Forms.Padding(20)
-            Me.pnlMain.Size = New System.Drawing.Size(680, 560)
+            Me.pnlMain.Padding = New System.Windows.Forms.Padding(27, 25, 27, 25)
+            Me.pnlMain.Size = New System.Drawing.Size(907, 689)
             Me.pnlMain.TabIndex = 1
             '
             'pnlPaymentCard
@@ -114,9 +118,10 @@
             Me.pnlPaymentCard.Controls.Add(Me.lblPaymentMethod)
             Me.pnlPaymentCard.Controls.Add(Me.lblTotalPay)
             Me.pnlPaymentCard.Controls.Add(Me.lblTotalPayTitle)
-            Me.pnlPaymentCard.Location = New System.Drawing.Point(350, 115)
+            Me.pnlPaymentCard.Location = New System.Drawing.Point(467, 142)
+            Me.pnlPaymentCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.pnlPaymentCard.Name = "pnlPaymentCard"
-            Me.pnlPaymentCard.Size = New System.Drawing.Size(310, 420)
+            Me.pnlPaymentCard.Size = New System.Drawing.Size(413, 517)
             Me.pnlPaymentCard.TabIndex = 2
             '
             'btnProcessPayment
@@ -127,9 +132,10 @@
             Me.btnProcessPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnProcessPayment.Font = New System.Drawing.Font("Segoe UI Semibold", 10.5!, System.Drawing.FontStyle.Bold)
             Me.btnProcessPayment.ForeColor = System.Drawing.Color.White
-            Me.btnProcessPayment.Location = New System.Drawing.Point(20, 340)
+            Me.btnProcessPayment.Location = New System.Drawing.Point(27, 418)
+            Me.btnProcessPayment.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.btnProcessPayment.Name = "btnProcessPayment"
-            Me.btnProcessPayment.Size = New System.Drawing.Size(270, 50)
+            Me.btnProcessPayment.Size = New System.Drawing.Size(360, 62)
             Me.btnProcessPayment.TabIndex = 4
             Me.btnProcessPayment.Text = "Proses Pembayaran"
             Me.btnProcessPayment.UseVisualStyleBackColor = False
@@ -140,9 +146,10 @@
             Me.cmbPaymentMethod.Font = New System.Drawing.Font("Segoe UI", 10.5!)
             Me.cmbPaymentMethod.FormattingEnabled = True
             Me.cmbPaymentMethod.Items.AddRange(New Object() {"Tunai", "QRIS", "Transfer / Debit"})
-            Me.cmbPaymentMethod.Location = New System.Drawing.Point(20, 245)
+            Me.cmbPaymentMethod.Location = New System.Drawing.Point(27, 302)
+            Me.cmbPaymentMethod.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.cmbPaymentMethod.Name = "cmbPaymentMethod"
-            Me.cmbPaymentMethod.Size = New System.Drawing.Size(270, 27)
+            Me.cmbPaymentMethod.Size = New System.Drawing.Size(359, 31)
             Me.cmbPaymentMethod.TabIndex = 3
             '
             'lblPaymentMethod
@@ -150,9 +157,10 @@
             Me.lblPaymentMethod.AutoSize = True
             Me.lblPaymentMethod.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblPaymentMethod.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-            Me.lblPaymentMethod.Location = New System.Drawing.Point(17, 220)
+            Me.lblPaymentMethod.Location = New System.Drawing.Point(23, 271)
+            Me.lblPaymentMethod.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblPaymentMethod.Name = "lblPaymentMethod"
-            Me.lblPaymentMethod.Size = New System.Drawing.Size(133, 17)
+            Me.lblPaymentMethod.Size = New System.Drawing.Size(161, 21)
             Me.lblPaymentMethod.TabIndex = 2
             Me.lblPaymentMethod.Text = "Metode Pembayaran"
             '
@@ -161,9 +169,10 @@
             Me.lblTotalPay.AutoSize = True
             Me.lblTotalPay.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
             Me.lblTotalPay.ForeColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
-            Me.lblTotalPay.Location = New System.Drawing.Point(15, 75)
+            Me.lblTotalPay.Location = New System.Drawing.Point(20, 92)
+            Me.lblTotalPay.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTotalPay.Name = "lblTotalPay"
-            Me.lblTotalPay.Size = New System.Drawing.Size(81, 40)
+            Me.lblTotalPay.Size = New System.Drawing.Size(100, 50)
             Me.lblTotalPay.TabIndex = 1
             Me.lblTotalPay.Text = "Rp 0"
             '
@@ -172,9 +181,10 @@
             Me.lblTotalPayTitle.AutoSize = True
             Me.lblTotalPayTitle.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
             Me.lblTotalPayTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblTotalPayTitle.Location = New System.Drawing.Point(18, 40)
+            Me.lblTotalPayTitle.Location = New System.Drawing.Point(24, 49)
+            Me.lblTotalPayTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTotalPayTitle.Name = "lblTotalPayTitle"
-            Me.lblTotalPayTitle.Size = New System.Drawing.Size(149, 19)
+            Me.lblTotalPayTitle.Size = New System.Drawing.Size(160, 23)
             Me.lblTotalPayTitle.TabIndex = 0
             Me.lblTotalPayTitle.Text = "Total Harus Dibayar"
             '
@@ -196,27 +206,30 @@
             Me.pnlDetailsCard.Controls.Add(Me.lblEntryTimeTitle)
             Me.pnlDetailsCard.Controls.Add(Me.lblTypeVal)
             Me.pnlDetailsCard.Controls.Add(Me.lblTypeTitle)
-            Me.pnlDetailsCard.Location = New System.Drawing.Point(20, 115)
+            Me.pnlDetailsCard.Location = New System.Drawing.Point(27, 142)
+            Me.pnlDetailsCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.pnlDetailsCard.Name = "pnlDetailsCard"
-            Me.pnlDetailsCard.Size = New System.Drawing.Size(315, 420)
+            Me.pnlDetailsCard.Size = New System.Drawing.Size(420, 517)
             Me.pnlDetailsCard.TabIndex = 1
             '
             'lblMemberInfo
             '
-            Me.lblMemberInfo.Font = New System.Drawing.Font("Segoe UI Italic", 8.5!)
+            Me.lblMemberInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
             Me.lblMemberInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(16, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(129, Byte), Integer))
-            Me.lblMemberInfo.Location = New System.Drawing.Point(20, 375)
+            Me.lblMemberInfo.Location = New System.Drawing.Point(27, 462)
+            Me.lblMemberInfo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblMemberInfo.Name = "lblMemberInfo"
-            Me.lblMemberInfo.Size = New System.Drawing.Size(275, 30)
+            Me.lblMemberInfo.Size = New System.Drawing.Size(367, 37)
             Me.lblMemberInfo.TabIndex = 14
             '
             'lblDiscountVal
             '
             Me.lblDiscountVal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblDiscountVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(16, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(129, Byte), Integer))
-            Me.lblDiscountVal.Location = New System.Drawing.Point(150, 325)
+            Me.lblDiscountVal.Location = New System.Drawing.Point(200, 400)
+            Me.lblDiscountVal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblDiscountVal.Name = "lblDiscountVal"
-            Me.lblDiscountVal.Size = New System.Drawing.Size(145, 20)
+            Me.lblDiscountVal.Size = New System.Drawing.Size(193, 25)
             Me.lblDiscountVal.TabIndex = 13
             Me.lblDiscountVal.Text = "Rp 0"
             Me.lblDiscountVal.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -226,9 +239,10 @@
             Me.lblDiscountTitle.AutoSize = True
             Me.lblDiscountTitle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.lblDiscountTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblDiscountTitle.Location = New System.Drawing.Point(20, 325)
+            Me.lblDiscountTitle.Location = New System.Drawing.Point(27, 400)
+            Me.lblDiscountTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblDiscountTitle.Name = "lblDiscountTitle"
-            Me.lblDiscountTitle.Size = New System.Drawing.Size(95, 17)
+            Me.lblDiscountTitle.Size = New System.Drawing.Size(121, 21)
             Me.lblDiscountTitle.TabIndex = 12
             Me.lblDiscountTitle.Text = "Diskon Member"
             '
@@ -236,9 +250,10 @@
             '
             Me.lblOvernightVal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblOvernightVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-            Me.lblOvernightVal.Location = New System.Drawing.Point(150, 275)
+            Me.lblOvernightVal.Location = New System.Drawing.Point(200, 338)
+            Me.lblOvernightVal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblOvernightVal.Name = "lblOvernightVal"
-            Me.lblOvernightVal.Size = New System.Drawing.Size(145, 20)
+            Me.lblOvernightVal.Size = New System.Drawing.Size(193, 25)
             Me.lblOvernightVal.TabIndex = 11
             Me.lblOvernightVal.Text = "Rp 0"
             Me.lblOvernightVal.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -248,9 +263,10 @@
             Me.lblOvernightTitle.AutoSize = True
             Me.lblOvernightTitle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.lblOvernightTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblOvernightTitle.Location = New System.Drawing.Point(20, 275)
+            Me.lblOvernightTitle.Location = New System.Drawing.Point(27, 338)
+            Me.lblOvernightTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblOvernightTitle.Name = "lblOvernightTitle"
-            Me.lblOvernightTitle.Size = New System.Drawing.Size(93, 17)
+            Me.lblOvernightTitle.Size = New System.Drawing.Size(119, 21)
             Me.lblOvernightTitle.TabIndex = 10
             Me.lblOvernightTitle.Text = "Biaya Inap/Mlm"
             '
@@ -258,9 +274,10 @@
             '
             Me.lblFineVal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblFineVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-            Me.lblFineVal.Location = New System.Drawing.Point(150, 225)
+            Me.lblFineVal.Location = New System.Drawing.Point(200, 277)
+            Me.lblFineVal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblFineVal.Name = "lblFineVal"
-            Me.lblFineVal.Size = New System.Drawing.Size(145, 20)
+            Me.lblFineVal.Size = New System.Drawing.Size(193, 25)
             Me.lblFineVal.TabIndex = 9
             Me.lblFineVal.Text = "Rp 0"
             Me.lblFineVal.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -270,9 +287,10 @@
             Me.lblFineTitle.AutoSize = True
             Me.lblFineTitle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.lblFineTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblFineTitle.Location = New System.Drawing.Point(20, 225)
+            Me.lblFineTitle.Location = New System.Drawing.Point(27, 277)
+            Me.lblFineTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblFineTitle.Name = "lblFineTitle"
-            Me.lblFineTitle.Size = New System.Drawing.Size(123, 17)
+            Me.lblFineTitle.Size = New System.Drawing.Size(141, 21)
             Me.lblFineTitle.TabIndex = 8
             Me.lblFineTitle.Text = "Denda Tiket Hilang"
             '
@@ -280,9 +298,10 @@
             '
             Me.lblBaseFeeVal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblBaseFeeVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-            Me.lblBaseFeeVal.Location = New System.Drawing.Point(150, 175)
+            Me.lblBaseFeeVal.Location = New System.Drawing.Point(200, 215)
+            Me.lblBaseFeeVal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblBaseFeeVal.Name = "lblBaseFeeVal"
-            Me.lblBaseFeeVal.Size = New System.Drawing.Size(145, 20)
+            Me.lblBaseFeeVal.Size = New System.Drawing.Size(193, 25)
             Me.lblBaseFeeVal.TabIndex = 7
             Me.lblBaseFeeVal.Text = "Rp 0"
             Me.lblBaseFeeVal.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -292,9 +311,10 @@
             Me.lblBaseFeeTitle.AutoSize = True
             Me.lblBaseFeeTitle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.lblBaseFeeTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblBaseFeeTitle.Location = New System.Drawing.Point(20, 175)
+            Me.lblBaseFeeTitle.Location = New System.Drawing.Point(27, 215)
+            Me.lblBaseFeeTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblBaseFeeTitle.Name = "lblBaseFeeTitle"
-            Me.lblBaseFeeTitle.Size = New System.Drawing.Size(107, 17)
+            Me.lblBaseFeeTitle.Size = New System.Drawing.Size(127, 21)
             Me.lblBaseFeeTitle.TabIndex = 6
             Me.lblBaseFeeTitle.Text = "Tarif Parkir Dasar"
             '
@@ -302,9 +322,10 @@
             '
             Me.lblDurationVal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblDurationVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-            Me.lblDurationVal.Location = New System.Drawing.Point(150, 125)
+            Me.lblDurationVal.Location = New System.Drawing.Point(200, 154)
+            Me.lblDurationVal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblDurationVal.Name = "lblDurationVal"
-            Me.lblDurationVal.Size = New System.Drawing.Size(145, 20)
+            Me.lblDurationVal.Size = New System.Drawing.Size(193, 25)
             Me.lblDurationVal.TabIndex = 5
             Me.lblDurationVal.Text = "-"
             Me.lblDurationVal.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -314,9 +335,10 @@
             Me.lblDurationTitle.AutoSize = True
             Me.lblDurationTitle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.lblDurationTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblDurationTitle.Location = New System.Drawing.Point(20, 125)
+            Me.lblDurationTitle.Location = New System.Drawing.Point(27, 154)
+            Me.lblDurationTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblDurationTitle.Name = "lblDurationTitle"
-            Me.lblDurationTitle.Size = New System.Drawing.Size(83, 17)
+            Me.lblDurationTitle.Size = New System.Drawing.Size(99, 21)
             Me.lblDurationTitle.TabIndex = 4
             Me.lblDurationTitle.Text = "Durasi Parkir"
             '
@@ -324,9 +346,10 @@
             '
             Me.lblEntryTimeVal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblEntryTimeVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-            Me.lblEntryTimeVal.Location = New System.Drawing.Point(120, 75)
+            Me.lblEntryTimeVal.Location = New System.Drawing.Point(160, 92)
+            Me.lblEntryTimeVal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblEntryTimeVal.Name = "lblEntryTimeVal"
-            Me.lblEntryTimeVal.Size = New System.Drawing.Size(175, 20)
+            Me.lblEntryTimeVal.Size = New System.Drawing.Size(233, 25)
             Me.lblEntryTimeVal.TabIndex = 3
             Me.lblEntryTimeVal.Text = "-"
             Me.lblEntryTimeVal.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -336,9 +359,10 @@
             Me.lblEntryTimeTitle.AutoSize = True
             Me.lblEntryTimeTitle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.lblEntryTimeTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblEntryTimeTitle.Location = New System.Drawing.Point(20, 75)
+            Me.lblEntryTimeTitle.Location = New System.Drawing.Point(27, 92)
+            Me.lblEntryTimeTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblEntryTimeTitle.Name = "lblEntryTimeTitle"
-            Me.lblEntryTimeTitle.Size = New System.Drawing.Size(84, 17)
+            Me.lblEntryTimeTitle.Size = New System.Drawing.Size(104, 21)
             Me.lblEntryTimeTitle.TabIndex = 2
             Me.lblEntryTimeTitle.Text = "Waktu Masuk"
             '
@@ -346,9 +370,10 @@
             '
             Me.lblTypeVal.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblTypeVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-            Me.lblTypeVal.Location = New System.Drawing.Point(150, 25)
+            Me.lblTypeVal.Location = New System.Drawing.Point(200, 31)
+            Me.lblTypeVal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTypeVal.Name = "lblTypeVal"
-            Me.lblTypeVal.Size = New System.Drawing.Size(145, 20)
+            Me.lblTypeVal.Size = New System.Drawing.Size(193, 25)
             Me.lblTypeVal.TabIndex = 1
             Me.lblTypeVal.Text = "-"
             Me.lblTypeVal.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -358,9 +383,10 @@
             Me.lblTypeTitle.AutoSize = True
             Me.lblTypeTitle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.lblTypeTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
-            Me.lblTypeTitle.Location = New System.Drawing.Point(20, 25)
+            Me.lblTypeTitle.Location = New System.Drawing.Point(27, 31)
+            Me.lblTypeTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTypeTitle.Name = "lblTypeTitle"
-            Me.lblTypeTitle.Size = New System.Drawing.Size(104, 17)
+            Me.lblTypeTitle.Size = New System.Drawing.Size(122, 21)
             Me.lblTypeTitle.TabIndex = 0
             Me.lblTypeTitle.Text = "Jenis Kendaraan"
             '
@@ -372,9 +398,10 @@
             Me.pnlSearchCard.Controls.Add(Me.txtPlateNumber)
             Me.pnlSearchCard.Controls.Add(Me.lblPlateNumber)
             Me.pnlSearchCard.Dock = System.Windows.Forms.DockStyle.Top
-            Me.pnlSearchCard.Location = New System.Drawing.Point(20, 20)
+            Me.pnlSearchCard.Location = New System.Drawing.Point(27, 25)
+            Me.pnlSearchCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.pnlSearchCard.Name = "pnlSearchCard"
-            Me.pnlSearchCard.Size = New System.Drawing.Size(640, 80)
+            Me.pnlSearchCard.Size = New System.Drawing.Size(853, 98)
             Me.pnlSearchCard.TabIndex = 0
             '
             'chkLostTicket
@@ -382,9 +409,10 @@
             Me.chkLostTicket.AutoSize = True
             Me.chkLostTicket.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.chkLostTicket.ForeColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
-            Me.chkLostTicket.Location = New System.Drawing.Point(495, 30)
+            Me.chkLostTicket.Location = New System.Drawing.Point(660, 37)
+            Me.chkLostTicket.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.chkLostTicket.Name = "chkLostTicket"
-            Me.chkLostTicket.Size = New System.Drawing.Size(91, 19)
+            Me.chkLostTicket.Size = New System.Drawing.Size(118, 24)
             Me.chkLostTicket.TabIndex = 3
             Me.chkLostTicket.Text = "Tiket Hilang?"
             Me.chkLostTicket.UseVisualStyleBackColor = True
@@ -397,9 +425,10 @@
             Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnSearch.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnSearch.ForeColor = System.Drawing.Color.White
-            Me.btnSearch.Location = New System.Drawing.Point(365, 25)
+            Me.btnSearch.Location = New System.Drawing.Point(487, 31)
+            Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.btnSearch.Name = "btnSearch"
-            Me.btnSearch.Size = New System.Drawing.Size(110, 30)
+            Me.btnSearch.Size = New System.Drawing.Size(147, 37)
             Me.btnSearch.TabIndex = 2
             Me.btnSearch.Text = "Cari Data"
             Me.btnSearch.UseVisualStyleBackColor = False
@@ -408,9 +437,10 @@
             '
             Me.txtPlateNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.txtPlateNumber.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
-            Me.txtPlateNumber.Location = New System.Drawing.Point(140, 26)
+            Me.txtPlateNumber.Location = New System.Drawing.Point(187, 32)
+            Me.txtPlateNumber.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.txtPlateNumber.Name = "txtPlateNumber"
-            Me.txtPlateNumber.Size = New System.Drawing.Size(210, 27)
+            Me.txtPlateNumber.Size = New System.Drawing.Size(279, 32)
             Me.txtPlateNumber.TabIndex = 1
             '
             'lblPlateNumber
@@ -418,21 +448,23 @@
             Me.lblPlateNumber.AutoSize = True
             Me.lblPlateNumber.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
             Me.lblPlateNumber.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-            Me.lblPlateNumber.Location = New System.Drawing.Point(20, 30)
+            Me.lblPlateNumber.Location = New System.Drawing.Point(27, 37)
+            Me.lblPlateNumber.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblPlateNumber.Name = "lblPlateNumber"
-            Me.lblPlateNumber.Size = New System.Drawing.Size(107, 17)
+            Me.lblPlateNumber.Size = New System.Drawing.Size(130, 21)
             Me.lblPlateNumber.TabIndex = 0
             Me.lblPlateNumber.Text = "Cari Plat Nomor:"
             '
             'ExitForm
             '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
-            Me.ClientSize = New System.Drawing.Size(680, 620)
+            Me.ClientSize = New System.Drawing.Size(907, 763)
             Me.Controls.Add(Me.pnlMain)
             Me.Controls.Add(Me.pnlHeader)
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+            Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
             Me.Name = "ExitForm"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
             Me.Text = "Registrasi Parkir Keluar & Pembayaran"

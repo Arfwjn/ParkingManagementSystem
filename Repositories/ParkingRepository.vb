@@ -221,5 +221,39 @@ Namespace Repositories
                 End Using
             End Using
         End Function
+
+        ''' <summary>
+        ''' Menghitung total pendapatan dari transaksi parkir lunas pada hari ini
+        ''' </summary>
+        Public Function GetTodayRevenue() As Decimal
+            Dim sql As String = "SELECT COALESCE(SUM(total_payment), 0) FROM parking WHERE DATE(exit_time) = CURDATE() AND payment_status = 'Lunas'"
+            Using conn As MySqlConnection = DbConnection.Instance.GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand(sql, conn)
+                    Return Convert.ToDecimal(cmd.ExecuteScalar())
+                End Using
+            End Using
+        End Function
+
+        ''' <summary>
+        ''' Mengambil 10 transaksi parkir terkini (masuk atau keluar) untuk tabel monitoring dashboard
+        ''' </summary>
+        Public Function GetRecentTransactionsDataTable() As DataTable
+            Dim dt As New DataTable()
+            Dim sql As String = "SELECT id AS 'ID', plate_number AS 'Nomor Polisi', vehicle_type AS 'Jenis', " &
+                               "entry_time AS 'Waktu Masuk', exit_time AS 'Waktu Keluar', status AS 'Status', " &
+                               "total_payment AS 'Total Bayar' " &
+                               "FROM parking ORDER BY COALESCE(exit_time, entry_time) DESC LIMIT 10"
+
+            Using conn As MySqlConnection = DbConnection.Instance.GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand(sql, conn)
+                    Using adapter As New MySqlDataAdapter(cmd)
+                        adapter.Fill(dt)
+                    End Using
+                End Using
+            End Using
+            Return dt
+        End Function
     End Class
 End Namespace
