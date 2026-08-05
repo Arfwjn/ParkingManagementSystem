@@ -62,17 +62,56 @@ Namespace Views
         End Sub
 
         Private Sub cmbTransactionType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTransactionType.SelectedIndexChanged
-            ' Sesuaikan status kontrol pembayaran berdasarkan jenis transaksi yang dipilih
-            Dim isEditOnly As Boolean = (_selectedMemberId > 0) AndAlso cmbTransactionType.SelectedIndex = 1
-            cmbPaymentMethod.Enabled = Not isEditOnly
+            ApplyControlStates()
             UpdateTotalFeeDisplay()
+        End Sub
+
+        ''' <summary>
+        ''' Mengatur status Enabled/Disabled seluruh kontrol input berdasarkan jenis transaksi yang dipilih
+        ''' </summary>
+        Private Sub ApplyControlStates()
+            If _selectedMemberId > 0 Then
+                ' MEMBER TERDAFTAR DISELEKSI
+                If cmbTransactionType.SelectedIndex = 0 Then
+                    ' Perpanjangan Langganan Bulanan: Kunci profil, buka pembayaran
+                    txtOwnerName.Enabled = False
+                    cmbLevel.Enabled = False
+                    txtPlate1.Enabled = False
+                    txtPlate2.Enabled = False
+                    txtPlate3.Enabled = False
+
+                    cmbTransactionType.Enabled = True
+                    cmbPaymentMethod.Enabled = True
+
+                ElseIf cmbTransactionType.SelectedIndex = 1 Then
+                    ' Perbarui Profil Member: Buka profil, kunci pembayaran
+                    txtOwnerName.Enabled = True
+                    cmbLevel.Enabled = True
+                    txtPlate1.Enabled = True
+                    txtPlate2.Enabled = True
+                    txtPlate3.Enabled = True
+
+                    cmbTransactionType.Enabled = True
+                    cmbPaymentMethod.Enabled = False
+                End If
+            Else
+                ' PENDAFTARAN MEMBER BARU
+                txtOwnerName.Enabled = True
+                cmbLevel.Enabled = True
+                txtPlate1.Enabled = True
+                txtPlate2.Enabled = True
+                txtPlate3.Enabled = True
+
+                cmbTransactionType.Enabled = False
+                cmbPaymentMethod.Enabled = True
+            End If
         End Sub
 
         ''' <summary>
         ''' Kalkulasi total biaya dinamis berdasarkan level dan jenis transaksi
         ''' </summary>
         Private Function CalculateCurrentFee() As Decimal
-            ' Jika dalam Mode Edit Profil (Tanpa Pembayaran), biaya = 0
+            ' Jika Mode Edit Profil (Tanpa Biaya), biaya = 0
             If _selectedMemberId > 0 AndAlso cmbTransactionType.SelectedIndex = 1 Then
                 Return 0D
             End If
@@ -137,7 +176,7 @@ Namespace Views
                     txtPlate3.Text = If(plateArray.Length > 2, plateArray(2).Trim(), String.Empty)
                 End If
 
-                ' Set Form ke Mode Member Terdaftar (Membuka Pilihan Transaksi & Pembayaran)
+                ' Set Form ke Mode Member Terdaftar
                 SetFormMode(isMemberSelected:=True)
 
             Catch ex As Exception
@@ -153,27 +192,22 @@ Namespace Views
 
             If isMemberSelected Then
                 btnSave.Text = "Proses Transaksi Member"
-                btnSave.BackColor = System.Drawing.Color.FromArgb(16, 185, 129) ' Warna Hijau
+                btnSave.BackColor = System.Drawing.Color.FromArgb(16, 185, 129) ' Hijau
 
-                ' Memberikan Opsi Lengkap untuk Member Terdaftar
                 cmbTransactionType.Items.Add("Perpanjangan Langganan Bulanan")
                 cmbTransactionType.Items.Add("Perbarui Profil Member (Tanpa Biaya)")
-                cmbTransactionType.SelectedIndex = 0 ' Default ke Perpanjangan
-
-                cmbTransactionType.Enabled = True
-                cmbPaymentMethod.Enabled = True
+                cmbTransactionType.SelectedIndex = 0 ' Default Perpanjangan
             Else
                 btnSave.Text = "Daftarkan Member / Bayar"
-                btnSave.BackColor = System.Drawing.Color.FromArgb(37, 99, 235) ' Warna Biru
+                btnSave.BackColor = System.Drawing.Color.FromArgb(37, 99, 235) ' Biru
 
                 cmbTransactionType.Items.Add("Pendaftaran Baru (+1 Bulan)")
                 cmbTransactionType.SelectedIndex = 0
-
-                cmbTransactionType.Enabled = False
-                cmbPaymentMethod.Enabled = True
             End If
 
             If cmbPaymentMethod.Items.Count > 0 Then cmbPaymentMethod.SelectedIndex = 0
+
+            ApplyControlStates()
             UpdateTotalFeeDisplay()
         End Sub
 
