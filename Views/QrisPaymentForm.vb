@@ -1,5 +1,6 @@
 ﻿Imports System
 Imports System.Drawing
+Imports System.IO
 Imports System.Windows.Forms
 
 Namespace Views
@@ -8,22 +9,71 @@ Namespace Views
         Public Property TransactionTitle As String
         Public Property GeneratedReferenceNumber As String
 
+        Private ReadOnly _settingController As PaymentSettingController
+
         Public Sub New(amount As Decimal, transactionTitle As String)
             InitializeComponent()
             Me.Amount = amount
             Me.TransactionTitle = transactionTitle
             Me.GeneratedReferenceNumber = "QRIS-" & DateTime.Now.ToString("yyyyMMddHHmmss")
+
+            _settingController = New PaymentSettingController()
         End Sub
 
         Private Sub QrisPaymentForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             lblTransactionTitle.Text = TransactionTitle
             lblAmountValue.Text = $"Rp {Amount:N0}"
-            RenderSimulatedQris()
+
+            ' PERBAIKAN: Kunci PictureBox agar selalu menampilkan seluruh gambar secara utuh (Zoom)
+            picQrisCode.SizeMode = PictureBoxSizeMode.Zoom
+
+            ' Muat data QRIS dari basis data
+            LoadQrisData()
         End Sub
 
-        ''' <summary>
-        ''' Mengerjakan lukisan simulasi matriks visual QRIS tanpa library eksternal
-        ''' </summary>
+        Private Sub LoadQrisData()
+            Dim qrLoadedFromFile As Boolean = False
+
+            Try
+                Dim setting As PaymentSetting = _settingController.LoadPaymentSetting()
+                If setting IsNot Nothing Then
+                    ' Set Label Nama Merchant jika kontrol tersedia
+                    Dim lblMerchantArray = Controls.Find("lblMerchantName", True)
+                    If lblMerchantArray.Length > 0 AndAlso TypeOf lblMerchantArray(0) Is Label Then
+                        CType(lblMerchantArray(0), Label).Text = setting.QrisMerchantName
+                    End If
+
+                    ' Set Label NMID jika kontrol tersedia
+                    Dim lblNmidArray = Controls.Find("lblNmid", True)
+                    If lblNmidArray.Length > 0 AndAlso TypeOf lblNmidArray(0) Is Label Then
+                        Dim lblNmidControl As Label = CType(lblNmidArray(0), Label)
+                        If Not String.IsNullOrWhiteSpace(setting.QrisNmid) Then
+                            lblNmidControl.Text = "NMID: " & setting.QrisNmid
+                            lblNmidControl.Visible = True
+                        Else
+                            lblNmidControl.Visible = False
+                        End If
+                    End If
+
+                    ' Cek dan muat gambar QRIS kustom jika berkas fisik tersedia
+                    If Not String.IsNullOrWhiteSpace(setting.QrisImagePath) AndAlso File.Exists(setting.QrisImagePath) Then
+                        Using fs As New FileStream(setting.QrisImagePath, FileMode.Open, FileAccess.Read)
+                            ' Pastikan mode Zoom aktif sebelum assign gambar
+                            picQrisCode.SizeMode = PictureBoxSizeMode.Zoom
+                            picQrisCode.Image = Image.FromStream(fs)
+                        End Using
+                        qrLoadedFromFile = True
+                    End If
+                End If
+            Catch ex As Exception
+                ' Fallback jika terjadi kegagalan pembacaan
+            End Try
+
+            If Not qrLoadedFromFile Then
+                RenderSimulatedQris()
+            End If
+        End Sub
+
         Private Sub RenderSimulatedQris()
             Dim bmp As New Bitmap(200, 200)
             Using g As Graphics = Graphics.FromImage(bmp)
@@ -33,7 +83,6 @@ Namespace Views
                 Dim cellSize As Integer = 8
                 For row As Integer = 0 To 24
                     For col As Integer = 0 To 24
-                        ' Gambar Finder Patterns di sudut-sudut
                         Dim isFinder As Boolean = (row < 7 AndAlso col < 7) OrElse (row < 7 AndAlso col > 17) OrElse (row > 17 AndAlso col < 7)
                         If isFinder Then
                             If (row = 0 OrElse row = 6 OrElse col = 0 OrElse col = 6 OrElse (row >= 2 AndAlso row <= 4 AndAlso col >= 2 AndAlso col <= 4)) AndAlso
@@ -54,6 +103,7 @@ Namespace Views
                     Next
                 Next
             End Using
+            picQrisCode.SizeMode = PictureBoxSizeMode.Zoom
             picQrisCode.Image = bmp
         End Sub
 

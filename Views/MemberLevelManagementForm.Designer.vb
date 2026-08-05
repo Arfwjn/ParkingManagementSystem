@@ -18,9 +18,9 @@
 
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-            Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-            Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-            Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Me.pnlHeader = New System.Windows.Forms.Panel()
             Me.lblTitle = New System.Windows.Forms.Label()
             Me.btnClose = New System.Windows.Forms.Button()
@@ -56,7 +56,7 @@
             Me.pnlHeader.Controls.Add(Me.btnClose)
             Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
             Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlHeader.Name = "pnlHeader"
             Me.pnlHeader.Size = New System.Drawing.Size(1267, 74)
             Me.pnlHeader.TabIndex = 0
@@ -82,7 +82,7 @@
             Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
             Me.btnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
             Me.btnClose.Location = New System.Drawing.Point(1204, 15)
-            Me.btnClose.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnClose.Margin = New System.Windows.Forms.Padding(4)
             Me.btnClose.Name = "btnClose"
             Me.btnClose.Size = New System.Drawing.Size(47, 43)
             Me.btnClose.TabIndex = 1
@@ -96,7 +96,7 @@
             Me.pnlMain.Controls.Add(Me.pnlGridCard)
             Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
             Me.pnlMain.Location = New System.Drawing.Point(0, 74)
-            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlMain.Name = "pnlMain"
             Me.pnlMain.Padding = New System.Windows.Forms.Padding(27, 25, 27, 25)
             Me.pnlMain.Size = New System.Drawing.Size(1267, 591)
@@ -119,7 +119,7 @@
             Me.pnlFormCard.Controls.Add(Me.btnClear)
             Me.pnlFormCard.Dock = System.Windows.Forms.DockStyle.Right
             Me.pnlFormCard.Location = New System.Drawing.Point(800, 25)
-            Me.pnlFormCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlFormCard.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlFormCard.Name = "pnlFormCard"
             Me.pnlFormCard.Padding = New System.Windows.Forms.Padding(27, 25, 27, 25)
             Me.pnlFormCard.Size = New System.Drawing.Size(440, 541)
@@ -154,7 +154,7 @@
             Me.txtLevelName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.txtLevelName.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.txtLevelName.Location = New System.Drawing.Point(31, 88)
-            Me.txtLevelName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.txtLevelName.Margin = New System.Windows.Forms.Padding(4)
             Me.txtLevelName.Name = "txtLevelName"
             Me.txtLevelName.Size = New System.Drawing.Size(378, 29)
             Me.txtLevelName.TabIndex = 2
@@ -177,7 +177,7 @@
             Me.numDiscount.DecimalPlaces = 2
             Me.numDiscount.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.numDiscount.Location = New System.Drawing.Point(31, 151)
-            Me.numDiscount.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.numDiscount.Margin = New System.Windows.Forms.Padding(4)
             Me.numDiscount.Name = "numDiscount"
             Me.numDiscount.Size = New System.Drawing.Size(379, 29)
             Me.numDiscount.TabIndex = 4
@@ -190,7 +190,7 @@
             Me.lblMonthlyFee.Location = New System.Drawing.Point(27, 191)
             Me.lblMonthlyFee.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblMonthlyFee.Name = "lblMonthlyFee"
-            Me.lblMonthlyFee.Size = New System.Drawing.Size(130, 20)
+            Me.lblMonthlyFee.Size = New System.Drawing.Size(142, 20)
             Me.lblMonthlyFee.TabIndex = 5
             Me.lblMonthlyFee.Text = "Biaya Bulanan (Rp):"
             '
@@ -200,7 +200,7 @@
             Me.numMonthlyFee.DecimalPlaces = 2
             Me.numMonthlyFee.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.numMonthlyFee.Location = New System.Drawing.Point(31, 214)
-            Me.numMonthlyFee.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.numMonthlyFee.Margin = New System.Windows.Forms.Padding(4)
             Me.numMonthlyFee.Maximum = New Decimal(New Integer() {100000000, 0, 0, 0})
             Me.numMonthlyFee.Name = "numMonthlyFee"
             Me.numMonthlyFee.Size = New System.Drawing.Size(379, 29)
@@ -224,7 +224,7 @@
             Me.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.txtDescription.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.txtDescription.Location = New System.Drawing.Point(31, 277)
-            Me.txtDescription.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.txtDescription.Margin = New System.Windows.Forms.Padding(4)
             Me.txtDescription.Multiline = True
             Me.txtDescription.Name = "txtDescription"
             Me.txtDescription.Size = New System.Drawing.Size(378, 80)
@@ -239,7 +239,7 @@
             Me.btnSave.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
             Me.btnSave.ForeColor = System.Drawing.Color.White
             Me.btnSave.Location = New System.Drawing.Point(31, 372)
-            Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnSave.Margin = New System.Windows.Forms.Padding(4)
             Me.btnSave.Name = "btnSave"
             Me.btnSave.Size = New System.Drawing.Size(379, 43)
             Me.btnSave.TabIndex = 9
@@ -255,7 +255,7 @@
             Me.btnDelete.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
             Me.btnDelete.ForeColor = System.Drawing.Color.White
             Me.btnDelete.Location = New System.Drawing.Point(31, 428)
-            Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnDelete.Margin = New System.Windows.Forms.Padding(4)
             Me.btnDelete.Name = "btnDelete"
             Me.btnDelete.Size = New System.Drawing.Size(180, 43)
             Me.btnDelete.TabIndex = 10
@@ -271,11 +271,11 @@
             Me.btnClear.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
             Me.btnClear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
             Me.btnClear.Location = New System.Drawing.Point(229, 428)
-            Me.btnClear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnClear.Margin = New System.Windows.Forms.Padding(4)
             Me.btnClear.Name = "btnClear"
             Me.btnClear.Size = New System.Drawing.Size(180, 43)
             Me.btnClear.TabIndex = 11
-            Me.btnClear.Text = "BATAL"
+            Me.btnClear.Text = "RESET"
             Me.btnClear.UseVisualStyleBackColor = False
             '
             'pnlGridCard
@@ -284,7 +284,7 @@
             Me.pnlGridCard.Controls.Add(Me.dgvLevels)
             Me.pnlGridCard.Dock = System.Windows.Forms.DockStyle.Left
             Me.pnlGridCard.Location = New System.Drawing.Point(27, 25)
-            Me.pnlGridCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlGridCard.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlGridCard.Name = "pnlGridCard"
             Me.pnlGridCard.Padding = New System.Windows.Forms.Padding(13, 12, 13, 12)
             Me.pnlGridCard.Size = New System.Drawing.Size(747, 541)
@@ -300,37 +300,37 @@
             Me.dgvLevels.BorderStyle = System.Windows.Forms.BorderStyle.None
             Me.dgvLevels.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
             Me.dgvLevels.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-            DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-            DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
-            DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
-            DataGridViewCellStyle4.Padding = New System.Windows.Forms.Padding(5)
-            DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-            DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-            DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-            Me.dgvLevels.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+            DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
+            DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+            DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(5)
+            DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+            DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+            Me.dgvLevels.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
             Me.dgvLevels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-            DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
-            DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-            DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-            DataGridViewCellStyle5.Padding = New System.Windows.Forms.Padding(5)
-            DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(255, Byte), Integer))
-            DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-            DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-            Me.dgvLevels.DefaultCellStyle = DataGridViewCellStyle5
+            DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+            DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+            DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(5)
+            DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(255, Byte), Integer))
+            DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+            DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+            Me.dgvLevels.DefaultCellStyle = DataGridViewCellStyle2
             Me.dgvLevels.Dock = System.Windows.Forms.DockStyle.Fill
             Me.dgvLevels.EnableHeadersVisualStyles = False
             Me.dgvLevels.GridColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
             Me.dgvLevels.Location = New System.Drawing.Point(13, 12)
-            Me.dgvLevels.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.dgvLevels.Margin = New System.Windows.Forms.Padding(4)
             Me.dgvLevels.MultiSelect = False
             Me.dgvLevels.Name = "dgvLevels"
             Me.dgvLevels.ReadOnly = True
             Me.dgvLevels.RowHeadersVisible = False
             Me.dgvLevels.RowHeadersWidth = 51
-            DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(252, Byte), Integer))
-            Me.dgvLevels.RowsDefaultCellStyle = DataGridViewCellStyle6
+            DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(252, Byte), Integer))
+            Me.dgvLevels.RowsDefaultCellStyle = DataGridViewCellStyle3
             Me.dgvLevels.RowTemplate.Height = 35
             Me.dgvLevels.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
             Me.dgvLevels.Size = New System.Drawing.Size(721, 517)
@@ -345,7 +345,7 @@
             Me.Controls.Add(Me.pnlMain)
             Me.Controls.Add(Me.pnlHeader)
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-            Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.Margin = New System.Windows.Forms.Padding(4)
             Me.Name = "MemberLevelManagementForm"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
             Me.Text = "Manajemen Level Member"

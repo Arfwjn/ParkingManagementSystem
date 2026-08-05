@@ -8,7 +8,7 @@ Namespace Views
         Inherits Form
 
         Private ReadOnly _dashboardController As DashboardController
-        Private _isLoggingOut As Boolean = False ' Flag penanda proses Logout
+        Private _isLoggingOut As Boolean = False
 
         Public Sub New()
             InitializeComponent()
@@ -39,11 +39,15 @@ Namespace Views
                     btnKelolaUser.Visible = False
                     btnTariffManagement.Visible = False
                     btnMemberLevelManagement.Visible = False
+                    btnPaymentSetting.Visible = False
+                    btnLaporan.Visible = False
                 Else
                     ' Admin memiliki akses penuh ke seluruh menu
                     btnKelolaUser.Visible = True
                     btnTariffManagement.Visible = True
                     btnMemberLevelManagement.Visible = True
+                    btnPaymentSetting.Visible = True
+                    btnLaporan.Visible = True
                 End If
             End If
         End Sub
@@ -119,7 +123,15 @@ Namespace Views
         End Sub
 
         Private Sub btnRiwayat_Click(sender As Object, e As EventArgs) Handles btnRiwayat.Click
+            ' Membuka Form Riwayat Transaksi Umum
             Dim form As New HistoryForm()
+            form.ShowDialog(Me)
+        End Sub
+
+        Private Sub btnLaporan_Click(sender As Object, e As EventArgs) Handles btnLaporan.Click
+            ' Membuka Modul Laporan Pendapatan (Harian, Mingguan, Bulanan & CSV)
+            If Not CheckAdminAccess() Then Return
+            Dim form As New ReportForm()
             form.ShowDialog(Me)
         End Sub
 
@@ -150,10 +162,17 @@ Namespace Views
             LoadDashboardData()
         End Sub
 
+        Private Sub btnPaymentSetting_Click(sender As Object, e As EventArgs) Handles btnPaymentSetting.Click
+            If Not CheckAdminAccess() Then Return
+            Dim form As New PaymentSettingForm()
+            form.ShowDialog(Me)
+            LoadDashboardData()
+        End Sub
+
         Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
             Dim confirm As DialogResult = MessageBox.Show("Apakah Anda yakin ingin keluar dari sistem?", "Konfirmasi Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If confirm = DialogResult.Yes Then
-                _isLoggingOut = True ' Set flag agar FormClosed tidak menghentikan seluruh aplikasi
+                _isLoggingOut = True
                 SessionManager.CurrentUser = Nothing
 
                 Dim loginForm As New LoginForm()
@@ -163,7 +182,6 @@ Namespace Views
         End Sub
 
         Private Sub DashboardForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-            ' Hanya hentikan aplikasi secara menyeluruh jika pengguna menutup window secara langsung (bukan Logout)
             If Not _isLoggingOut Then
                 Application.Exit()
             End If

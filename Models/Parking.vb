@@ -17,6 +17,7 @@ Namespace Models
         Public Property PaymentMethod As String ' Tunai / QRIS / Debit
         Public Property PaymentStatus As String ' Belum Dibayar / Lunas
         Public Property Status As String ' IN / OUT / OVERNIGHT
+        Public Property ReferenceNumber As String
         Public Property UserId As Integer?
 
         ''' <summary>

@@ -126,22 +126,25 @@
     <Compile Include="Controllers\MemberLevelController.vb" />
     <Compile Include="Controllers\ParkingController.vb" />
     <Compile Include="Controllers\PaymentController.vb" />
+    <Compile Include="Controllers\PaymentSettingController.vb" />
+    <Compile Include="Controllers\ReportController.vb" />
     <Compile Include="Controllers\TariffController.vb" />
     <Compile Include="Controllers\UserController.vb" />
     <Compile Include="Database\DbConnection.vb" />
     <Compile Include="Helpers\TicketPrinterHelper.vb" />
     <Compile Include="Models\MemberLevel.vb" />
+    <Compile Include="Models\ParkingReportSummary.vb" />
+    <Compile Include="Models\PaymentSetting.vb" />
     <Compile Include="Models\Tariffs.vb" />
     <Compile Include="Repositories\MemberLevelRepository.vb" />
     <Compile Include="Repositories\MemberRepository.vb" />
     <Compile Include="Repositories\ParkingRepository.vb" />
+    <Compile Include="Repositories\PaymentSettingRepository.vb" />
     <Compile Include="Repositories\TariffRepository.vb" />
     <Compile Include="Repositories\UserRepository.vb" />
     <Compile Include="Helpers\SecurityHelper.vb" />
     <Compile Include="Helpers\SessionManager.vb" />
-    <Compile Include="Models\Car.vb" />
     <Compile Include="Models\Member.vb" />
-    <Compile Include="Models\Motorcycle.vb" />
     <Compile Include="Models\Parking.vb" />
     <Compile Include="Models\User.vb" />
     <Compile Include="Models\Vehicle.vb" />
@@ -215,10 +218,22 @@
     <Compile Include="Views\MemberRegistrationForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\PaymentSettingForm.Designer.vb">
+      <DependentUpon>PaymentSettingForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentSettingForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\QrisPaymentForm.Designer.vb">
       <DependentUpon>QrisPaymentForm.vb</DependentUpon>
     </Compile>
     <Compile Include="Views\QrisPaymentForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReportForm.Designer.vb">
+      <DependentUpon>ReportForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\TariffManagementForm.Designer.vb">

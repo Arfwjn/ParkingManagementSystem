@@ -40,9 +40,6 @@ Namespace Views
             End If
         End Sub
 
-        ''' <summary>
-        ''' Memuat daftar plat nomor aktif ke dalam kontrol AutoComplete TextBox
-        ''' </summary>
         Private Sub LoadAutoCompleteData()
             Dim activePlates As List(Of String) = _parkingRepository.GetActivePlateNumbers()
             Dim collection As New AutoCompleteStringCollection()
@@ -92,9 +89,6 @@ Namespace Views
             End If
         End Sub
 
-        ''' <summary>
-        ''' Memproses transaksi pembayaran parkir keluar dengan pemicu dialog QRIS / Debit
-        ''' </summary>
         Private Sub btnProcessPayment_Click(sender As Object, e As EventArgs) Handles btnProcessPayment.Click
             If _currentParking Is Nothing Then
                 MessageBox.Show("Silakan cari kendaraan terlebih dahulu.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -107,7 +101,6 @@ Namespace Views
 
             ' 1. PEMICU DIALOG PEMBAYARAN NON-TUNAI (QRIS & DEBIT)
             If selectedMethod.Equals("QRIS", StringComparison.OrdinalIgnoreCase) Then
-                ' Tampilkan Form QRIS jika nominal tagihan lebih dari 0
                 Using qrisForm As New QrisPaymentForm(_currentParking.TotalPayment, $"Parkir Keluar - {_currentParking.PlateNumber}")
                     Dim result As DialogResult = qrisForm.ShowDialog(Me)
                     If result <> DialogResult.OK Then
@@ -117,8 +110,7 @@ Namespace Views
                     referenceNumber = qrisForm.GeneratedReferenceNumber
                 End Using
 
-            ElseIf selectedMethod.Equals("Transfer / Debit", StringComparison.OrdinalIgnoreCase) Then
-                ' Tampilkan Form Debit jika nominal tagihan lebih dari 0
+            ElseIf selectedMethod.Equals("Transfer / Debit", StringComparison.OrdinalIgnoreCase) OrElse selectedMethod.Equals("Debit", StringComparison.OrdinalIgnoreCase) Then
                 Using debitForm As New DebitPaymentForm(_currentParking.TotalPayment, $"Parkir Keluar - {_currentParking.PlateNumber}")
                     Dim result As DialogResult = debitForm.ShowDialog(Me)
                     If result <> DialogResult.OK Then
@@ -129,12 +121,16 @@ Namespace Views
                 End Using
             End If
 
+            ' PERBAIKAN: Masukkan nomor referensi ke dalam objek _currentParking sebelum diproses oleh controller
+            _currentParking.ReferenceNumber = referenceNumber
+            _currentParking.PaymentMethod = selectedMethod
+
             ' 2. EKSEKUSI PENYIMPANAN TRANSAKSI PARKIR KELUAR
             Dim isSuccess As Boolean = _paymentController.ProcessPayment(_currentParking, selectedMethod, errorMessage)
 
             If isSuccess Then
                 Dim askReceipt As DialogResult = MessageBox.Show(
-                    $"Pembayaran Berhasil!{vbCrLf}Metode: {selectedMethod}{vbCrLf}Total: Rp {_currentParking.TotalPayment:N0}{vbCrLf}{vbCrLf}Cetak struk bukti pembayaran?",
+                    $"Pembayaran Berhasil!{vbCrLf}Metode: {selectedMethod}{vbCrLf}Ref/Kartu: {If(String.IsNullOrEmpty(referenceNumber), "-", referenceNumber)}{vbCrLf}Total: Rp {_currentParking.TotalPayment:N0}{vbCrLf}{vbCrLf}Cetak struk bukti pembayaran?",
                     "Sukses",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Information

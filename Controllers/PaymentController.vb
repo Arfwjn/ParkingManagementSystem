@@ -81,6 +81,7 @@ Namespace Controllers
         Public Function ProcessPayment(parking As Parking, paymentMethod As String, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
 
+            ' 1. Validasi Input
             If parking Is Nothing Then
                 errorMessage = "Data parkir tidak valid."
                 Return False
@@ -91,16 +92,28 @@ Namespace Controllers
                 Return False
             End If
 
+            ' 2. Set Metode Pembayaran, Status Keluar, dan Waktu Keluar
             parking.PaymentMethod = paymentMethod
-            parking.Status = "Completed"
+            parking.Status = "OUT" ' Disesuaikan dengan enum status database ('OUT')
 
-            Dim success As Boolean = _parkingRepository.UpdateExitPayment(parking)
-            If Not success Then
-                errorMessage = "Gagal memperbarui transaksi pembayaran di database."
-                Return False
+            If Not parking.ExitTime.HasValue Then
+                parking.ExitTime = DateTime.Now
             End If
 
-            Return True
+            ' 3. Eksekusi Pembaruan Transaksi via Repository
+            Try
+                ' Note: parking.ReferenceNumber tetap dipertahankan dan ikut tersimpan ke database
+                Dim success As Boolean = _parkingRepository.UpdateExitPayment(parking)
+                If Not success Then
+                    errorMessage = "Gagal memperbarui transaksi pembayaran di database."
+                    Return False
+                End If
+
+                Return True
+            Catch ex As Exception
+                errorMessage = "Terjadi kesalahan database: " & ex.Message
+                Return False
+            End Try
         End Function
     End Class
 End Namespace

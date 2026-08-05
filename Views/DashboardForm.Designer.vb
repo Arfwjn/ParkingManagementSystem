@@ -18,15 +18,17 @@
 
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-            Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-            Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-            Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Me.pnlSidebar = New System.Windows.Forms.Panel()
             Me.btnLogout = New System.Windows.Forms.Button()
+            Me.btnPaymentSetting = New System.Windows.Forms.Button()
             Me.btnMemberLevelManagement = New System.Windows.Forms.Button()
             Me.btnTariffManagement = New System.Windows.Forms.Button()
             Me.btnKelolaMember = New System.Windows.Forms.Button()
             Me.btnKelolaUser = New System.Windows.Forms.Button()
+            Me.btnLaporan = New System.Windows.Forms.Button()
             Me.btnRiwayat = New System.Windows.Forms.Button()
             Me.btnDataAktif = New System.Windows.Forms.Button()
             Me.btnKendaraanKeluar = New System.Windows.Forms.Button()
@@ -79,10 +81,12 @@
             '
             Me.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
             Me.pnlSidebar.Controls.Add(Me.btnLogout)
+            Me.pnlSidebar.Controls.Add(Me.btnPaymentSetting)
             Me.pnlSidebar.Controls.Add(Me.btnMemberLevelManagement)
             Me.pnlSidebar.Controls.Add(Me.btnTariffManagement)
             Me.pnlSidebar.Controls.Add(Me.btnKelolaMember)
             Me.pnlSidebar.Controls.Add(Me.btnKelolaUser)
+            Me.pnlSidebar.Controls.Add(Me.btnLaporan)
             Me.pnlSidebar.Controls.Add(Me.btnRiwayat)
             Me.pnlSidebar.Controls.Add(Me.btnDataAktif)
             Me.pnlSidebar.Controls.Add(Me.btnKendaraanKeluar)
@@ -106,9 +110,26 @@
             Me.btnLogout.Name = "btnLogout"
             Me.btnLogout.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnLogout.Size = New System.Drawing.Size(240, 50)
-            Me.btnLogout.TabIndex = 9
+            Me.btnLogout.TabIndex = 11
             Me.btnLogout.Text = "Logout"
             Me.btnLogout.UseVisualStyleBackColor = True
+            '
+            'btnPaymentSetting
+            '
+            Me.btnPaymentSetting.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.btnPaymentSetting.Dock = System.Windows.Forms.DockStyle.Top
+            Me.btnPaymentSetting.FlatAppearance.BorderSize = 0
+            Me.btnPaymentSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnPaymentSetting.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
+            Me.btnPaymentSetting.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
+            Me.btnPaymentSetting.Location = New System.Drawing.Point(0, 520)
+            Me.btnPaymentSetting.Name = "btnPaymentSetting"
+            Me.btnPaymentSetting.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
+            Me.btnPaymentSetting.Size = New System.Drawing.Size(240, 50)
+            Me.btnPaymentSetting.TabIndex = 10
+            Me.btnPaymentSetting.Text = "Metode Pembayaran"
+            Me.btnPaymentSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+            Me.btnPaymentSetting.UseVisualStyleBackColor = True
             '
             'btnMemberLevelManagement
             '
@@ -118,11 +139,11 @@
             Me.btnMemberLevelManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnMemberLevelManagement.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
             Me.btnMemberLevelManagement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
-            Me.btnMemberLevelManagement.Location = New System.Drawing.Point(0, 420)
+            Me.btnMemberLevelManagement.Location = New System.Drawing.Point(0, 470)
             Me.btnMemberLevelManagement.Name = "btnMemberLevelManagement"
             Me.btnMemberLevelManagement.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnMemberLevelManagement.Size = New System.Drawing.Size(240, 50)
-            Me.btnMemberLevelManagement.TabIndex = 8
+            Me.btnMemberLevelManagement.TabIndex = 9
             Me.btnMemberLevelManagement.Text = "Kelola Level Member"
             Me.btnMemberLevelManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnMemberLevelManagement.UseVisualStyleBackColor = True
@@ -135,11 +156,11 @@
             Me.btnTariffManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnTariffManagement.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
             Me.btnTariffManagement.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
-            Me.btnTariffManagement.Location = New System.Drawing.Point(0, 370)
+            Me.btnTariffManagement.Location = New System.Drawing.Point(0, 420)
             Me.btnTariffManagement.Name = "btnTariffManagement"
             Me.btnTariffManagement.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnTariffManagement.Size = New System.Drawing.Size(240, 50)
-            Me.btnTariffManagement.TabIndex = 7
+            Me.btnTariffManagement.TabIndex = 8
             Me.btnTariffManagement.Text = "Kelola Tarif Parkir"
             Me.btnTariffManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnTariffManagement.UseVisualStyleBackColor = True
@@ -152,11 +173,11 @@
             Me.btnKelolaMember.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnKelolaMember.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
             Me.btnKelolaMember.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
-            Me.btnKelolaMember.Location = New System.Drawing.Point(0, 320)
+            Me.btnKelolaMember.Location = New System.Drawing.Point(0, 370)
             Me.btnKelolaMember.Name = "btnKelolaMember"
             Me.btnKelolaMember.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnKelolaMember.Size = New System.Drawing.Size(240, 50)
-            Me.btnKelolaMember.TabIndex = 6
+            Me.btnKelolaMember.TabIndex = 7
             Me.btnKelolaMember.Text = "Pendaftaran Member"
             Me.btnKelolaMember.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnKelolaMember.UseVisualStyleBackColor = True
@@ -169,14 +190,31 @@
             Me.btnKelolaUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnKelolaUser.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
             Me.btnKelolaUser.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
-            Me.btnKelolaUser.Location = New System.Drawing.Point(0, 270)
+            Me.btnKelolaUser.Location = New System.Drawing.Point(0, 320)
             Me.btnKelolaUser.Name = "btnKelolaUser"
             Me.btnKelolaUser.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnKelolaUser.Size = New System.Drawing.Size(240, 50)
-            Me.btnKelolaUser.TabIndex = 5
+            Me.btnKelolaUser.TabIndex = 6
             Me.btnKelolaUser.Text = "Kelola User"
             Me.btnKelolaUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnKelolaUser.UseVisualStyleBackColor = True
+            '
+            'btnLaporan
+            '
+            Me.btnLaporan.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.btnLaporan.Dock = System.Windows.Forms.DockStyle.Top
+            Me.btnLaporan.FlatAppearance.BorderSize = 0
+            Me.btnLaporan.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnLaporan.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
+            Me.btnLaporan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
+            Me.btnLaporan.Location = New System.Drawing.Point(0, 270)
+            Me.btnLaporan.Name = "btnLaporan"
+            Me.btnLaporan.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
+            Me.btnLaporan.Size = New System.Drawing.Size(240, 50)
+            Me.btnLaporan.TabIndex = 5
+            Me.btnLaporan.Text = "Laporan Pendapatan"
+            Me.btnLaporan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+            Me.btnLaporan.UseVisualStyleBackColor = True
             '
             'btnRiwayat
             '
@@ -337,24 +375,24 @@
             Me.dgvRecentActivity.BorderStyle = System.Windows.Forms.BorderStyle.None
             Me.dgvRecentActivity.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
             Me.dgvRecentActivity.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-            DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            DataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-            DataGridViewCellStyle16.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-            DataGridViewCellStyle16.ForeColor = System.Drawing.Color.White
-            DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
-            DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White
-            DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-            Me.dgvRecentActivity.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle16
+            DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+            DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+            DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+            DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+            DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+            Me.dgvRecentActivity.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
             Me.dgvRecentActivity.ColumnHeadersHeight = 32
             Me.dgvRecentActivity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-            DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            DataGridViewCellStyle17.BackColor = System.Drawing.Color.White
-            DataGridViewCellStyle17.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-            DataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-            DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(255, Byte), Integer))
-            DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
-            DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-            Me.dgvRecentActivity.DefaultCellStyle = DataGridViewCellStyle17
+            DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+            DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+            DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(255, Byte), Integer))
+            DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+            DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+            Me.dgvRecentActivity.DefaultCellStyle = DataGridViewCellStyle2
             Me.dgvRecentActivity.Dock = System.Windows.Forms.DockStyle.Fill
             Me.dgvRecentActivity.EnableHeadersVisualStyles = False
             Me.dgvRecentActivity.GridColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
@@ -364,8 +402,8 @@
             Me.dgvRecentActivity.ReadOnly = True
             Me.dgvRecentActivity.RowHeadersVisible = False
             Me.dgvRecentActivity.RowHeadersWidth = 51
-            DataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(252, Byte), Integer))
-            Me.dgvRecentActivity.RowsDefaultCellStyle = DataGridViewCellStyle18
+            DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(252, Byte), Integer))
+            Me.dgvRecentActivity.RowsDefaultCellStyle = DataGridViewCellStyle3
             Me.dgvRecentActivity.RowTemplate.Height = 30
             Me.dgvRecentActivity.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
             Me.dgvRecentActivity.Size = New System.Drawing.Size(954, 250)
@@ -655,10 +693,12 @@
         Friend WithEvents btnKendaraanKeluar As System.Windows.Forms.Button
         Friend WithEvents btnDataAktif As System.Windows.Forms.Button
         Friend WithEvents btnRiwayat As System.Windows.Forms.Button
+        Friend WithEvents btnLaporan As System.Windows.Forms.Button
         Friend WithEvents btnKelolaUser As System.Windows.Forms.Button
         Friend WithEvents btnKelolaMember As System.Windows.Forms.Button
         Friend WithEvents btnTariffManagement As System.Windows.Forms.Button
         Friend WithEvents btnMemberLevelManagement As System.Windows.Forms.Button
+        Friend WithEvents btnPaymentSetting As System.Windows.Forms.Button
         Friend WithEvents btnLogout As System.Windows.Forms.Button
         Friend WithEvents pnlHeader As System.Windows.Forms.Panel
         Friend WithEvents lblHeaderTitle As System.Windows.Forms.Label

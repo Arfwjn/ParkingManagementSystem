@@ -1,6 +1,7 @@
 ﻿Imports System
 Imports System.Collections.Generic
 Imports System.Data
+Imports System.Drawing
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
 Imports ParkingManagementSystem.Models
@@ -67,7 +68,7 @@ Namespace Views
         End Sub
 
         ''' <summary>
-        ''' Mengatur status Enabled/Disabled seluruh kontrol input berdasarkan jenis transaksi yang dipilih
+        ''' Mengatur status Enabled/Disabled seluruh kontrol input dan teks tombol berdasarkan jenis transaksi yang dipilih
         ''' </summary>
         Private Sub ApplyControlStates()
             If _selectedMemberId > 0 Then
@@ -83,6 +84,10 @@ Namespace Views
                     cmbTransactionType.Enabled = True
                     cmbPaymentMethod.Enabled = True
 
+                    ' Set Tombol ke Mode Pembayaran Perpanjangan
+                    btnSave.Text = "Proses Transaksi Member"
+                    btnSave.BackColor = Color.FromArgb(16, 185, 129) ' Hijau
+
                 ElseIf cmbTransactionType.SelectedIndex = 1 Then
                     ' Perbarui Profil Member: Buka profil, kunci pembayaran
                     txtOwnerName.Enabled = True
@@ -93,6 +98,10 @@ Namespace Views
 
                     cmbTransactionType.Enabled = True
                     cmbPaymentMethod.Enabled = False
+
+                    ' Set Tombol ke Mode Perbarui Profil
+                    btnSave.Text = "Perbarui"
+                    btnSave.BackColor = Color.FromArgb(245, 158, 11) ' Amber / Oranye
                 End If
             Else
                 ' PENDAFTARAN MEMBER BARU
@@ -104,6 +113,10 @@ Namespace Views
 
                 cmbTransactionType.Enabled = False
                 cmbPaymentMethod.Enabled = True
+
+                ' Set Tombol ke Mode Pendaftaran Baru
+                btnSave.Text = "Daftarkan Member / Bayar"
+                btnSave.BackColor = Color.FromArgb(37, 99, 235) ' Biru
             End If
         End Sub
 
@@ -191,16 +204,10 @@ Namespace Views
             cmbTransactionType.Items.Clear()
 
             If isMemberSelected Then
-                btnSave.Text = "Proses Transaksi Member"
-                btnSave.BackColor = System.Drawing.Color.FromArgb(16, 185, 129) ' Hijau
-
                 cmbTransactionType.Items.Add("Perpanjangan Langganan Bulanan")
                 cmbTransactionType.Items.Add("Perbarui Profil Member (Tanpa Biaya)")
                 cmbTransactionType.SelectedIndex = 0 ' Default Perpanjangan
             Else
-                btnSave.Text = "Daftarkan Member / Bayar"
-                btnSave.BackColor = System.Drawing.Color.FromArgb(37, 99, 235) ' Biru
-
                 cmbTransactionType.Items.Add("Pendaftaran Baru (+1 Bulan)")
                 cmbTransactionType.SelectedIndex = 0
             End If
