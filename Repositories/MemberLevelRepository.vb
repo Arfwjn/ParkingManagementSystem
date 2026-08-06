@@ -1,9 +1,15 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 Imports ParkingManagementSystem.Database
 Imports ParkingManagementSystem.Models
 
 Namespace Repositories
+    ''' <summary>
+    ''' Repository MemberLevelRepository menangani operasi basis data (DAL) untuk tabel tingkatan keanggotaan (member_levels).
+    ''' </summary>
     Public Class MemberLevelRepository
+        ''' <summary>
+        ''' Mengambil seluruh daftar tingkatan member dalam bentuk List objek MemberLevel.
+        ''' </summary>
         Public Function GetAll() As List(Of MemberLevel)
             Dim list As New List(Of MemberLevel)()
             Dim sql As String = "SELECT id, level_name, discount_percentage, monthly_fee, description FROM member_levels ORDER BY id ASC"
@@ -27,6 +33,9 @@ Namespace Repositories
             Return list
         End Function
 
+        ''' <summary>
+        ''' Menyimpan data level member baru ke database.
+        ''' </summary>
         Public Function Save(level As MemberLevel) As Boolean
             Dim sql As String = "INSERT INTO member_levels (level_name, discount_percentage, monthly_fee, description) " &
                                "VALUES (@level_name, @discount_percentage, @monthly_fee, @description)"
@@ -43,6 +52,9 @@ Namespace Repositories
             End Using
         End Function
 
+        ''' <summary>
+        ''' Memperbarui data level member yang sudah ada berdasarkan ID.
+        ''' </summary>
         Public Function Update(level As MemberLevel) As Boolean
             Dim sql As String = "UPDATE member_levels SET level_name = @level_name, discount_percentage = @discount_percentage, " &
                                "monthly_fee = @monthly_fee, description = @description WHERE id = @id"
@@ -60,6 +72,9 @@ Namespace Repositories
             End Using
         End Function
 
+        ''' <summary>
+        ''' Menghapus data level member dari database berdasarkan ID.
+        ''' </summary>
         Public Function Delete(id As Integer) As Boolean
             Dim sql As String = "DELETE FROM member_levels WHERE id = @id"
             Using conn As MySqlConnection = DbConnection.Instance.GetConnection()
@@ -72,13 +87,9 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menyimpan level member baru atau memperbarui otomatis (UPSERT) jika nama level keanggotaan sudah ada
+        ''' Menyimpan atau memperbarui data level member secara otomatis (UPSERT MySQL).
+        ''' Parameter outputs 'isUpdated' akan bernilai True jika data yang ada diperbarui.
         ''' </summary>
-        ''' <param name="levelName">Nama level (Bronze, Silver, Gold, Platinum)</param>
-        ''' <param name="discountPercentage">Persentase diskon (%)</param>
-        ''' <param name="monthlyFee">Biaya langganan bulanan (Rp)</param>
-        ''' <param name="description">Keterangan / Deskripsi</param>
-        ''' <param name="isUpdated">Flag output: True jika diperbarui, False jika ditambahkan baru</param>
         Public Function UpsertMemberLevel(levelName As String, discountPercentage As Decimal, monthlyFee As Decimal, description As String, ByRef isUpdated As Boolean) As Boolean
             Dim checkSql As String = "SELECT COUNT(*) FROM member_levels WHERE LOWER(level_name) = LOWER(@level_name)"
             Dim upsertSql As String = "INSERT INTO member_levels (level_name, discount_percentage, monthly_fee, description) " &
@@ -105,7 +116,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil seluruh data level member untuk DataGridView
+        ''' Mengambil seluruh data level member berformat DataTable untuk pengisian komponen UI DataGridView.
         ''' </summary>
         Public Function GetAllMemberLevelsDataTable() As DataTable
             Dim dt As New DataTable()

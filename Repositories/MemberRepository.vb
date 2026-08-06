@@ -1,4 +1,4 @@
-﻿Imports System
+Imports System
 Imports System.Collections.Generic
 Imports System.Data
 Imports MySql.Data.MySqlClient
@@ -6,10 +6,13 @@ Imports ParkingManagementSystem.Database
 Imports ParkingManagementSystem.Models
 
 Namespace Repositories
+    ''' <summary>
+    ''' Repository MemberRepository mengelola operasi akses data (DAL) untuk entitas member, relasi multi-plat kendaraan, dan transaksi pembayaran berlangganan.
+    ''' </summary>
     Public Class MemberRepository
 
         ''' <summary>
-        ''' Mencari data member aktif berdasarkan plat nomor (mendukung plat utama & multi-plat)
+        ''' Mencari data profil member aktif beserta diskon berdasarkan plat nomor kendaraan (mendukung pencarian plat utama & multi-plat terdaftar).
         ''' </summary>
         Public Function GetMemberWithLevelByPlate(plateNumber As String) As Tuple(Of Member, String, Decimal)
             Dim cleanPlate As String = plateNumber.Trim().ToLower()
@@ -46,7 +49,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menghitung jumlah plat nomor terdaftar untuk satu nama pemilik
+        ''' Menghitung jumlah pendaftaran member yang sudah dimiliki oleh satu nama pemilik (maksimal 3 kendaraan).
         ''' </summary>
         Public Function GetPlateCountByOwner(ownerName As String, Optional excludeMemberId As Integer = 0) As Integer
             Dim sql As String = "SELECT COUNT(*) FROM members WHERE LOWER(owner_name) = LOWER(@owner_name) AND id <> @excludeId"
@@ -61,7 +64,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Memeriksa apakah plat nomor sudah terdaftar pada sistem (cek tabel members & member_plates)
+        ''' Memeriksa apakah suatu plat nomor kendaraan sudah pernah terdaftar pada tabel members maupun member_plates.
         ''' </summary>
         Public Function IsPlateRegistered(plateNumber As String, Optional excludeMemberId As Integer = 0) As Boolean
             Dim cleanPlate As String = plateNumber.Trim().ToLower()
@@ -82,12 +85,16 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menyimpan member baru lengkap dengan masa aktif (+30 hari) dan pendaftaran multi-plat
+        ''' Menyimpan data member baru dengan single plat nomor kendaraan.
         ''' </summary>
         Public Function SaveMember(ownerName As String, plateNumber As String, levelId As Integer) As Boolean
             Return SaveMemberWithPlates(ownerName, New List(Of String) From {plateNumber}, levelId)
         End Function
 
+        ''' <summary>
+        ''' Menyimpan data member baru beserta daftar multi-plat kendaraan (maksimal 3 plat) menggunakan MySqlTransaction.
+        ''' Masa aktif diset otomatis +30 hari dari tanggal pendaftaran.
+        ''' </summary>
         Public Function SaveMemberWithPlates(ownerName As String, plateNumbers As List(Of String), levelId As Integer) As Boolean
             Using conn As MySqlConnection = DbConnection.Instance.GetConnection()
                 conn.Open()
@@ -119,7 +126,7 @@ Namespace Repositories
                             newMemberId = CInt(cmd.LastInsertedId)
                         End Using
 
-                        ' Simpan ke tabel relasi member_plates
+                        ' Menyimpan seluruh daftar plat terdaftar pada tabel relasi member_plates
                         Dim insertPlateSql As String = "INSERT INTO member_plates (member_id, plate_number) VALUES (@member_id, @plate_number)"
                         For Each plate In plateNumbers
                             If Not String.IsNullOrWhiteSpace(plate) Then
@@ -142,7 +149,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil seluruh data member untuk DataGridView UI dengan alias kolom yang presisi
+        ''' Mengambil seluruh data member terdaftar berformat DataTable untuk pengisian komponen DataGridView UI.
         ''' </summary>
         Public Function GetAllMembersDataTable() As DataTable
             Dim dt As New DataTable()
@@ -173,7 +180,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Memperpanjang masa aktif keanggotaan member selama 1 bulan dari tanggal kedaluwarsa saat ini (atau dari waktu sekarang jika sudah expired)
+        ''' Memperpanjang masa aktif keanggotaan member selama +1 bulan dari tanggal kadaluarsa terakhir.
         ''' </summary>
         Public Function RenewSubscription(memberId As Integer) As Boolean
             Dim sql As String = "UPDATE members " &
@@ -191,7 +198,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Memperbarui data profil member dan sinkronisasi daftar plat nomor tanpa mengubah log pembayaran
+        ''' Memperbarui informasi profil member dan menyinkronkan ulang daftar plat nomor kendaraan terdaftar.
         ''' </summary>
         Public Function UpdateMemberDetails(memberId As Integer, ownerName As String, levelId As Integer, plateNumbers As List(Of String)) As Boolean
             Using conn As MySqlConnection = DbConnection.Instance.GetConnection()
@@ -221,7 +228,7 @@ Namespace Repositories
                             cmd.ExecuteNonQuery()
                         End Using
 
-                        ' Hapus relasi plat lama & ganti dengan yang baru
+                        ' Membersihkan plat lama dan memasukkan daftar plat baru yang dikirimkan
                         Dim deletePlatesSql As String = "DELETE FROM member_plates WHERE member_id = @member_id"
                         Using cmdDel As New MySqlCommand(deletePlatesSql, conn, trans)
                             cmdDel.Parameters.AddWithValue("@member_id", memberId)
@@ -250,7 +257,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menghapus data member berdasarkan ID
+        ''' Menghapus data member dari database berdasarkan ID member.
         ''' </summary>
         Public Function DeleteMember(id As Integer) As Boolean
             Dim sql As String = "DELETE FROM members WHERE id = @id"
@@ -264,7 +271,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menyimpan log transaksi pembayaran pendaftaran / perpanjangan member
+        ''' Menyimpan riwayat transaksi pembayaran pendaftaran maupun perpanjangan member ke dalam tabel member_payments.
         ''' </summary>
         Public Function InsertMemberPayment(memberId As Integer, paymentType As String, amount As Decimal, paymentMethod As String, referenceNumber As String, userId As Nullable(Of Integer)) As Boolean
             Dim sql As String = "INSERT INTO member_payments (member_id, payment_type, amount, payment_method, reference_number, payment_date, user_id) " &

@@ -1,8 +1,14 @@
-﻿Imports System.IO
+Imports System.IO
 
+''' <summary>
+''' Form PaymentSettingForm mengelola pengaturan antarmuka pembayaran non-tunai, seperti nama Merchant QRIS, NMID, berkas gambar QR Code, nama bank, nomor rekening, dan nama pemilik rekening.
+''' </summary>
 Public Class PaymentSettingForm
     Private ReadOnly _controller As PaymentSettingController
 
+    ''' <summary>
+    ''' Constructor untuk menginisialisasi Form Pengaturan Pembayaran.
+    ''' </summary>
     Sub New()
         InitializeComponent()
         _controller = New PaymentSettingController()
@@ -12,6 +18,9 @@ Public Class PaymentSettingForm
         LoadData()
     End Sub
 
+    ''' <summary>
+    ''' Memuat konfigurasi pengaturan pembayaran aktif dari database dan memuat preview gambar QRIS jika tersedia.
+    ''' </summary>
     Private Sub LoadData()
         Try
             Dim setting As PaymentSetting = _controller.LoadPaymentSetting()
@@ -31,6 +40,9 @@ Public Class PaymentSettingForm
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Menampilkan file dialog untuk memilih berkas gambar QR Code QRIS dari penyimpan lokal.
+    ''' </summary>
     Private Sub btnBrowseQris_Click(sender As Object, e As EventArgs) Handles btnBrowseQris.Click
         Using ofd As New OpenFileDialog()
             ofd.Filter = "Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg"
@@ -43,6 +55,9 @@ Public Class PaymentSettingForm
         End Using
     End Sub
 
+    ''' <summary>
+    ''' Memuat gambar berkas QRIS ke komponen PictureBox preview secara aman dengan FileStream.
+    ''' </summary>
     Private Sub LoadQrisPreviewImage(path As String)
         If Not String.IsNullOrEmpty(path) AndAlso File.Exists(path) Then
             Try
@@ -57,6 +72,9 @@ Public Class PaymentSettingForm
         End If
     End Sub
 
+    ''' <summary>
+    ''' Memvalidasi dan menyimpan pembaruan konfigurasi pengaturan pembayaran ke database.
+    ''' </summary>
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Dim setting As New PaymentSetting() With {
                 .Id = 1,

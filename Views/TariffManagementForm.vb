@@ -1,10 +1,16 @@
-﻿Imports ParkingManagementSystem.Controllers
+Imports ParkingManagementSystem.Controllers
 Imports ParkingManagementSystem.Models
 
 Namespace Views
+    ''' <summary>
+    ''' Form TariffManagementForm menyediakan antarmuka untuk mengubah dan mengatur tarif parkir per jam serta tarif menginap per jenis kendaraan (Mobil & Motor).
+    ''' </summary>
     Public Class TariffManagementForm
         Private ReadOnly _tariffController As TariffController
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi Form Kelola Tarif.
+        ''' </summary>
         Public Sub New()
             InitializeComponent()
             _tariffController = New TariffController()
@@ -15,12 +21,16 @@ Namespace Views
             ClearForm()
         End Sub
 
+        ''' <summary>
+        ''' Memuat seluruh data konfigurasi tarif kendaraan dari database dan merender ke DataGridView.
+        ''' </summary>
         Private Sub LoadTariffData()
             Try
                 Dim list As List(Of Tariff) = _tariffController.GetAllTariffs()
                 dgvTariffs.DataSource = Nothing
                 dgvTariffs.DataSource = list
 
+                ' Format judul header dan format rupiah pada DataGridView
                 If dgvTariffs.Columns("Id") IsNot Nothing Then dgvTariffs.Columns("Id").Visible = False
                 If dgvTariffs.Columns("VehicleType") IsNot Nothing Then dgvTariffs.Columns("VehicleType").HeaderText = "Tipe Kendaraan"
                 If dgvTariffs.Columns("HourlyRate") IsNot Nothing Then
@@ -38,6 +48,9 @@ Namespace Views
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Memindahkan data tarif dari baris DataGridView yang diklik ke kontrol input form.
+        ''' </summary>
         Private Sub dgvTariffs_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvTariffs.CellClick
             If e.RowIndex >= 0 Then
                 Dim row As DataGridViewRow = dgvTariffs.Rows(e.RowIndex)
@@ -47,6 +60,9 @@ Namespace Views
             End If
         End Sub
 
+        ''' <summary>
+        ''' Memvalidasi dan menyimpan pembaruan nilai tarif parkir ke database.
+        ''' </summary>
         Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
             Dim errorMsg As String = String.Empty
             Dim success As Boolean = _tariffController.UpdateTariff(txtVehicleType.Text, numHourlyRate.Value, numOvernightRate.Value, errorMsg)

@@ -1,18 +1,26 @@
-﻿Imports System
+Imports System
 Imports ParkingManagementSystem.Helpers
 Imports ParkingManagementSystem.Models
 Imports ParkingManagementSystem.Repositories
 
 Namespace Controllers
+    ''' <summary>
+    ''' Controller ParkingController menangani aturan bisnis registrasi kendaraan masuk, pemeriksaan kapasitas area parkir,
+    ''' pencegahan duplikasi kendaraan aktif, dan pencarian status keanggotaan member.
+    ''' </summary>
     Public Class ParkingController
         Private ReadOnly _parkingRepository As ParkingRepository
         Private ReadOnly _memberRepository As MemberRepository
         Private ReadOnly _tariffRepository As TariffRepository
 
-        ' Konfigurasi Batas Kapasitas Parkir (Business Rules 5.9)
+        ''' <summary>Kapasitas maksimum area parkir mobil (Business Rules 5.9).</summary>
         Public Const MAX_CAR_CAPACITY As Integer = 50
+        ''' <summary>Kapasitas maksimum area parkir sepeda motor (Business Rules 5.9).</summary>
         Public Const MAX_MOTORCYCLE_CAPACITY As Integer = 100
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi repository parkir, member, dan tarif.
+        ''' </summary>
         Public Sub New()
             _parkingRepository = New ParkingRepository()
             _memberRepository = New MemberRepository()
@@ -20,12 +28,12 @@ Namespace Controllers
         End Sub
 
         ''' <summary>
-        ''' Memproses registrasi kendaraan masuk dengan validasi kapasitas dan duplikasi
+        ''' Memproses pendaftaran kendaraan masuk dengan validasi format plat, duplikasi aktif, dan ketersediaan slot parkir.
         ''' </summary>
         Public Function RegisterEntry(plateNumber As String, vehicleType As String, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
 
-            ' 1. Validasi Input Dasar
+            ' Validasi input dasar
             If String.IsNullOrWhiteSpace(plateNumber) Then
                 errorMessage = "Nomor Polisi wajib diisi."
                 Return False
@@ -38,13 +46,13 @@ Namespace Controllers
 
             Dim cleanPlate As String = plateNumber.Trim().ToUpper()
 
-            ' 2. Validasi Nomor Polisi Duplikat (Business Rules 5.10)
+            ' Memeriksa agar kendaraan dengan plat nomor yang sama tidak masuk dua kali (Duplikasi Active Vehicle)
             If _parkingRepository.IsPlateActive(cleanPlate) Then
                 errorMessage = $"Kendaraan dengan nomor polisi '{cleanPlate}' sudah berada di area parkir."
                 Return False
             End If
 
-            ' 3. Validasi Kapasitas Parkir (Business Rules 5.9)
+            ' Memeriksa batas kapasitas maksimum area parkir
             Dim activeCount As Integer = _parkingRepository.GetActiveCountByType(vehicleType)
             Dim maxCapacity As Integer = If(vehicleType = "Mobil", MAX_CAR_CAPACITY, MAX_MOTORCYCLE_CAPACITY)
 
@@ -53,7 +61,7 @@ Namespace Controllers
                 Return False
             End If
 
-            ' 4. Eksekusi Simpan Data
+            ' Mengambil ID petugas pengguna yang sedang login
             Dim currentUserId As Integer? = If(SessionManager.IsLoggedIn(), SessionManager.CurrentUser.Id, CType(Nothing, Integer?))
 
             Dim newEntry As New Parking With {
@@ -69,7 +77,7 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Mengambil data transaksi parkir aktif berdasarkan nomor polisi (Digunakan untuk cetak karcis)
+        ''' Mengambil data transaksi parkir aktif berdasarkan nomor polisi (Digunakan untuk keperluan cetak karcis masuk).
         ''' </summary>
         Public Function GetActiveParkingByPlate(plateNumber As String) As Parking
             If String.IsNullOrWhiteSpace(plateNumber) Then
@@ -79,16 +87,22 @@ Namespace Controllers
             Return _parkingRepository.GetActiveParkingByPlate(plateNumber.Trim().ToUpper())
         End Function
 
+        ''' <summary>
+        ''' Mengambil jumlah total kendaraan yang sedang aktif parkir saat ini.
+        ''' </summary>
         Public Function GetActiveParkingCount() As Integer
             Return _parkingRepository.GetActiveParkingCount()
         End Function
 
+        ''' <summary>
+        ''' Mengambil jumlah akumulasi kendaraan yang masuk pada hari ini.
+        ''' </summary>
         Public Function GetTodayEntryCount() As Integer
             Return _parkingRepository.GetTodayEntryCount()
         End Function
 
         ''' <summary>
-        ''' Memeriksa apakah plat nomor terdaftar sebagai member dan mengembalikan data info member
+        ''' Memeriksa apakah suatu nomor polisi terdaftar sebagai member aktif dan mengembalikan data profil beserta diskonnya.
         ''' </summary>
         Public Function CheckMemberStatus(plateNumber As String) As Tuple(Of Boolean, String, String, Decimal)
             ' Returns: Tuple(IsMember, OwnerName, LevelName, DiscountPercentage)
@@ -105,14 +119,14 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Mengambil estimasi tarif per jam dari database berdasarkan tipe kendaraan
+        ''' Mengambil informasi acuan tarif parkir dari database berdasarkan tipe kendaraan.
         ''' </summary>
         Public Function GetTariffInfo(vehicleType As String) As Tariff
             Return _tariffRepository.GetByVehicleType(vehicleType)
         End Function
 
         ''' <summary>
-        ''' Memproses transaksi kendaraan masuk baru
+        ''' Memproses transaksi pendaftaran kendaraan masuk baru dengan menyertakan ID petugas.
         ''' </summary>
         Public Function ProcessEntry(plateNumber As String, vehicleType As String, userId As Nullable(Of Integer), ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
@@ -127,7 +141,7 @@ Namespace Controllers
                 Return False
             End If
 
-            ' Cek apakah kendaraan masih berada di dalam area parkir
+            ' Memeriksa apakah kendaraan sudah berada di dalam lokasi parkir
             If _parkingRepository.IsPlateActive(plateNumber.Trim()) Then
                 errorMessage = $"Kendaraan dengan plat nomor '{plateNumber.Trim().ToUpper()}' saat ini masih terdaftar aktif berada di dalam area parkir."
                 Return False

@@ -1,17 +1,24 @@
-﻿Imports System
+Imports System
 Imports System.Data
 Imports ParkingManagementSystem.Repositories
 
 Namespace Controllers
+    ''' <summary>
+    ''' Controller HistoryController menangani pencarian, penyaringan (filtering), dan kalkulasi total pendapatan pada riwayat transaksi parkir yang telah keluar.
+    ''' </summary>
     Public Class HistoryController
         Private ReadOnly _parkingRepository As ParkingRepository
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi repository parkir.
+        ''' </summary>
         Public Sub New()
             _parkingRepository = New ParkingRepository()
         End Sub
 
         ''' <summary>
-        ''' Memuat data riwayat transaksi berdasarkan filter yang ditentukan
+        ''' Memuat data riwayat transaksi parkir berdasarkan rentang tanggal, jenis kendaraan, dan kata kunci plat nomor.
+        ''' Menghitung pula total pendapatan (totalRevenue) dan jumlah baris data (totalRecords) melalui parameter ByRef.
         ''' </summary>
         Public Function FetchHistory(startDate As DateTime, endDate As DateTime, vehicleType As String, plateSearch As String, ByRef totalRevenue As Decimal, ByRef totalRecords As Integer) As DataTable
             Dim dt As DataTable = _parkingRepository.GetParkingHistoryDataTable(startDate, endDate, vehicleType, plateSearch)

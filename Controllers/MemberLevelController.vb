@@ -1,44 +1,53 @@
-﻿Imports System.Collections.Generic
+Imports System.Collections.Generic
 Imports ParkingManagementSystem.Models
 Imports ParkingManagementSystem.Repositories
 
 Namespace Controllers
+    ''' <summary>
+    ''' Controller MemberLevelController menangani validasi bisnis dan operasi kelola tingkatan member (persentase diskon & iuran bulanan).
+    ''' </summary>
     Public Class MemberLevelController
         Private ReadOnly _repository As MemberLevelRepository
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi repository level member.
+        ''' </summary>
         Public Sub New()
             _repository = New MemberLevelRepository()
         End Sub
 
+        ''' <summary>
+        ''' Mengambil seluruh tingkatan member dari database.
+        ''' </summary>
         Public Function GetAllLevels() As List(Of MemberLevel)
             Return _repository.GetAll()
         End Function
 
         ''' <summary>
-        ''' Menyimpan data level member baru atau memperbarui level member yang sudah ada (termasuk biaya bulanan)
+        ''' Menyimpan level member baru atau memperbarui data level member yang sudah ada dengan validasi rentang diskon dan biaya.
         ''' </summary>
         Public Function SaveLevel(id As Integer, levelName As String, discountPercentage As Decimal, monthlyFee As Decimal, description As String, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
 
-            ' 1. Validasi Input Nama Level
+            ' Validasi nama level
             If String.IsNullOrWhiteSpace(levelName) Then
                 errorMessage = "Nama level member wajib diisi."
                 Return False
             End If
 
-            ' 2. Validasi Persentase Diskon
+            ' Validasi persentase diskon (harus antara 0% - 100%)
             If discountPercentage < 0 OrElse discountPercentage > 100 Then
                 errorMessage = "Persentase diskon harus bernilai antara 0% hingga 100%."
                 Return False
             End If
 
-            ' 3. Validasi Biaya Bulanan
+            ' Validasi biaya langganan bulanan
             If monthlyFee < 0 Then
                 errorMessage = "Biaya bulanan tidak boleh bernilai negatif."
                 Return False
             End If
 
-            ' 4. Inisialisasi Model Entity
+            ' Inisialisasi entitas objek MemberLevel
             Dim levelObj As New MemberLevel() With {
                 .Id = id,
                 .LevelName = levelName.Trim(),
@@ -47,7 +56,7 @@ Namespace Controllers
                 .Description = If(description IsNot Nothing, description.Trim(), String.Empty)
             }
 
-            ' 5. Eksekusi Simpan ke Repository
+            ' Eksekusi pembaruan data jika ID > 0, atau pembuatan data baru jika ID = 0
             If id > 0 Then
                 If Not _repository.Update(levelObj) Then
                     errorMessage = "Gagal memperbarui data level member di database."
@@ -64,7 +73,7 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Menghapus data level member berdasarkan ID
+        ''' Menghapus data level member dari database berdasarkan ID level.
         ''' </summary>
         Public Function DeleteLevel(id As Integer, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty

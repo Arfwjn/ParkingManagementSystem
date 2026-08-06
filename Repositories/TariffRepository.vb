@@ -1,9 +1,15 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 Imports ParkingManagementSystem.Database
 Imports ParkingManagementSystem.Models
 
 Namespace Repositories
+    ''' <summary>
+    ''' Repository TariffRepository menangani akses data (DAL) untuk tabel pengaturan tarif parkir kendaraan (tariffs).
+    ''' </summary>
     Public Class TariffRepository
+        ''' <summary>
+        ''' Mengambil seluruh daftar tarif parkir dalam bentuk List objek Tariff.
+        ''' </summary>
         Public Function GetAll() As List(Of Tariff)
             Dim list As New List(Of Tariff)()
             Dim query As String = "SELECT id, vehicle_type, hourly_rate, overnight_rate, created_at, updated_at FROM tariffs ORDER BY vehicle_type ASC"
@@ -30,6 +36,9 @@ Namespace Repositories
             Return list
         End Function
 
+        ''' <summary>
+        ''' Mengambil data tarif spesifik berdasarkan tipe kendaraan (contoh: 'Mobil' atau 'Motor').
+        ''' </summary>
         Public Function GetByVehicleType(vehicleType As String) As Tariff
             Dim tariff As Tariff = Nothing
             Dim query As String = "SELECT id, vehicle_type, hourly_rate, overnight_rate, created_at, updated_at FROM tariffs WHERE vehicle_type = @vehicle_type LIMIT 1"
@@ -56,6 +65,9 @@ Namespace Repositories
             Return tariff
         End Function
 
+        ''' <summary>
+        ''' Menyimpan atau memperbarui data tarif berdasarkan objek Tariff (ON DUPLICATE KEY UPDATE).
+        ''' </summary>
         Public Function SaveOrUpdate(tariff As Tariff) As Boolean
             Dim query As String = "INSERT INTO tariffs (vehicle_type, hourly_rate, overnight_rate) " &
                                  "VALUES (@vehicle_type, @hourly_rate, @overnight_rate) " &
@@ -75,17 +87,12 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menyimpan data tarif baru atau memperbarui tarif otomatis (UPSERT) jika nama jenis kendaraan sudah ada
+        ''' Menyimpan tarif baru atau memperbarui otomatis (UPSERT) jika jenis kendaraan sudah ada di database.
+        ''' Parameter output 'isUpdated' menandakan apakah data diperbarui atau baru dibuat.
         ''' </summary>
-        ''' <param name="vehicleType">Jenis kendaraan (misal: Mobil, Motor)</param>
-        ''' <param name="hourlyRate">Tarif per jam</param>
-        ''' <param name="overnightRate">Tarif menginap</param>
-        ''' <param name="isUpdated">Flag output: True jika data diperbarui, False jika data baru ditambahkan</param>
         Public Function UpsertTariff(vehicleType As String, hourlyRate As Decimal, overnightRate As Decimal, ByRef isUpdated As Boolean) As Boolean
-            ' 1. Pengecekan eksistensi data awal untuk menentukan pesan notifikasi ke UI
             Dim checkSql As String = "SELECT COUNT(*) FROM tariffs WHERE LOWER(vehicle_type) = LOWER(@vehicle_type)"
 
-            ' 2. Query UPSERT MySQL
             Dim upsertSql As String = "INSERT INTO tariffs (vehicle_type, hourly_rate, overnight_rate) " &
                                      "VALUES (@vehicle_type, @hourly_rate, @overnight_rate) " &
                                      "ON DUPLICATE KEY UPDATE hourly_rate = @hourly_rate, overnight_rate = @overnight_rate"
@@ -93,14 +100,12 @@ Namespace Repositories
             Using conn As MySqlConnection = DbConnection.Instance.GetConnection()
                 conn.Open()
 
-                ' Cek apakah data sudah ada sebelumnya
                 Using checkCmd As New MySqlCommand(checkSql, conn)
                     checkCmd.Parameters.AddWithValue("@vehicle_type", vehicleType.Trim())
                     Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                     isUpdated = (count > 0)
                 End Using
 
-                ' Eksekusi simpan / perbarui otomatis
                 Using cmd As New MySqlCommand(upsertSql, conn)
                     cmd.Parameters.AddWithValue("@vehicle_type", vehicleType.Trim())
                     cmd.Parameters.AddWithValue("@hourly_rate", hourlyRate)
@@ -111,7 +116,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil seluruh data tarif untuk DataGridView
+        ''' Mengambil seluruh data tarif parkir berformat DataTable untuk pengisian komponen DataGridView.
         ''' </summary>
         Public Function GetAllTariffsDataTable() As DataTable
             Dim dt As New DataTable()

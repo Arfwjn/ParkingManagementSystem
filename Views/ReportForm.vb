@@ -1,4 +1,4 @@
-﻿Imports System
+Imports System
 Imports System.Collections.Generic
 Imports System.IO
 Imports System.Text
@@ -7,17 +7,24 @@ Imports ParkingManagementSystem.Controllers
 Imports ParkingManagementSystem.Models
 
 Namespace Views
+    ''' <summary>
+    ''' Form ReportForm mengelola tampilan laporan rekapitulasi transaksi parkir secara harian, mingguan/kustom, dan bulanan.
+    ''' Menyediakan agregasi statistik (pendapatan per metode bayar, jumlah unit) serta fitur ekspor berkas CSV (Excel).
+    ''' </summary>
     Public Class ReportForm
         Private ReadOnly _reportController As ReportController
         Private _currentReportList As List(Of Parking)
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi Form Laporan Parkir.
+        ''' </summary>
         Sub New()
             InitializeComponent()
             _reportController = New ReportController()
         End Sub
 
         Private Sub ReportForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-            ' Inisialisasi Pilihan Tahun (5 tahun terakhir)
+            ' Inisialisasi pilihan rentang 5 tahun terakhir pada ComboBox Tahun
             cmbYear.Items.Clear()
             Dim currentYear As Integer = DateTime.Now.Year
             For y As Integer = currentYear To currentYear - 4 Step -1
@@ -26,15 +33,15 @@ Namespace Views
             cmbYear.SelectedIndex = 0
             cmbMonth.SelectedIndex = DateTime.Now.Month - 1
 
-            ' Set Pilihan Default Tipe Laporan (Harian)
+            ' Menetapkan pilihan default tipe filter laporan ke "Harian"
             cmbReportType.SelectedIndex = 0
 
-            ' Muat Data Pertama kali (Harian Hari Ini)
+            ' Memuat data laporan harian pertama kali saat form dibuka
             LoadReportData()
         End Sub
 
         ''' <summary>
-        ''' Event handler perubahan tipe filter laporan (Harian / Mingguan / Bulanan)
+        ''' Event handler perubahan pilihan jenis filter laporan (Harian / Mingguan / Bulanan) untuk menyembunyikan/menampilkan kontrol tanggal.
         ''' </summary>
         Private Sub cmbReportType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbReportType.SelectedIndexChanged
             Dim selectedType As String = cmbReportType.SelectedItem.ToString()
@@ -81,7 +88,7 @@ Namespace Views
         End Sub
 
         ''' <summary>
-        ''' Memuat data laporan berdasarkan kriteria filter aktif
+        ''' Memuat data laporan parkir dari database sesuai parameter filter harian/mingguan/bulanan yang sedang dipilih.
         ''' </summary>
         Private Sub LoadReportData()
             Try
@@ -100,12 +107,12 @@ Namespace Views
                     _currentReportList = _reportController.GetMonthlyReportData(selectedMonth, selectedYear, summary)
                 End If
 
-                ' Tampilkan Ringkasan ke UI
+                ' Merender ringkasan total transaksi dan breakdown pendapatan ke UI
                 lblTotalTrxVal.Text = summary.TotalTransactions.ToString("N0")
                 lblTotalRevenueVal.Text = $"Rp {summary.TotalRevenue:N0}"
                 lblMethodBreakdown.Text = $"Rincian: Cash: Rp {summary.TotalCashRevenue:N0} | QRIS: Rp {summary.TotalQrisRevenue:N0} | Debit/Transfer: Rp {summary.TotalDebitRevenue:N0}"
 
-                ' Populate DataGridView
+                ' Mengisi data transaksi ke DataGridView
                 DisplayDataToGrid(_currentReportList)
 
             Catch ex As Exception
@@ -113,6 +120,9 @@ Namespace Views
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Memformat dan merender daftar transaksi parkir ke tabel DataGridView.
+        ''' </summary>
         Private Sub DisplayDataToGrid(data As List(Of Parking))
             dgvReport.Columns.Clear()
 
@@ -121,7 +131,7 @@ Namespace Views
                 Return
             End If
 
-            ' Format kolom terstruktur
+            ' Mengatur struktur kolom tabel
             dgvReport.AutoGenerateColumns = False
 
             dgvReport.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "colPlate", .HeaderText = "Plat Nomor", .DataPropertyName = "PlateNumber"})
@@ -133,7 +143,7 @@ Namespace Views
             dgvReport.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "colMethod", .HeaderText = "Metode", .DataPropertyName = "PaymentMethod"})
             dgvReport.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "colRef", .HeaderText = "Ref Transaksi / Kartu", .DataPropertyName = "ReferenceNumber"})
 
-            ' Format Tampilan Angka & Tanggal
+            ' Format tampilan tanggal dan format uang rupiah
             dgvReport.Columns("colEntry").DefaultCellStyle.Format = "dd/MM/yyyy HH:mm"
             dgvReport.Columns("colExit").DefaultCellStyle.Format = "dd/MM/yyyy HH:mm"
             dgvReport.Columns("colFee").DefaultCellStyle.Format = "Rp #,##0"
@@ -142,7 +152,7 @@ Namespace Views
         End Sub
 
         ''' <summary>
-        ''' Fitur Ekspor Data Laporan ke File CSV (Dapat dibuka di Microsoft Excel)
+        ''' Mengekspor seluruh baris data laporan parkir yang sedang ditampilkan ke dalam berkas CSV (Comma Separated Values) untuk Microsoft Excel.
         ''' </summary>
         Private Sub btnExportCsv_Click(sender As Object, e As EventArgs) Handles btnExportCsv.Click
             If _currentReportList Is Nothing OrElse _currentReportList.Count = 0 Then
@@ -157,11 +167,11 @@ Namespace Views
                 If sfd.ShowDialog() = DialogResult.OK Then
                     Try
                         Dim sb As New StringBuilder()
-                        ' Header Kolom CSV
+                        ' Menulis baris header kolom CSV
                         sb.AppendLine("Plat Nomor,Jenis Kendaraan,Waktu Masuk,Waktu Keluar,Durasi (Jam),Total Bayar,Metode Pembayaran,Ref Transaksi / Kartu")
 
                         For Each item In _currentReportList
-                            ' PERBAIKAN: Menggunakan "" untuk melepaskan (escape) tanda petik di VB.NET
+                            ' Menggunakan double quote escape ("") untuk data teks CSV
                             sb.AppendLine($"""{item.PlateNumber}"",""{item.VehicleType}"",""{item.EntryTime:yyyy-MM-dd HH:mm:ss}"",""{item.ExitTime:yyyy-MM-dd HH:mm:ss}"",{item.Duration},{item.TotalPayment},""{item.PaymentMethod}"",""{item.ReferenceNumber}""")
                         Next
 

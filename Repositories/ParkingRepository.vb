@@ -1,11 +1,15 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 Imports ParkingManagementSystem.Models
 Imports ParkingManagementSystem.Database
 
 Namespace Repositories
+    ''' <summary>
+    ''' Repository ParkingRepository bertanggung jawab atas seluruh akses data (DAL) transaksi parkir,
+    ''' termasuk pendaftaran kendaraan masuk, proses pembayaran keluar, laporan harian/mingguan/bulanan, dan agregasi data dashboard.
+    ''' </summary>
     Public Class ParkingRepository
         ''' <summary>
-        ''' Memeriksa apakah nomor polisi masih aktif berada di dalam area parkir
+        ''' Memeriksa apakah plat nomor kendaraan saat ini sedang aktif berada di area parkir (Status IN / OVERNIGHT).
         ''' </summary>
         Public Function IsPlateActive(plateNumber As String) As Boolean
             Dim sql As String = "SELECT COUNT(*) FROM parking WHERE plate_number = @plateNumber AND status IN ('IN', 'OVERNIGHT')"
@@ -21,7 +25,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menghitung jumlah kendaraan yang sedang aktif parkir berdasarkan jenisnya
+        ''' Menghitung jumlah kendaraan yang sedang aktif di area parkir berdasarkan kategori jenisnya (Mobil / Motor).
         ''' </summary>
         Public Function GetActiveCountByType(vehicleType As String) As Integer
             Dim sql As String = "SELECT COUNT(*) FROM parking WHERE vehicle_type = @vehicleType AND status IN ('IN', 'OVERNIGHT')"
@@ -36,7 +40,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menyimpan transaksi kendaraan masuk baru
+        ''' Menyimpan record transaksi kendaraan baru yang memasuki area parkir (Status 'IN', PaymentStatus 'Belum Dibayar').
         ''' </summary>
         Public Function InsertEntry(parking As Parking) As Boolean
             Dim sql As String = "INSERT INTO parking (plate_number, vehicle_type, entry_time, status, payment_status, user_id) " &
@@ -56,7 +60,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mencari transaksi parkir yang sedang aktif berdasarkan nomor polisi
+        ''' Mencari dan mengembalikan objek transaksi parkir aktif berdasarkan nomor polisi kendaraan.
         ''' </summary>
         Public Function GetActiveParkingByPlate(plateNumber As String) As Parking
             Dim sql As String = "SELECT * FROM parking WHERE plate_number = @plateNumber AND status IN ('IN', 'OVERNIGHT') ORDER BY id DESC LIMIT 1"
@@ -82,7 +86,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Memperbarui transaksi parkir saat kendaraan keluar (Check-Out & Pembayaran)
+        ''' Memperbarui data transaksi parkir ketika kendaraan keluar dan melakukan pembayaran (Status 'OUT', PaymentStatus 'Lunas').
         ''' </summary>
         Public Function UpdateExitPayment(p As Parking) As Boolean
             Dim sql As String = "UPDATE parking SET " &
@@ -121,7 +125,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil daftar seluruh plat nomor aktif untuk fitur AutoComplete Suggestion
+        ''' Mengambil daftar plat nomor aktif di area parkir untuk fitur rekomendasi otomatis (AutoComplete Text).
         ''' </summary>
         Public Function GetActivePlateNumbers() As List(Of String)
             Dim list As New List(Of String)()
@@ -141,7 +145,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil data tabular kendaraan yang sedang berada di dalam parkiran
+        ''' Mengambil seluruh data kendaraan yang sedang parkir berformat DataTable untuk tampilan DataGridView Parkir Aktif.
         ''' </summary>
         Public Function GetActiveParkingDataTable() As DataTable
             Dim dt As New DataTable()
@@ -161,7 +165,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil data riwayat transaksi parkir yang sudah selesai (OUT) berdasarkan filter
+        ''' Mengambil data riwayat transaksi kendaraan yang telah keluar parkir (Status 'OUT') berdasarkan filter tanggal, jenis kendaraan, dan plat.
         ''' </summary>
         Public Function GetParkingHistoryDataTable(startDate As DateTime, endDate As DateTime, vehicleType As String, plateSearch As String) As DataTable
             Dim dt As New DataTable()
@@ -206,7 +210,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menghitung jumlah total kendaraan yang sedang aktif parkir (Status IN / OVERNIGHT)
+        ''' Menghitung total keseluruhan kendaraan yang saat ini sedang berada di dalam parkiran.
         ''' </summary>
         Public Function GetActiveParkingCount() As Integer
             Dim sql As String = "SELECT COUNT(*) FROM parking WHERE status IN ('IN', 'OVERNIGHT')"
@@ -220,7 +224,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menghitung jumlah total kendaraan yang masuk pada hari ini
+        ''' Menghitung jumlah akumulasi kendaraan yang masuk pada hari ini.
         ''' </summary>
         Public Function GetTodayEntryCount() As Integer
             Dim sql As String = "SELECT COUNT(*) FROM parking WHERE DATE(entry_time) = CURDATE()"
@@ -234,7 +238,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menghitung total pendapatan dari transaksi parkir lunas pada hari ini
+        ''' Menghitung total jumlah rupiah pendapatan dari transaksi parkir lunas pada hari ini.
         ''' </summary>
         Public Function GetTodayRevenue() As Decimal
             Dim sql As String = "SELECT COALESCE(SUM(total_payment), 0) FROM parking WHERE DATE(exit_time) = CURDATE() AND payment_status = 'Lunas'"
@@ -247,7 +251,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil 10 transaksi parkir terkini (masuk atau keluar) untuk tabel monitoring dashboard
+        ''' Mengambil 10 transaksi parkir terbaru (masuk/keluar) untuk komponen tabel aktivitas terkini pada Dashboard.
         ''' </summary>
         Public Function GetRecentTransactionsDataTable() As DataTable
             Dim dt As New DataTable()
@@ -268,7 +272,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Memperbarui data transaksi parkir keluar termasuk metode dan nomor referensi pembayaran
+        ''' Memproses penyimpanan transaksi kendaraan keluar (Check-Out) beserta rincian biaya, potongan diskon, metode bayar, dan ID petugas.
         ''' </summary>
         Public Function ProcessExit(parkingData As Parking) As Boolean
             Dim query As String = "UPDATE parking SET " &
@@ -314,7 +318,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil data transaksi parkir keluar berdasarkan tanggal tertentu (Harian)
+        ''' Mengambil data laporan transaksi parkir yang keluar pada tanggal tertentu (Laporan Harian).
         ''' </summary>
         Public Function GetDailyReport(selectedDate As DateTime) As List(Of Parking)
             Dim query As String = "SELECT id, plate_number, vehicle_type, entry_time, exit_time, duration, " &
@@ -331,7 +335,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil data transaksi parkir keluar berdasarkan rentang tanggal (Mingguan / Custom)
+        ''' Mengambil data laporan transaksi parkir keluar dalam rentang tanggal tertentu (Laporan Mingguan / Kustom).
         ''' </summary>
         Public Function GetWeeklyReport(startDate As DateTime, endDate As DateTime) As List(Of Parking)
             Dim query As String = "SELECT id, plate_number, vehicle_type, entry_time, exit_time, duration, " &
@@ -349,7 +353,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil data transaksi parkir keluar berdasarkan Bulan dan Tahun (Bulanan)
+        ''' Mengambil data laporan transaksi parkir keluar berdasarkan bulan dan tahun (Laporan Bulanan).
         ''' </summary>
         Public Function GetMonthlyReport(month As Integer, year As Integer) As List(Of Parking)
             Dim query As String = "SELECT id, plate_number, vehicle_type, entry_time, exit_time, duration, " &
@@ -367,7 +371,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Helper private untuk mengeksekusi query laporan dan memetakan hasilnya ke List(Of Parking)
+        ''' Fungsi utilitas privat untuk mengeksekusi query laporan dan memetakan datanya ke dalam daftar List(Of Parking).
         ''' </summary>
         Private Function FetchReportData(query As String, parameters As Dictionary(Of String, Object)) As List(Of Parking)
             Dim reportList As New List(Of Parking)()

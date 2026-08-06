@@ -1,32 +1,42 @@
-﻿Imports System.Collections.Generic
+Imports System.Collections.Generic
 Imports System.Data
 Imports ParkingManagementSystem.Helpers
 Imports ParkingManagementSystem.Models
 Imports ParkingManagementSystem.Repositories
 
 Namespace Controllers
+    ''' <summary>
+    ''' Controller MemberController mengelola aturan bisnis pendaftaran member, validasi multi-plat nomor (maksimal 3 kendaraan),
+    ''' pengeditan profil, perpanjangan masa aktif keanggotaan, dan transaksi pembayaran berlangganan.
+    ''' </summary>
     Public Class MemberController
         Private ReadOnly _memberRepository As MemberRepository
         Private ReadOnly _memberLevelRepository As MemberLevelRepository
 
+        ''' <summary>
+        ''' Inisialisasi controller member dan instansiasi repository member & level.
+        ''' </summary>
         Public Sub New()
             _memberRepository = New MemberRepository()
             _memberLevelRepository = New MemberLevelRepository()
         End Sub
 
+        ''' <summary>
+        ''' Mengambil daftar seluruh pilihan level keanggotaan yang tersedia.
+        ''' </summary>
         Public Function GetMemberLevels() As List(Of MemberLevel)
             Return _memberLevelRepository.GetAll()
         End Function
 
         ''' <summary>
-        ''' Mengambil data seluruh member terintegrasi untuk tampilan DataGridView
+        ''' Mengambil data seluruh member terintegrasi berformat DataTable untuk tampilan DataGridView.
         ''' </summary>
         Public Function GetAllMembersDataTable() As DataTable
             Return _memberRepository.GetAllMembersDataTable()
         End Function
 
         ''' <summary>
-        ''' Mendaftarkan member baru dengan 1 hingga 3 plat nomor kendaraan sekaligus
+        ''' Mendaftarkan member baru dengan 1 hingga 3 plat nomor kendaraan sekaligus beserta validasi duplikasi.
         ''' </summary>
         Public Function RegisterMember(ownerName As String, plateNumbers As List(Of String), levelId As Integer, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
@@ -41,7 +51,7 @@ Namespace Controllers
                 Return False
             End If
 
-            ' Filter plat nomor yang tidak kosong
+            ' Menyaring daftar plat nomor kendaraan agar tidak ada string kosong atau duplikat pada input
             Dim validPlates As New List(Of String)()
             For Each plate In plateNumbers
                 If Not String.IsNullOrWhiteSpace(plate) Then
@@ -57,14 +67,14 @@ Namespace Controllers
                 Return False
             End If
 
-            ' Cek batas jumlah plat terdaftar untuk pemilik ini
+            ' Memeriksa batas aturan bisnis maksimal 3 kendaraan terdaftar per pemilik
             Dim existingCount As Integer = _memberRepository.GetPlateCountByOwner(ownerName)
             If (existingCount + validPlates.Count) > 3 Then
                 errorMessage = $"Pemilik '{ownerName}' sudah memiliki {existingCount} plat terdaftar. Maksimal plat nomor per individu adalah 3 unit."
                 Return False
             End If
 
-            ' Validasi apakah ada plat nomor yang sudah terdaftar di sistem
+            ' Memeriksa ketersediaan plat nomor agar tidak bentrok dengan member lain
             For Each plate In validPlates
                 If _memberRepository.IsPlateRegistered(plate) Then
                     errorMessage = $"Plat nomor '{plate}' sudah terdaftar pada member lain."
@@ -72,7 +82,7 @@ Namespace Controllers
                 End If
             Next
 
-            ' Simpan member beserta daftar plat nomornya
+            ' Menyimpan data member baru ke database
             If Not _memberRepository.SaveMemberWithPlates(ownerName, validPlates, levelId) Then
                 errorMessage = "Gagal mendaftarkan data member ke database."
                 Return False
@@ -81,6 +91,9 @@ Namespace Controllers
             Return True
         End Function
 
+        ''' <summary>
+        ''' Menghapus data member dari database berdasarkan ID member.
+        ''' </summary>
         Public Function DeleteMember(id As Integer, ByRef errorMessage As String) As Boolean
             If id <= 0 Then
                 errorMessage = "Pilih data member yang ingin dihapus."
@@ -96,12 +109,12 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Mendaftarkan member baru lengkap dengan kalkulasi dan konfirmasi pembayaran
+        ''' Mendaftarkan member baru lengkap beserta konfirmasi penerimaan transaksi pembayaran awal.
         ''' </summary>
         Public Function RegisterMemberWithPayment(ownerName As String, plateNumbers As List(Of String), levelId As Integer, paymentMethod As String, referenceNumber As String, totalAmount As Decimal, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
 
-            ' 1. Validasi Input Dasar
+            ' Validasi input dasar
             If String.IsNullOrWhiteSpace(ownerName) Then
                 errorMessage = "Nama pemilik wajib diisi."
                 Return False
@@ -125,14 +138,14 @@ Namespace Controllers
                 Return False
             End If
 
-            ' 2. Validasi Batas 3 Plat Nomor per Pemilik
+            ' Validasi batasan 3 plat nomor per pemilik
             Dim existingCount As Integer = _memberRepository.GetPlateCountByOwner(ownerName)
             If (existingCount + validPlates.Count) > 3 Then
                 errorMessage = $"Pemilik '{ownerName}' sudah memiliki {existingCount} plat terdaftar. Maksimal 3 kendaraan per individu."
                 Return False
             End If
 
-            ' 3. Validasi Duplikasi Plat
+            ' Validasi duplikasi plat pada sistem
             For Each plate In validPlates
                 If _memberRepository.IsPlateRegistered(plate) Then
                     errorMessage = $"Plat nomor '{plate}' sudah terdaftar pada member lain."
@@ -140,7 +153,7 @@ Namespace Controllers
                 End If
             Next
 
-            ' 4. Eksekusi Simpan Member & Multi-Plat
+            ' Menyimpan data member dan multi-plat
             If Not _memberRepository.SaveMemberWithPlates(ownerName, validPlates, levelId) Then
                 errorMessage = "Gagal menyimpan data member ke database."
                 Return False
@@ -150,7 +163,7 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Memvalidasi dan mengeksekusi pengeditan data member
+        ''' Memvalidasi dan mengeksekusi pembaruan profil data member beserta daftar plat nomornya.
         ''' </summary>
         Public Function UpdateMemberProfile(memberId As Integer, ownerName As String, levelId As Integer, plateNumbers As List(Of String), ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
@@ -187,7 +200,7 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Memproses perpanjangan masa aktif keanggotaan member terdaftar (+1 bulan dari tanggal kedaluwarsa/sekarang)
+        ''' Memproses perpanjangan masa aktif berlangganan member (+1 bulan) serta menyimpan log pembayarannya.
         ''' </summary>
         Public Function RenewSubscriptionWithPayment(memberId As Integer, paymentMethod As String, referenceNumber As String, totalAmount As Decimal, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
@@ -197,7 +210,7 @@ Namespace Controllers
                 Return False
             End If
 
-            ' Panggil repository untuk memperbarui tanggal kedaluwarsa (+1 bulan) dan status
+            ' Memperbarui tanggal kedaluwarsa (+1 bulan) dan mengaktifkan kembali status member
             If Not _memberRepository.RenewSubscription(memberId) Then
                 errorMessage = "Gagal memperpanjang masa aktif member di database."
                 Return False

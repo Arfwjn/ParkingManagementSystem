@@ -1,16 +1,26 @@
-﻿Imports System
+Imports System
 Imports System.Drawing
 Imports System.IO
 Imports System.Windows.Forms
 
 Namespace Views
+    ''' <summary>
+    ''' Form QrisPaymentForm menampilkan dialog konfirmasi pembayaran transaksi metode QRIS.
+    ''' Memuat berkas gambar QR Code asli dari database atau merender QR Code simulasi dinamis jika berkas fisik tidak ditemukan.
+    ''' </summary>
     Public Class QrisPaymentForm
+        ''' <summary>Nominal pembayaran transaksi.</summary>
         Public Property Amount As Decimal
+        ''' <summary>Judul deskripsi transaksi.</summary>
         Public Property TransactionTitle As String
+        ''' <summary>Nomor referensi unik transaksi QRIS yang dihasilkan secara otomatis.</summary>
         Public Property GeneratedReferenceNumber As String
 
         Private ReadOnly _settingController As PaymentSettingController
 
+        ''' <summary>
+        ''' Constructor dengan parameter nominal dan judul transaksi.
+        ''' </summary>
         Public Sub New(amount As Decimal, transactionTitle As String)
             InitializeComponent()
             Me.Amount = amount
@@ -24,26 +34,29 @@ Namespace Views
             lblTransactionTitle.Text = TransactionTitle
             lblAmountValue.Text = $"Rp {Amount:N0}"
 
-            ' PERBAIKAN: Kunci PictureBox agar selalu menampilkan seluruh gambar secara utuh (Zoom)
+            ' Memastikan mode PictureBox menggunakan Zoom agar gambar QR tidak terpotong
             picQrisCode.SizeMode = PictureBoxSizeMode.Zoom
 
-            ' Muat data QRIS dari basis data
+            ' Memuat data gambar dan Merchant QRIS dari database
             LoadQrisData()
         End Sub
 
+        ''' <summary>
+        ''' Memuat berkas gambar QRIS dari database. Jika tidak ada gambar kustom, memanggil fungsi generator simulasi QRIS.
+        ''' </summary>
         Private Sub LoadQrisData()
             Dim qrLoadedFromFile As Boolean = False
 
             Try
                 Dim setting As PaymentSetting = _settingController.LoadPaymentSetting()
                 If setting IsNot Nothing Then
-                    ' Set Label Nama Merchant jika kontrol tersedia
+                    ' Menetapkan label nama Merchant QRIS jika kontrol tersedia
                     Dim lblMerchantArray = Controls.Find("lblMerchantName", True)
                     If lblMerchantArray.Length > 0 AndAlso TypeOf lblMerchantArray(0) Is Label Then
                         CType(lblMerchantArray(0), Label).Text = setting.QrisMerchantName
                     End If
 
-                    ' Set Label NMID jika kontrol tersedia
+                    ' Menetapkan label NMID jika kontrol tersedia
                     Dim lblNmidArray = Controls.Find("lblNmid", True)
                     If lblNmidArray.Length > 0 AndAlso TypeOf lblNmidArray(0) Is Label Then
                         Dim lblNmidControl As Label = CType(lblNmidArray(0), Label)
@@ -55,10 +68,9 @@ Namespace Views
                         End If
                     End If
 
-                    ' Cek dan muat gambar QRIS kustom jika berkas fisik tersedia
+                    ' Memeriksa dan memuat berkas gambar QRIS jika ada di direktori fisik
                     If Not String.IsNullOrWhiteSpace(setting.QrisImagePath) AndAlso File.Exists(setting.QrisImagePath) Then
                         Using fs As New FileStream(setting.QrisImagePath, FileMode.Open, FileAccess.Read)
-                            ' Pastikan mode Zoom aktif sebelum assign gambar
                             picQrisCode.SizeMode = PictureBoxSizeMode.Zoom
                             picQrisCode.Image = Image.FromStream(fs)
                         End Using
@@ -66,7 +78,7 @@ Namespace Views
                     End If
                 End If
             Catch ex As Exception
-                ' Fallback jika terjadi kegagalan pembacaan
+                ' Fallback jika terjadi kesalahan pembacaan berkas gambar
             End Try
 
             If Not qrLoadedFromFile Then
@@ -74,6 +86,9 @@ Namespace Views
             End If
         End Sub
 
+        ''' <summary>
+        ''' Generasi grafis bitmap QR Code simulasi secara prosedural berdasarkan seed nomor referensi transaksi.
+        ''' </summary>
         Private Sub RenderSimulatedQris()
             Dim bmp As New Bitmap(200, 200)
             Using g As Graphics = Graphics.FromImage(bmp)
@@ -107,6 +122,9 @@ Namespace Views
             picQrisCode.Image = bmp
         End Sub
 
+        ''' <summary>
+        ''' Mengkalkulasi nilai hash integer dari string nomor referensi untuk seed acak generator simulasi QR Code.
+        ''' </summary>
         Private Function ReferenceNumberSeed(refNo As String) As Integer
             Dim hash As Integer = 0
             For Each c As Char In refNo

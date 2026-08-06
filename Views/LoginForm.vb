@@ -1,14 +1,20 @@
-﻿Imports System
+Imports System
 Imports System.Data.SqlClient
 Imports ParkingManagementSystem.Windows.Forms
 Imports ParkingManagementSystem.Controllers
 
 Namespace Views
+    ''' <summary>
+    ''' Form LoginForm menampilkan antarmuka utama pendaftaran masuk (login) pengguna ke dalam sistem parkir.
+    ''' </summary>
     Partial Public Class LoginForm
         Inherits Form
 
         Private ReadOnly _loginController As LoginController
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi Form Login dan controller login.
+        ''' </summary>
         Public Sub New()
             InitializeComponent()
             _loginController = New LoginController()
@@ -18,6 +24,7 @@ Namespace Views
             lblError.Text = String.Empty
             Dim errorMessage As String = String.Empty
 
+            ' Mengirim kredensial username dan password ke controller login
             Dim isSuccess As Boolean = _loginController.Login(txtUsername.Text.Trim(), txtPassword.Text, errorMessage)
 
             If isSuccess Then

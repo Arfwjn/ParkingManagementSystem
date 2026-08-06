@@ -1,15 +1,22 @@
-﻿Imports System
+Imports System
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
 Imports ParkingManagementSystem.Helpers
 
 Namespace Views
+    ''' <summary>
+    ''' Form DashboardForm merupakan antarmuka utama (main window) aplikasi parkir.
+    ''' Menampilkan kartu KPI statistik real-time, indikator kapasitas parkir mobil/motor, tabel aktivitas terkini, serta menu navigasi berbasis hak akses peran (Admin / Petugas).
+    ''' </summary>
     Partial Public Class DashboardForm
         Inherits Form
 
         Private ReadOnly _dashboardController As DashboardController
         Private _isLoggingOut As Boolean = False
 
+        ''' <summary>
+        ''' Inisialisasi Form Dashboard utama dan controller dashboard.
+        ''' </summary>
         Public Sub New()
             InitializeComponent()
             _dashboardController = New DashboardController()
@@ -20,21 +27,21 @@ Namespace Views
                 lblWelcome.Text = $"Selamat Datang, {SessionManager.CurrentUser.Fullname} [{SessionManager.CurrentUser.Role}]"
             End If
 
-            ' Terapkan Hak Akses Berdasarkan Role Pengguna
+            ' Menerapkan aturan hak akses menu sesuai role pengguna yang sedang login
             ApplyRolePermissions()
 
-            ' Memuat Data Statistik Dashboard
+            ' Memuat data indikator KPI dan grafik kapasitas parkir
             LoadDashboardData()
         End Sub
 
         ''' <summary>
-        ''' Mengatur visibilitas menu navigasi berdasarkan peran (Role) pengguna aktif
+        ''' Mengatur visibilitas tombol menu navigasi berdasarkan peran (Role) pengguna yang sedang aktif (Admin vs Petugas).
         ''' </summary>
         Private Sub ApplyRolePermissions()
             If SessionManager.IsLoggedIn() AndAlso SessionManager.CurrentUser IsNot Nothing Then
                 Dim userRole As String = SessionManager.CurrentUser.Role
 
-                ' Jika pengguna adalah 'Petugas' (bukan Admin), sembunyikan menu administratif
+                ' Jika pengguna berperan sebagai 'Petugas' (bukan Admin), sembunyikan menu pengelolaan administratif
                 If Not userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) Then
                     btnKelolaUser.Visible = False
                     btnTariffManagement.Visible = False
@@ -42,7 +49,7 @@ Namespace Views
                     btnPaymentSetting.Visible = False
                     btnLaporan.Visible = False
                 Else
-                    ' Admin memiliki akses penuh ke seluruh menu
+                    ' Pengguna berpangkat Admin memiliki akses penuh ke seluruh fitur sistem
                     btnKelolaUser.Visible = True
                     btnTariffManagement.Visible = True
                     btnMemberLevelManagement.Visible = True
@@ -53,7 +60,7 @@ Namespace Views
         End Sub
 
         ''' <summary>
-        ''' Pengecekan keamanan tambahan sebelum membuka form khusus Admin
+        ''' Memverifikasi hak akses Admin sebelum membuka form konfigurasi administratif.
         ''' </summary>
         Private Function CheckAdminAccess() As Boolean
             If SessionManager.IsLoggedIn() AndAlso Not SessionManager.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase) Then
@@ -64,19 +71,19 @@ Namespace Views
         End Function
 
         ''' <summary>
-        ''' Memuat seluruh statistik KPI, progress kapasitas, dan tabel aktivitas terbaru ke UI
+        ''' Memuat seluruh statistik kartu KPI, bilah persentase kapasitas parkir, dan tabel 10 aktivitas transaksi terbaru.
         ''' </summary>
         Public Sub LoadDashboardData()
             Try
                 Dim summary As DashboardSummaryData = _dashboardController.GetDashboardSummary()
 
-                ' 1. Bind KPI Cards
+                ' Bind data ke kartu KPI ringkasan
                 lblActiveValue.Text = summary.ActiveParkingCount.ToString()
                 lblTodayValue.Text = summary.TodayEntryCount.ToString()
                 lblSlotsValue.Text = summary.AvailableSlots.ToString()
                 lblRevenueValue.Text = $"Rp {summary.TodayRevenue:N0}"
 
-                ' 2. Bind Progress Bars Kapasitas Mobil & Motor
+                ' Bind data ke Progress Bar persentase kapasitas Mobil & Motor
                 pbCarCapacity.Maximum = DashboardController.MAX_CAR_CAPACITY
                 pbCarCapacity.Value = Math.Min(summary.ActiveCarCount, DashboardController.MAX_CAR_CAPACITY)
                 Dim carPct As Integer = CInt((summary.ActiveCarCount / CDbl(DashboardController.MAX_CAR_CAPACITY)) * 100)
@@ -87,11 +94,11 @@ Namespace Views
                 Dim motorPct As Integer = CInt((summary.ActiveMotorcycleCount / CDbl(DashboardController.MAX_MOTORCYCLE_CAPACITY)) * 100)
                 lblMotorProgressVal.Text = $"{summary.ActiveMotorcycleCount} / {DashboardController.MAX_MOTORCYCLE_CAPACITY} ({motorPct}%)"
 
-                ' 3. Bind DataGridView Aktivitas Terkini
+                ' Bind data ke DataGridView aktivitas transaksi terbaru
                 dgvRecentActivity.DataSource = Nothing
                 dgvRecentActivity.DataSource = summary.RecentActivityData
 
-                ' Formatting Kolom DataGridView
+                ' Formatting format mata uang untuk kolom Total Bayar
                 If dgvRecentActivity.Columns("Total Bayar") IsNot Nothing Then
                     dgvRecentActivity.Columns("Total Bayar").DefaultCellStyle.Format = "N0"
                 End If

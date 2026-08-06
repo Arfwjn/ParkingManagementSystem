@@ -1,21 +1,30 @@
-﻿Imports System
+Imports System
 Imports System.Windows.Forms
 
 Namespace Views
+    ''' <summary>
+    ''' Form DebitPaymentForm menampilkan dialog konfirmasi pembayaran non-tunai metode Kartu Debit / Transfer Bank.
+    ''' Memuat informasi rekening tujuan dari database dan menerima penginputan nomor kartu/referensi transaksi.
+    ''' </summary>
     Public Class DebitPaymentForm
+        ''' <summary>Jumlah nominal yang harus dibayarkan.</summary>
         Public Property Amount As Decimal
+        ''' <summary>Judul deskripsi transaksi (misal: "Pembayaran Parkir Keluar").</summary>
         Public Property TransactionTitle As String
+        ''' <summary>Nomor kartu debit atau nomor referensi transaksi yang dimasukkan oleh pengguna.</summary>
         Public Property CardOrReferenceNumber As String
 
         Private ReadOnly _settingController As PaymentSettingController
 
+        ''' <summary>
+        ''' Constructor dengan parameter nominal dan judul transaksi.
+        ''' </summary>
         Public Sub New(amount As Decimal, transactionTitle As String)
             InitializeComponent()
             Me.Amount = amount
             Me.TransactionTitle = transactionTitle
             Me.CardOrReferenceNumber = String.Empty
 
-            ' Inisialisasi controller untuk mengambil data rekening bank dari database
             _settingController = New PaymentSettingController()
         End Sub
 
@@ -23,35 +32,30 @@ Namespace Views
             lblTransactionTitle.Text = TransactionTitle
             lblAmountValue.Text = $"Rp {Amount:N0}"
 
-            ' Memuat informasi rekening bank penerima dari database
+            ' Memuat informasi rekening bank penerima dari basis data
             LoadBankData()
 
             txtCardOrRefNo.Focus()
         End Sub
 
         ''' <summary>
-        ''' Memuat data bank, nomor rekening, dan nama pemilik dari konfigurasi database
+        ''' Memuat nama bank, nomor rekening, dan nama pemegang rekening dari pengaturan database.
         ''' </summary>
         Private Sub LoadBankData()
             Try
                 Dim setting As PaymentSetting = _settingController.LoadPaymentSetting()
                 If setting IsNot Nothing Then
-                    ' Set Label Nama Bank jika kontrol tersedia di designer
                     SetControlText("lblBankName", setting.BankName)
-
-                    ' Set Label Nomor Rekening jika kontrol tersedia di designer
                     SetControlText("lblAccountNumber", setting.AccountNumber)
-
-                    ' Set Label Nama Pemilik Rekening jika kontrol tersedia di designer
                     SetControlText("lblAccountHolder", $"a.n. {setting.AccountHolder}")
                 End If
             Catch ex As Exception
-                ' Jika gagal membaca dari DB, form tetap dapat digunakan untuk penginputan nomor kartu/referensi
+                ' Jika gagal membaca dari database, form tetap dapat digunakan untuk penginputan nomor kartu/referensi
             End Try
         End Sub
 
         ''' <summary>
-        ''' Helper untuk memperbarui teks label secara aman jika kontrol ditemukan pada designer
+        ''' Helper privat untuk memperbarui teks label secara aman jika kontrol ditemukan di UI designer.
         ''' </summary>
         Private Sub SetControlText(controlName As String, textValue As String)
             Dim foundControls = Controls.Find(controlName, True)

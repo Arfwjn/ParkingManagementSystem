@@ -1,14 +1,21 @@
-﻿Imports System
+Imports System
 Imports System.Collections.Generic
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
 Imports ParkingManagementSystem.Models
 
 Namespace Views
+    ''' <summary>
+    ''' Form MemberLevelManagementForm menyediakan antarmuka manajemen CRUD untuk mengelola data level keanggotaan member (Bronze, Silver, Gold, Platinum),
+    ''' persentase diskon potongan parkir, dan iuran langganan bulanan.
+    ''' </summary>
     Public Class MemberLevelManagementForm
         Private ReadOnly _controller As MemberLevelController
         Private _selectedLevelId As Integer = 0
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi komponen Form Kelola Level Member.
+        ''' </summary>
         Public Sub New()
             InitializeComponent()
             _controller = New MemberLevelController()
@@ -19,13 +26,16 @@ Namespace Views
             ClearForm()
         End Sub
 
+        ''' <summary>
+        ''' Memuat daftar seluruh level member dari database ke DataGridView dan mengatur format kolom.
+        ''' </summary>
         Private Sub LoadLevelData()
             Try
                 Dim list As List(Of MemberLevel) = _controller.GetAllLevels()
                 dgvLevels.DataSource = Nothing
                 dgvLevels.DataSource = list
 
-                ' Formatting Header Columns
+                ' Format tampilan judul dan format angka pada kolom DataGridView
                 If dgvLevels.Columns("Id") IsNot Nothing Then dgvLevels.Columns("Id").Visible = False
                 If dgvLevels.Columns("LevelName") IsNot Nothing Then dgvLevels.Columns("LevelName").HeaderText = "Nama Level"
                 If dgvLevels.Columns("DiscountPercentage") IsNot Nothing Then

@@ -1,30 +1,46 @@
-﻿Imports System
+Imports System
 Imports System.Data
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Repositories
 
 Namespace Views
+    ''' <summary>
+    ''' Form ActiveParkingForm menampilkan daftar seluruh kendaraan yang saat ini sedang aktif parkir di dalam area parkir.
+    ''' Menyediakan pencarian cepat nomor polisi dan akses langsung ke proses kendaraan keluar (Check-Out).
+    ''' </summary>
     Partial Public Class ActiveParkingForm
         Inherits Form
 
         Private ReadOnly _parkingRepository As ParkingRepository
         Private _dtActiveData As DataTable
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi komponen UI Form Parkir Aktif.
+        ''' </summary>
         Public Sub New()
             InitializeComponent()
             _parkingRepository = New ParkingRepository()
         End Sub
 
+        ''' <summary>
+        ''' Handler event saat Form dimuat pertama kali.
+        ''' </summary>
         Private Sub ActiveParkingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             LoadData()
         End Sub
 
+        ''' <summary>
+        ''' Memuat data kendaraan aktif dari database dan memperbarui label total unit kendaraan.
+        ''' </summary>
         Private Sub LoadData()
             _dtActiveData = _parkingRepository.GetActiveParkingDataTable()
             dgvActiveParking.DataSource = _dtActiveData
             lblTotalCount.Text = $"Total Kendaraan: {_dtActiveData.Rows.Count} Unit"
         End Sub
 
+        ''' <summary>
+        ''' Penyaringan (filtering) data secara real-time pada DataGridView berdasarkan input nomor polisi.
+        ''' </summary>
         Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
             If _dtActiveData IsNot Nothing Then
                 Dim filterText As String = txtSearch.Text.Trim().Replace("'", "''")
@@ -35,7 +51,7 @@ Namespace Views
         End Sub
 
         ''' <summary>
-        ''' Membuka ExitForm dengan membawa plat nomor baris yang sedang dipilih
+        ''' Membuka dialog ExitForm untuk memproses transaksi keluar kendaraan yang barisnya sedang dipilih.
         ''' </summary>
         Private Sub OpenExitFormForSelectedRow()
             If dgvActiveParking.SelectedRows.Count > 0 Then
@@ -45,7 +61,7 @@ Namespace Views
                 Dim exitForm As New ExitForm(plateNumber)
                 exitForm.ShowDialog(Me)
 
-                ' Refresh data setelah proses keluar selesai
+                ' Memperbarui ulang daftar kendaraan aktif setelah proses keluar selesai
                 LoadData()
             Else
                 MessageBox.Show("Silakan pilih salah satu baris kendaraan terlebih dahulu.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information)

@@ -1,11 +1,14 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 Imports ParkingManagementSystem.Models
 Imports ParkingManagementSystem.Database
 
 Namespace Repositories
+    ''' <summary>
+    ''' Repository UserRepository bertanggung jawab atas akses data (Data Access Layer - DAL) untuk tabel pengguna (users).
+    ''' </summary>
     Public Class UserRepository
         ''' <summary>
-        ''' Memverifikasi kredensial pengguna berdasarkan username dan password hash
+        ''' Memverifikasi kredensial login pengguna berdasarkan username dan kata sandi yang di-hash SHA-256.
         ''' </summary>
         Public Function GetUserByCredentials(username As String, passwordHash As String) As User
             Dim sql As String = "SELECT id, username, fullname, role FROM users WHERE username = @username AND password = @password LIMIT 1"
@@ -32,7 +35,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengambil seluruh data user untuk ditampilkan pada tabel DataGridView
+        ''' Mengambil seluruh data pengguna terdaftar berformat DataTable untuk pengisian komponen DataGridView.
         ''' </summary>
         Public Function GetAllUsersDataTable() As DataTable
             Dim dt As New DataTable()
@@ -51,7 +54,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Memeriksa apakah username sudah digunakan oleh user lain
+        ''' Memeriksa ketersediaan username di database untuk mencegah duplikasi (kecuali ID pengguna yang sedang disunting).
         ''' </summary>
         Public Function IsUsernameExists(username As String, excludeId As Integer) As Boolean
             Dim sql As String = "SELECT COUNT(*) FROM users WHERE username = @username AND id <> @excludeId"
@@ -68,7 +71,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menambahkan user baru
+        ''' Menyimpan data akun pengguna baru ke dalam database.
         ''' </summary>
         Public Function AddUser(u As User) As Boolean
             Dim sql As String = "INSERT INTO users (username, password, fullname, role) VALUES (@username, @password, @fullname, @role)"
@@ -86,7 +89,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Mengubah data user (dengan atau tanpa memperbarui password)
+        ''' Memperbarui informasi akun pengguna (dapat menyertakan perubahan kata sandi baru atau hanya informasi profil).
         ''' </summary>
         Public Function UpdateUser(u As User, isUpdatePassword As Boolean) As Boolean
             Dim sql As String
@@ -112,7 +115,7 @@ Namespace Repositories
         End Function
 
         ''' <summary>
-        ''' Menghapus user berdasarkan ID
+        ''' Menghapus akun pengguna dari database berdasarkan ID pengguna.
         ''' </summary>
         Public Function DeleteUser(userId As Integer) As Boolean
             Dim sql As String = "DELETE FROM users WHERE id = @id"

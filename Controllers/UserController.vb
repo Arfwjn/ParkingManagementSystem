@@ -1,23 +1,32 @@
-﻿Imports System
+Imports System
 Imports System.Data
 Imports ParkingManagementSystem.Helpers
 Imports ParkingManagementSystem.Models
 Imports ParkingManagementSystem.Repositories
 
 Namespace Controllers
+    ''' <summary>
+    ''' Controller UserController mengelola validasi aturan bisnis pembuatan, pengeditan, dan penghapusan akun pengguna/petugas.
+    ''' </summary>
     Public Class UserController
         Private ReadOnly _userRepository As UserRepository
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi repository user.
+        ''' </summary>
         Public Sub New()
             _userRepository = New UserRepository()
         End Sub
 
+        ''' <summary>
+        ''' Mengambil seluruh data pengguna terdaftar berformat DataTable untuk pengisian komponen DataGridView.
+        ''' </summary>
         Public Function GetAllUsers() As DataTable
             Return _userRepository.GetAllUsersDataTable()
         End Function
 
         ''' <summary>
-        ''' Validasi dan eksekusi pendaftaran user baru
+        ''' Memvalidasi dan menyimpan pembuatan akun pengguna/petugas baru ke database (minimal username 4 karakter, password 6 karakter).
         ''' </summary>
         Public Function SaveNewUser(username As String, password As String, fullname As String, role As String, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
@@ -37,6 +46,7 @@ Namespace Controllers
                 Return False
             End If
 
+            ' Memeriksa agar tidak ada username duplikat pada sistem
             If _userRepository.IsUsernameExists(username.Trim(), 0) Then
                 errorMessage = $"Username '{username}' sudah digunakan."
                 Return False
@@ -53,7 +63,7 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Validasi dan eksekusi pembaruan data user
+        ''' Memvalidasi dan mengeksekusi pembaruan data pengguna (dapat opsional mengganti kata sandi baru atau hanya informasi profil).
         ''' </summary>
         Public Function UpdateExistingUser(userId As Integer, username As String, newPassword As String, fullname As String, role As String, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
@@ -73,6 +83,7 @@ Namespace Controllers
                 Return False
             End If
 
+            ' Memeriksa agar username baru tidak bentrok dengan akun pengguna lain
             If _userRepository.IsUsernameExists(username.Trim(), userId) Then
                 errorMessage = $"Username '{username}' sudah digunakan oleh akun lain."
                 Return False
@@ -101,12 +112,12 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Menghapus user dengan pengecekan batas keamanan
+        ''' Menghapus akun pengguna dengan proteksi keamanan agar pengguna yang sedang login tidak dapat menghapus akunnya sendiri.
         ''' </summary>
         Public Function RemoveUser(userId As Integer, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty
 
-            ' Cegah admin menghapus akunnya sendiri yang sedang aktif
+            ' Proteksi keamanan: Cegah pengguna menghapus akunnya sendiri yang sedang aktif digunakan
             If SessionManager.CurrentUser IsNot Nothing AndAlso SessionManager.CurrentUser.Id = userId Then
                 errorMessage = "Anda tidak dapat menghapus akun Anda sendiri yang sedang digunakan saat ini."
                 Return False

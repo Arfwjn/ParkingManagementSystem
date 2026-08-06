@@ -1,15 +1,21 @@
-﻿Imports System
+Imports System
 Imports System.Data
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
 
 Namespace Views
+    ''' <summary>
+    ''' Form UserManagementForm mengelola modul CRUD (Tambah, Edit, Hapus) akun pengguna/petugas sistem parkir.
+    ''' </summary>
     Partial Public Class UserManagementForm
         Inherits Form
 
         Private ReadOnly _userController As UserController
         Private _selectedUserId As Integer = 0
 
+        ''' <summary>
+        ''' Constructor untuk menginisialisasi Form Kelola User.
+        ''' </summary>
         Public Sub New()
             InitializeComponent()
             _userController = New UserController()
@@ -21,10 +27,16 @@ Namespace Views
             ResetForm()
         End Sub
 
+        ''' <summary>
+        ''' Memuat seluruh daftar akun pengguna dari database ke DataGridView.
+        ''' </summary>
         Private Sub LoadUserData()
             dgvUsers.DataSource = _userController.GetAllUsers()
         End Sub
 
+        ''' <summary>
+        ''' Memindahkan data akun dari baris DataGridView yang dipilih ke dalam kontrol form.
+        ''' </summary>
         Private Sub dgvUsers_SelectionChanged(sender As Object, e As EventArgs) Handles dgvUsers.SelectionChanged
             If dgvUsers.SelectedRows.Count > 0 Then
                 Dim row As DataGridViewRow = dgvUsers.SelectedRows(0)
@@ -40,16 +52,19 @@ Namespace Views
             End If
         End Sub
 
+        ''' <summary>
+        ''' Memproses penyimpanan akun pengguna baru atau pembaruan profil/password pengguna lama.
+        ''' </summary>
         Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
             Dim errorMessage As String = String.Empty
             Dim isSuccess As Boolean = False
             Dim selectedRole As String = If(cmbRole.SelectedItem IsNot Nothing, cmbRole.SelectedItem.ToString(), "Petugas")
 
             If _selectedUserId = 0 Then
-                ' Mode Tambah User Baru
+                ' Mode Pembuatan User Baru
                 isSuccess = _userController.SaveNewUser(txtUsername.Text, txtPassword.Text, txtFullname.Text, selectedRole, errorMessage)
             Else
-                ' Mode Update User
+                ' Mode Pembaruan User Lama
                 isSuccess = _userController.UpdateExistingUser(_selectedUserId, txtUsername.Text, txtPassword.Text, txtFullname.Text, selectedRole, errorMessage)
             End If
 
@@ -62,6 +77,9 @@ Namespace Views
             End If
         End Sub
 
+        ''' <summary>
+        ''' Menghapus akun pengguna dari database dengan konfirmasi keamanan.
+        ''' </summary>
         Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
             If _selectedUserId = 0 Then
                 MessageBox.Show("Pilih user yang ingin dihapus.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information)

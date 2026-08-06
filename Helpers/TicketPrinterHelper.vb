@@ -1,16 +1,19 @@
-﻿Imports System
+Imports System
 Imports System.Drawing
 Imports System.Drawing.Printing
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Models
 
 Namespace Helpers
+    ''' <summary>
+    ''' Class TicketPrinterHelper bertugas mengatur format dan tata letak pencetakan karcis masuk dan struk pembayaran parkir.
+    ''' </summary>
     Public Class TicketPrinterHelper
         Private Shared _parkingData As Parking
-        Private Shared _isReceipt As Boolean ' False: Karcis Masuk, True: Struk Pembayaran
+        Private Shared _isReceipt As Boolean ' False: Karcis Masuk, True: Struk Pembayaran Keluar
 
         ''' <summary>
-        ''' Mencetak Karcis Parkir Kendaraan Masuk
+        ''' Mencetak karcis transaksi kendaraan yang baru masuk area parkir.
         ''' </summary>
         Public Shared Sub PrintEntryTicket(p As Parking)
             _parkingData = p
@@ -19,15 +22,17 @@ Namespace Helpers
         End Sub
 
         ''' <summary>
-        ''' Mencetak Struk Pembayaran Kendaraan Keluar
+        ''' Mencetak struk rincian pembayaran parkir untuk kendaraan yang hendak keluar.
         ''' </summary>
-
         Public Shared Sub PrintExitReceipt(p As Parking)
             _parkingData = p
             _isReceipt = True
             ExecutePrint()
         End Sub
 
+        ''' <summary>
+        ''' Menjalankan dialog pratinjau cetak dokumen sebelum dicetak ke media printer physical/virtual.
+        ''' </summary>
         Private Shared Sub ExecutePrint()
             Try
                 Dim pd As New PrintDocument()
@@ -46,6 +51,9 @@ Namespace Helpers
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Handler menggambar teks dan garis struk pada canvas grafis dokumen yang dicetak.
+        ''' </summary>
         Private Shared Sub PrintPageHandler(sender As Object, e As PrintPageEventArgs)
             Dim g As Graphics = e.Graphics
             Dim fontTitle As New Font("Courier New", 10, FontStyle.Bold)
@@ -57,7 +65,7 @@ Namespace Helpers
             Dim leftMargin As Single = 10
             Dim lineHeight As Single = 15
 
-            ' Header Struk/Karcis
+            ' Header Struk / Karcis
             g.DrawString("==================================", fontTitle, Brushes.Black, leftMargin, yPos)
             yPos += lineHeight
             g.DrawString("        PARKIRMAS        ", fontHeader, Brushes.Black, leftMargin, yPos)
@@ -68,7 +76,7 @@ Namespace Helpers
             yPos += lineHeight + 5
 
             If Not _isReceipt Then
-                ' METODE 1: CETAK KARCIS MASUK
+                ' Cetak rincian Karcis Masuk (ID Tiket, Plat Nomor, Jenis Kendaraan, Waktu Masuk)
                 g.DrawString($"ID TIKET : TRX-{_parkingData.Id:D6}", fontBodyBold, Brushes.Black, leftMargin, yPos)
                 yPos += lineHeight
                 g.DrawString($"NO POLISI: {_parkingData.PlateNumber}", fontTitle, Brushes.Black, leftMargin, yPos)
@@ -87,7 +95,7 @@ Namespace Helpers
                 g.DrawString(" karcis hilang.                   ", fontBody, Brushes.Black, leftMargin, yPos)
                 yPos += lineHeight
             Else
-                ' METODE 2: CETAK STRUK PEMBAYARAN KELUAR
+                ' Cetak rincian Struk Pembayaran Keluar (Durasi, Tarif, Denda, Diskon, Total Bayar)
                 g.DrawString($"ID STRUK : TRX-{_parkingData.Id:D6}", fontBody, Brushes.Black, leftMargin, yPos)
                 yPos += lineHeight
                 g.DrawString($"NO POLISI: {_parkingData.PlateNumber}", fontTitle, Brushes.Black, leftMargin, yPos)

@@ -1,4 +1,4 @@
-﻿Imports System
+Imports System
 Imports System.Collections.Generic
 Imports System.Drawing
 Imports System.Windows.Forms
@@ -7,6 +7,10 @@ Imports ParkingManagementSystem.Models
 Imports ParkingManagementSystem.Repositories
 
 Namespace Views
+    ''' <summary>
+    ''' Form ExitForm mengelola alur proses kendaraan keluar (Check-Out), pencarian transaksi aktif, kalkulasi rincian tarif/denda/diskon,
+    ''' pemicu dialog pembayaran QRIS/Debit, serta pencetakan struk bukti pembayaran.
+    ''' </summary>
     Partial Public Class ExitForm
         Inherits Form
 
@@ -14,14 +18,18 @@ Namespace Views
         Private ReadOnly _parkingRepository As ParkingRepository
         Private _currentParking As Parking
 
-        ' Constructor Default
+        ''' <summary>
+        ''' Constructor default untuk menginisialisasi controller dan repository parkir.
+        ''' </summary>
         Public Sub New()
             InitializeComponent()
             _paymentController = New PaymentController()
             _parkingRepository = New ParkingRepository()
         End Sub
 
-        ' Constructor dengan parameter plat nomor otomatis
+        ''' <summary>
+        ''' Constructor tambahan dengan parameter nomor polisi untuk pengisian otomatis dari Form Parkir Aktif.
+        ''' </summary>
         Public Sub New(plateNumber As String)
             Me.New()
             txtPlateNumber.Text = plateNumber.Trim().ToUpper()
@@ -40,6 +48,9 @@ Namespace Views
             End If
         End Sub
 
+        ''' <summary>
+        ''' Memuat daftar nomor polisi kendaraan yang sedang aktif parkir untuk fitur rekomendasi otomatis (AutoComplete).
+        ''' </summary>
         Private Sub LoadAutoCompleteData()
             Dim activePlates As List(Of String) = _parkingRepository.GetActivePlateNumbers()
             Dim collection As New AutoCompleteStringCollection()
@@ -60,6 +71,9 @@ Namespace Views
             End If
         End Sub
 
+        ''' <summary>
+        ''' Menghitung dan merender rincian biaya parkir, durasi jam, denda tiket hilang, dan potongan diskon member ke antarmuka UI.
+        ''' </summary>
         Private Sub ProcessCalculation()
             Dim errorMessage As String = String.Empty
             Dim activeMember As Member = Nothing
@@ -89,6 +103,9 @@ Namespace Views
             End If
         End Sub
 
+        ''' <summary>
+        ''' Memproses transaksi pembayaran parkir keluar, memicu popup QRIS/Debit jika non-tunai, serta menawarkan cetak struk pembayaran.
+        ''' </summary>
         Private Sub btnProcessPayment_Click(sender As Object, e As EventArgs) Handles btnProcessPayment.Click
             If _currentParking Is Nothing Then
                 MessageBox.Show("Silakan cari kendaraan terlebih dahulu.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -99,7 +116,7 @@ Namespace Views
             Dim selectedMethod As String = If(cmbPaymentMethod.SelectedItem IsNot Nothing, cmbPaymentMethod.SelectedItem.ToString(), "Tunai")
             Dim referenceNumber As String = String.Empty
 
-            ' 1. PEMICU DIALOG PEMBAYARAN NON-TUNAI (QRIS & DEBIT)
+            ' Penanganan khusus pemicu dialog pembayaran non-tunai (QRIS & Kartu Debit)
             If selectedMethod.Equals("QRIS", StringComparison.OrdinalIgnoreCase) Then
                 Using qrisForm As New QrisPaymentForm(_currentParking.TotalPayment, $"Parkir Keluar - {_currentParking.PlateNumber}")
                     Dim result As DialogResult = qrisForm.ShowDialog(Me)
@@ -121,11 +138,11 @@ Namespace Views
                 End Using
             End If
 
-            ' PERBAIKAN: Masukkan nomor referensi ke dalam objek _currentParking sebelum diproses oleh controller
+            ' Menyimpan nomor referensi dan metode pembayaran pada objek transaksi
             _currentParking.ReferenceNumber = referenceNumber
             _currentParking.PaymentMethod = selectedMethod
 
-            ' 2. EKSEKUSI PENYIMPANAN TRANSAKSI PARKIR KELUAR
+            ' Eksekusi simpan transaksi keluar ke database via controller
             Dim isSuccess As Boolean = _paymentController.ProcessPayment(_currentParking, selectedMethod, errorMessage)
 
             If isSuccess Then

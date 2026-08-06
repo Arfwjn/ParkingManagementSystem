@@ -1,11 +1,14 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 Imports ParkingManagementSystem.Models
 Imports ParkingManagementSystem.Database
 
+''' <summary>
+''' Repository PaymentSettingRepository mengelola pembacaan dan pembaruan pengaturan pembayaran QRIS dan Rekening Debit (Row Single ID = 1).
+''' </summary>
 Public Class PaymentSettingRepository
 
     ''' <summary>
-    ''' Mengambil data konfigurasi pembayaran aktif (Row ID = 1)
+    ''' Mengambil data pengaturan pembayaran aktif (QRIS & Rekening Bank) dari baris tunggal (ID = 1).
     ''' </summary>
     Public Function GetSetting() As PaymentSetting
         Dim setting As PaymentSetting = Nothing
@@ -40,7 +43,7 @@ Public Class PaymentSettingRepository
     End Function
 
     ''' <summary>
-    ''' Memperbarui data konfigurasi pembayaran
+    ''' Memperbarui konfigurasi Merchant QRIS dan Rekening Bank pada database (ID = 1).
     ''' </summary>
     Public Function UpdateSetting(setting As PaymentSetting) As Boolean
         Dim query As String = "UPDATE payment_settings SET " &
