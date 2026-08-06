@@ -60,7 +60,7 @@ Namespace Helpers
             ' Header Struk/Karcis
             g.DrawString("==================================", fontTitle, Brushes.Black, leftMargin, yPos)
             yPos += lineHeight
-            g.DrawString("      PARKIRMAS        ", fontHeader, Brushes.Black, leftMargin, yPos)
+            g.DrawString("        PARKIRMAS        ", fontHeader, Brushes.Black, leftMargin, yPos)
             yPos += lineHeight
             g.DrawString("       SISTEM PARKIR MANDIRI      ", fontBodyBold, Brushes.Black, leftMargin, yPos)
             yPos += lineHeight
