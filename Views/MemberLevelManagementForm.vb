@@ -32,23 +32,26 @@ Namespace Views
         Private Sub LoadLevelData()
             Try
                 Dim list As List(Of MemberLevel) = _controller.GetAllLevels()
-                dgvLevels.DataSource = Nothing
+                dgvLevels.Columns.Clear()
+                dgvLevels.AutoGenerateColumns = False
+
+                dgvLevels.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "colNo", .HeaderText = "No"})
+                dgvLevels.Columns("colNo").Width = 50
+                dgvLevels.Columns("colNo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+                dgvLevels.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "Id", .HeaderText = "Id", .DataPropertyName = "Id", .Visible = False})
+                dgvLevels.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "LevelName", .HeaderText = "Nama Level", .DataPropertyName = "LevelName"})
+                dgvLevels.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "DiscountPercentage", .HeaderText = "Diskon (%)", .DataPropertyName = "DiscountPercentage"})
+                dgvLevels.Columns("DiscountPercentage").DefaultCellStyle.Format = "N2"
+                dgvLevels.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "MonthlyFee", .HeaderText = "Biaya Bulanan", .DataPropertyName = "MonthlyFee"})
+                dgvLevels.Columns("MonthlyFee").DefaultCellStyle.Format = "Rp #,##0"
+                dgvLevels.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "Description", .HeaderText = "Keterangan", .DataPropertyName = "Description"})
+
                 dgvLevels.DataSource = list
 
-                ' Format tampilan judul dan format angka pada kolom DataGridView
-                If dgvLevels.Columns("Id") IsNot Nothing Then dgvLevels.Columns("Id").Visible = False
-                If dgvLevels.Columns("LevelName") IsNot Nothing Then dgvLevels.Columns("LevelName").HeaderText = "Nama Level"
-                If dgvLevels.Columns("DiscountPercentage") IsNot Nothing Then
-                    dgvLevels.Columns("DiscountPercentage").HeaderText = "Diskon (%)"
-                    dgvLevels.Columns("DiscountPercentage").DefaultCellStyle.Format = "N2"
-                End If
-                If dgvLevels.Columns("MonthlyFee") IsNot Nothing Then
-                    dgvLevels.Columns("MonthlyFee").HeaderText = "Biaya Bulanan"
-                    dgvLevels.Columns("MonthlyFee").DefaultCellStyle.Format = "Rp #,##0"
-                End If
-                If dgvLevels.Columns("Description") IsNot Nothing Then dgvLevels.Columns("Description").HeaderText = "Keterangan"
-                If dgvLevels.Columns("CreatedAt") IsNot Nothing Then dgvLevels.Columns("CreatedAt").Visible = False
-                If dgvLevels.Columns("UpdatedAt") IsNot Nothing Then dgvLevels.Columns("UpdatedAt").Visible = False
+                For i As Integer = 0 To dgvLevels.Rows.Count - 1
+                    dgvLevels.Rows(i).Cells("colNo").Value = i + 1
+                Next
             Catch ex As Exception
                 MessageBox.Show("Terjadi kesalahan saat memuat data level member: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try

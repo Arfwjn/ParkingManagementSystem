@@ -4,6 +4,7 @@ Imports System.Data
 Imports System.Drawing
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
+Imports ParkingManagementSystem.Helpers
 Imports ParkingManagementSystem.Models
 
 Namespace Views
@@ -14,6 +15,10 @@ Namespace Views
     Public Class MemberRegistrationForm
         Private ReadOnly _controller As MemberController
         Private _selectedMemberId As Integer = 0
+        Private _rawMemberData As DataTable
+        Private _currentPage As Integer = 1
+        Private _totalPages As Integer = 1
+        Private _totalRows As Integer = 0
 
         ''' <summary>
         ''' Constructor untuk menginisialisasi komponen Form Registrasi Member.
@@ -44,31 +49,69 @@ Namespace Views
         End Sub
 
         ''' <summary>
-        ''' Memuat seluruh data member terdaftar ke DataGridView dan mengatur format tampilan tanggal.
+        ''' Memuat seluruh data member terdaftar ke DataGridView terpaginasi.
         ''' </summary>
         Private Sub LoadMemberData()
             Try
-                Dim dt As DataTable = _controller.GetAllMembersDataTable()
-                dgvMembers.DataSource = Nothing
-                dgvMembers.DataSource = dt
-
-                ' Sembunyikan kolom internal level_id dari tampilan DataGridView
-                If dgvMembers.Columns.Contains("level_id") Then
-                    dgvMembers.Columns("level_id").Visible = False
-                End If
-
-                ' Format tampilan tanggal pendaftaran dan tanggal kadaluarsa
-                If dgvMembers.Columns.Contains("Tanggal Daftar") Then
-                    dgvMembers.Columns("Tanggal Daftar").DefaultCellStyle.Format = "dd/MM/yyyy HH:mm"
-                End If
-
-                If dgvMembers.Columns.Contains("Masa Aktif") Then
-                    dgvMembers.Columns("Masa Aktif").DefaultCellStyle.Format = "dd/MM/yyyy HH:mm"
-                End If
-
+                _rawMemberData = _controller.GetAllMembersDataTable()
+                _currentPage = 1
+                ApplyPagination()
             Catch ex As Exception
                 MessageBox.Show("Gagal memuat daftar member: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
+        End Sub
+
+        ''' <summary>
+        ''' Menerapkan paginasi data 20 baris, sembunyikan ID, dan beri penomoran urut 'No'.
+        ''' </summary>
+        Private Sub ApplyPagination()
+            If _rawMemberData Is Nothing Then Exit Sub
+
+            _totalRows = _rawMemberData.Rows.Count
+            _totalPages = PaginationHelper.GetTotalPages(_totalRows, PaginationHelper.DEFAULT_PAGE_SIZE)
+
+            If _currentPage > _totalPages Then _currentPage = _totalPages
+            If _currentPage < 1 Then _currentPage = 1
+
+            Dim pagedTable As DataTable = PaginationHelper.GetPagedTable(_rawMemberData, _currentPage, PaginationHelper.DEFAULT_PAGE_SIZE)
+            dgvMembers.DataSource = Nothing
+            dgvMembers.DataSource = pagedTable
+
+            If dgvMembers.Columns.Contains("ID") Then dgvMembers.Columns("ID").Visible = False
+            If dgvMembers.Columns.Contains("Id") Then dgvMembers.Columns("Id").Visible = False
+            If dgvMembers.Columns.Contains("level_id") Then dgvMembers.Columns("level_id").Visible = False
+
+            If dgvMembers.Columns.Contains("No") Then
+                dgvMembers.Columns("No").HeaderText = "No"
+                dgvMembers.Columns("No").Width = 50
+                dgvMembers.Columns("No").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End If
+
+            If dgvMembers.Columns.Contains("Tanggal Daftar") Then
+                dgvMembers.Columns("Tanggal Daftar").DefaultCellStyle.Format = "dd/MM/yyyy HH:mm"
+            End If
+
+            If dgvMembers.Columns.Contains("Masa Aktif") Then
+                dgvMembers.Columns("Masa Aktif").DefaultCellStyle.Format = "dd/MM/yyyy HH:mm"
+            End If
+
+            lblPageInfo.Text = $"HALAMAN {_currentPage} DARI {_totalPages} (TOTAL {_totalRows} DATA)"
+            btnPrev.Enabled = (_currentPage > 1)
+            btnNext.Enabled = (_currentPage < _totalPages)
+        End Sub
+
+        Private Sub btnPrev_Click(sender As Object, e As EventArgs) Handles btnPrev.Click
+            If _currentPage > 1 Then
+                _currentPage -= 1
+                ApplyPagination()
+            End If
+        End Sub
+
+        Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+            If _currentPage < _totalPages Then
+                _currentPage += 1
+                ApplyPagination()
+            End If
         End Sub
 
         Private Sub cmbLevel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbLevel.SelectedIndexChanged

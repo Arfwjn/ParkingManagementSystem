@@ -127,7 +127,7 @@ Namespace Views
             Me.btnKelolaUser.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnKelolaUser.Size = New System.Drawing.Size(240, 50)
             Me.btnKelolaUser.TabIndex = 10
-            Me.btnKelolaUser.Text = "KELOLA USER"
+            Me.btnKelolaUser.Text = "Kelola Pengguna"
             Me.btnKelolaUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnKelolaUser.UseVisualStyleBackColor = True
             '
@@ -144,7 +144,7 @@ Namespace Views
             Me.btnPaymentSetting.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnPaymentSetting.Size = New System.Drawing.Size(240, 50)
             Me.btnPaymentSetting.TabIndex = 9
-            Me.btnPaymentSetting.Text = "KELOLA PEMBAYARAN"
+            Me.btnPaymentSetting.Text = "Kelola Pembayaran"
             Me.btnPaymentSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnPaymentSetting.UseVisualStyleBackColor = True
             '
@@ -161,7 +161,7 @@ Namespace Views
             Me.btnTariffManagement.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnTariffManagement.Size = New System.Drawing.Size(240, 50)
             Me.btnTariffManagement.TabIndex = 8
-            Me.btnTariffManagement.Text = "KELOLA TARIF PARKIR"
+            Me.btnTariffManagement.Text = "Kelola Tarif Parkir"
             Me.btnTariffManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnTariffManagement.UseVisualStyleBackColor = True
             '
@@ -178,7 +178,7 @@ Namespace Views
             Me.btnMemberLevelManagement.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnMemberLevelManagement.Size = New System.Drawing.Size(240, 50)
             Me.btnMemberLevelManagement.TabIndex = 7
-            Me.btnMemberLevelManagement.Text = "KELOLA LEVEL MEMBER"
+            Me.btnMemberLevelManagement.Text = "Kelola Level Member"
             Me.btnMemberLevelManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnMemberLevelManagement.UseVisualStyleBackColor = True
             '
@@ -195,7 +195,7 @@ Namespace Views
             Me.btnKelolaMember.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnKelolaMember.Size = New System.Drawing.Size(240, 50)
             Me.btnKelolaMember.TabIndex = 6
-            Me.btnKelolaMember.Text = "KELOLA MEMBER"
+            Me.btnKelolaMember.Text = "Kelola Member"
             Me.btnKelolaMember.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnKelolaMember.UseVisualStyleBackColor = True
             '
@@ -212,7 +212,7 @@ Namespace Views
             Me.btnLaporan.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnLaporan.Size = New System.Drawing.Size(240, 50)
             Me.btnLaporan.TabIndex = 5
-            Me.btnLaporan.Text = "LAPORAN PENDAPATAN"
+            Me.btnLaporan.Text = "Laporan Pendapatan"
             Me.btnLaporan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnLaporan.UseVisualStyleBackColor = True
             '
@@ -229,7 +229,7 @@ Namespace Views
             Me.btnRiwayat.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnRiwayat.Size = New System.Drawing.Size(240, 50)
             Me.btnRiwayat.TabIndex = 4
-            Me.btnRiwayat.Text = "RIWAYAT TRANSAKSI"
+            Me.btnRiwayat.Text = "Riwayat Transaksi"
             Me.btnRiwayat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnRiwayat.UseVisualStyleBackColor = True
             '
@@ -246,7 +246,7 @@ Namespace Views
             Me.btnDataAktif.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnDataAktif.Size = New System.Drawing.Size(240, 50)
             Me.btnDataAktif.TabIndex = 3
-            Me.btnDataAktif.Text = "KENDARAAN PARKIR AKTIF"
+            Me.btnDataAktif.Text = "Kendaraan Parkir Aktif"
             Me.btnDataAktif.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnDataAktif.UseVisualStyleBackColor = True
             '
@@ -263,7 +263,7 @@ Namespace Views
             Me.btnKendaraanKeluar.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnKendaraanKeluar.Size = New System.Drawing.Size(240, 50)
             Me.btnKendaraanKeluar.TabIndex = 2
-            Me.btnKendaraanKeluar.Text = "KENDARAAN KELUAR"
+            Me.btnKendaraanKeluar.Text = "Kendaraan Keluar"
             Me.btnKendaraanKeluar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnKendaraanKeluar.UseVisualStyleBackColor = True
             '
@@ -280,7 +280,7 @@ Namespace Views
             Me.btnKendaraanMasuk.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
             Me.btnKendaraanMasuk.Size = New System.Drawing.Size(240, 50)
             Me.btnKendaraanMasuk.TabIndex = 1
-            Me.btnKendaraanMasuk.Text = "KENDARAAN MASUK"
+            Me.btnKendaraanMasuk.Text = "Kendaraan Masuk"
             Me.btnKendaraanMasuk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
             Me.btnKendaraanMasuk.UseVisualStyleBackColor = True
             '
@@ -559,6 +559,7 @@ Namespace Views
             Me.pnlCardSlots.BackColor = System.Drawing.Color.White
             Me.pnlCardSlots.Controls.Add(Me.lblSlotsValue)
             Me.pnlCardSlots.Controls.Add(Me.lblSlotsTitle)
+            Me.pnlCardSlots.Cursor = System.Windows.Forms.Cursors.Hand
             Me.pnlCardSlots.Location = New System.Drawing.Point(500, 0)
             Me.pnlCardSlots.Name = "pnlCardSlots"
             Me.pnlCardSlots.Size = New System.Drawing.Size(230, 115)
@@ -567,6 +568,7 @@ Namespace Views
             'lblSlotsValue
             '
             Me.lblSlotsValue.AutoSize = True
+            Me.lblSlotsValue.Cursor = System.Windows.Forms.Cursors.Hand
             Me.lblSlotsValue.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
             Me.lblSlotsValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(16, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(129, Byte), Integer))
             Me.lblSlotsValue.Location = New System.Drawing.Point(15, 45)
@@ -578,6 +580,7 @@ Namespace Views
             'lblSlotsTitle
             '
             Me.lblSlotsTitle.AutoSize = True
+            Me.lblSlotsTitle.Cursor = System.Windows.Forms.Cursors.Hand
             Me.lblSlotsTitle.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblSlotsTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
             Me.lblSlotsTitle.Location = New System.Drawing.Point(15, 18)
@@ -623,6 +626,7 @@ Namespace Views
             Me.pnlCardActive.BackColor = System.Drawing.Color.White
             Me.pnlCardActive.Controls.Add(Me.lblActiveValue)
             Me.pnlCardActive.Controls.Add(Me.lblActiveTitle)
+            Me.pnlCardActive.Cursor = System.Windows.Forms.Cursors.Hand
             Me.pnlCardActive.Location = New System.Drawing.Point(0, 0)
             Me.pnlCardActive.Name = "pnlCardActive"
             Me.pnlCardActive.Size = New System.Drawing.Size(230, 115)
@@ -631,6 +635,7 @@ Namespace Views
             'lblActiveValue
             '
             Me.lblActiveValue.AutoSize = True
+            Me.lblActiveValue.Cursor = System.Windows.Forms.Cursors.Hand
             Me.lblActiveValue.Font = New System.Drawing.Font("Segoe UI", 22.0!, System.Drawing.FontStyle.Bold)
             Me.lblActiveValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
             Me.lblActiveValue.Location = New System.Drawing.Point(15, 45)
@@ -642,6 +647,7 @@ Namespace Views
             'lblActiveTitle
             '
             Me.lblActiveTitle.AutoSize = True
+            Me.lblActiveTitle.Cursor = System.Windows.Forms.Cursors.Hand
             Me.lblActiveTitle.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblActiveTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
             Me.lblActiveTitle.Location = New System.Drawing.Point(15, 18)
@@ -662,6 +668,7 @@ Namespace Views
             Me.Name = "DashboardForm"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Sistem Manajemen Parkir - Dashboard"
+            Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
             Me.pnlSidebar.ResumeLayout(False)
             Me.pnlLogo.ResumeLayout(False)
             Me.pnlLogo.PerformLayout()

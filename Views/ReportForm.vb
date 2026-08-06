@@ -1,9 +1,11 @@
 Imports System
 Imports System.Collections.Generic
 Imports System.IO
+Imports System.Linq
 Imports System.Text
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
+Imports ParkingManagementSystem.Helpers
 Imports ParkingManagementSystem.Models
 
 Namespace Views
@@ -14,6 +16,9 @@ Namespace Views
     Public Class ReportForm
         Private ReadOnly _reportController As ReportController
         Private _currentReportList As List(Of Parking)
+        Private _currentPage As Integer = 1
+        Private _totalPages As Integer = 1
+        Private _totalRows As Integer = 0
 
         ''' <summary>
         ''' Constructor untuk menginisialisasi Form Laporan Parkir.
@@ -84,6 +89,7 @@ Namespace Views
         End Sub
 
         Private Sub btnFilter_Click(sender As Object, e As EventArgs) Handles btnFilter.Click
+            _currentPage = 1
             LoadReportData()
         End Sub
 
@@ -121,18 +127,34 @@ Namespace Views
         End Sub
 
         ''' <summary>
-        ''' Memformat dan merender daftar transaksi parkir ke tabel DataGridView.
+        ''' Memformat dan merender daftar transaksi parkir terpaginasi ke tabel DataGridView.
         ''' </summary>
         Private Sub DisplayDataToGrid(data As List(Of Parking))
             dgvReport.Columns.Clear()
 
             If data Is Nothing OrElse data.Count = 0 Then
                 dgvReport.DataSource = Nothing
+                lblPageInfo.Text = "HALAMAN 0 DARI 0 (TOTAL 0 DATA)"
+                btnPrev.Enabled = False
+                btnNext.Enabled = False
                 Return
             End If
 
+            _totalRows = data.Count
+            _totalPages = PaginationHelper.GetTotalPages(_totalRows, PaginationHelper.DEFAULT_PAGE_SIZE)
+
+            If _currentPage > _totalPages Then _currentPage = _totalPages
+            If _currentPage < 1 Then _currentPage = 1
+
+            Dim startIndex As Integer = (_currentPage - 1) * PaginationHelper.DEFAULT_PAGE_SIZE
+            Dim pagedList As List(Of Parking) = data.Skip(startIndex).Take(PaginationHelper.DEFAULT_PAGE_SIZE).ToList()
+
             ' Mengatur struktur kolom tabel
             dgvReport.AutoGenerateColumns = False
+
+            dgvReport.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "colNo", .HeaderText = "No"})
+            dgvReport.Columns("colNo").Width = 50
+            dgvReport.Columns("colNo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             dgvReport.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "colPlate", .HeaderText = "Plat Nomor", .DataPropertyName = "PlateNumber"})
             dgvReport.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "colType", .HeaderText = "Jenis", .DataPropertyName = "VehicleType"})
@@ -148,7 +170,29 @@ Namespace Views
             dgvReport.Columns("colExit").DefaultCellStyle.Format = "dd/MM/yyyy HH:mm"
             dgvReport.Columns("colFee").DefaultCellStyle.Format = "Rp #,##0"
 
-            dgvReport.DataSource = data
+            dgvReport.DataSource = pagedList
+
+            For i As Integer = 0 To dgvReport.Rows.Count - 1
+                dgvReport.Rows(i).Cells("colNo").Value = startIndex + i + 1
+            Next
+
+            lblPageInfo.Text = $"HALAMAN {_currentPage} DARI {_totalPages} (TOTAL {_totalRows} DATA)"
+            btnPrev.Enabled = (_currentPage > 1)
+            btnNext.Enabled = (_currentPage < _totalPages)
+        End Sub
+
+        Private Sub btnPrev_Click(sender As Object, e As EventArgs) Handles btnPrev.Click
+            If _currentPage > 1 Then
+                _currentPage -= 1
+                DisplayDataToGrid(_currentReportList)
+            End If
+        End Sub
+
+        Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+            If _currentPage < _totalPages Then
+                _currentPage += 1
+                DisplayDataToGrid(_currentReportList)
+            End If
         End Sub
 
         ''' <summary>

@@ -1,4 +1,4 @@
-﻿Namespace Views
+Namespace Views
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
     Partial Class ReportForm
         Inherits System.Windows.Forms.Form
@@ -46,11 +46,16 @@
             Me.pnlGridCard = New System.Windows.Forms.Panel()
             Me.btnExportCsv = New System.Windows.Forms.Button()
             Me.dgvReport = New System.Windows.Forms.DataGridView()
+            Me.pnlPagination = New System.Windows.Forms.Panel()
+            Me.btnPrev = New System.Windows.Forms.Button()
+            Me.lblPageInfo = New System.Windows.Forms.Label()
+            Me.btnNext = New System.Windows.Forms.Button()
             Me.pnlHeader.SuspendLayout()
             Me.pnlMain.SuspendLayout()
             Me.pnlFilterCard.SuspendLayout()
             Me.pnlSummaryCard.SuspendLayout()
             Me.pnlGridCard.SuspendLayout()
+            Me.pnlPagination.SuspendLayout()
             CType(Me.dgvReport, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
@@ -324,11 +329,66 @@
             Me.pnlGridCard.BackColor = System.Drawing.Color.White
             Me.pnlGridCard.Controls.Add(Me.btnExportCsv)
             Me.pnlGridCard.Controls.Add(Me.dgvReport)
+            Me.pnlGridCard.Controls.Add(Me.pnlPagination)
             Me.pnlGridCard.Location = New System.Drawing.Point(20, 185)
             Me.pnlGridCard.Name = "pnlGridCard"
             Me.pnlGridCard.Padding = New System.Windows.Forms.Padding(15)
             Me.pnlGridCard.Size = New System.Drawing.Size(1160, 435)
             Me.pnlGridCard.TabIndex = 2
+            '
+            'pnlPagination
+            '
+            Me.pnlPagination.Controls.Add(Me.lblPageInfo)
+            Me.pnlPagination.Controls.Add(Me.btnNext)
+            Me.pnlPagination.Controls.Add(Me.btnPrev)
+            Me.pnlPagination.Dock = System.Windows.Forms.DockStyle.Bottom
+            Me.pnlPagination.Location = New System.Drawing.Point(15, 375)
+            Me.pnlPagination.Name = "pnlPagination"
+            Me.pnlPagination.Size = New System.Drawing.Size(1130, 45)
+            Me.pnlPagination.TabIndex = 2
+            '
+            'btnPrev
+            '
+            Me.btnPrev.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
+            Me.btnPrev.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.btnPrev.FlatAppearance.BorderSize = 0
+            Me.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnPrev.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
+            Me.btnPrev.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            Me.btnPrev.Location = New System.Drawing.Point(0, 7)
+            Me.btnPrev.Name = "btnPrev"
+            Me.btnPrev.Size = New System.Drawing.Size(140, 32)
+            Me.btnPrev.TabIndex = 0
+            Me.btnPrev.Text = "◀ SEBELUMNYA"
+            Me.btnPrev.UseVisualStyleBackColor = False
+            '
+            'lblPageInfo
+            '
+            Me.lblPageInfo.Anchor = System.Windows.Forms.AnchorStyles.Top
+            Me.lblPageInfo.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+            Me.lblPageInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            Me.lblPageInfo.Location = New System.Drawing.Point(365, 7)
+            Me.lblPageInfo.Name = "lblPageInfo"
+            Me.lblPageInfo.Size = New System.Drawing.Size(400, 32)
+            Me.lblPageInfo.TabIndex = 1
+            Me.lblPageInfo.Text = "HALAMAN 1 DARI 1"
+            Me.lblPageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            '
+            'btnNext
+            '
+            Me.btnNext.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Me.btnNext.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
+            Me.btnNext.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.btnNext.FlatAppearance.BorderSize = 0
+            Me.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnNext.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
+            Me.btnNext.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+            Me.btnNext.Location = New System.Drawing.Point(990, 7)
+            Me.btnNext.Name = "btnNext"
+            Me.btnNext.Size = New System.Drawing.Size(140, 32)
+            Me.btnNext.TabIndex = 2
+            Me.btnNext.Text = "SELANJUTNYA ▶"
+            Me.btnNext.UseVisualStyleBackColor = False
             '
             'btnExportCsv
             '
@@ -436,5 +496,9 @@
         Friend WithEvents pnlGridCard As System.Windows.Forms.Panel
         Friend WithEvents btnExportCsv As System.Windows.Forms.Button
         Friend WithEvents dgvReport As System.Windows.Forms.DataGridView
+        Friend WithEvents pnlPagination As System.Windows.Forms.Panel
+        Friend WithEvents btnPrev As System.Windows.Forms.Button
+        Friend WithEvents lblPageInfo As System.Windows.Forms.Label
+        Friend WithEvents btnNext As System.Windows.Forms.Button
     End Class
 End Namespace

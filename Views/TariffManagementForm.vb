@@ -27,22 +27,25 @@ Namespace Views
         Private Sub LoadTariffData()
             Try
                 Dim list As List(Of Tariff) = _tariffController.GetAllTariffs()
-                dgvTariffs.DataSource = Nothing
+                dgvTariffs.Columns.Clear()
+                dgvTariffs.AutoGenerateColumns = False
+
+                dgvTariffs.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "colNo", .HeaderText = "No"})
+                dgvTariffs.Columns("colNo").Width = 50
+                dgvTariffs.Columns("colNo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+                dgvTariffs.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "Id", .HeaderText = "Id", .DataPropertyName = "Id", .Visible = False})
+                dgvTariffs.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "VehicleType", .HeaderText = "Tipe Kendaraan", .DataPropertyName = "VehicleType"})
+                dgvTariffs.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "HourlyRate", .HeaderText = "Tarif / Jam (Rp)", .DataPropertyName = "HourlyRate"})
+                dgvTariffs.Columns("HourlyRate").DefaultCellStyle.Format = "N0"
+                dgvTariffs.Columns.Add(New DataGridViewTextBoxColumn() With {.Name = "OvernightRate", .HeaderText = "Tarif / Malam (Rp)", .DataPropertyName = "OvernightRate"})
+                dgvTariffs.Columns("OvernightRate").DefaultCellStyle.Format = "N0"
+
                 dgvTariffs.DataSource = list
 
-                ' Format judul header dan format rupiah pada DataGridView
-                If dgvTariffs.Columns("Id") IsNot Nothing Then dgvTariffs.Columns("Id").Visible = False
-                If dgvTariffs.Columns("VehicleType") IsNot Nothing Then dgvTariffs.Columns("VehicleType").HeaderText = "Tipe Kendaraan"
-                If dgvTariffs.Columns("HourlyRate") IsNot Nothing Then
-                    dgvTariffs.Columns("HourlyRate").HeaderText = "Tarif / Jam (Rp)"
-                    dgvTariffs.Columns("HourlyRate").DefaultCellStyle.Format = "N0"
-                End If
-                If dgvTariffs.Columns("OvernightRate") IsNot Nothing Then
-                    dgvTariffs.Columns("OvernightRate").HeaderText = "Tarif / Malam (Rp)"
-                    dgvTariffs.Columns("OvernightRate").DefaultCellStyle.Format = "N0"
-                End If
-                If dgvTariffs.Columns("CreatedAt") IsNot Nothing Then dgvTariffs.Columns("CreatedAt").Visible = False
-                If dgvTariffs.Columns("UpdatedAt") IsNot Nothing Then dgvTariffs.Columns("UpdatedAt").Visible = False
+                For i As Integer = 0 To dgvTariffs.Rows.Count - 1
+                    dgvTariffs.Rows(i).Cells("colNo").Value = i + 1
+                Next
             Catch ex As Exception
                 MessageBox.Show("Terjadi kesalahan saat memuat data tarif: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try

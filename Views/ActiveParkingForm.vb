@@ -1,6 +1,7 @@
 Imports System
 Imports System.Data
 Imports System.Windows.Forms
+Imports ParkingManagementSystem.Helpers
 Imports ParkingManagementSystem.Repositories
 
 Namespace Views
@@ -13,6 +14,9 @@ Namespace Views
 
         Private ReadOnly _parkingRepository As ParkingRepository
         Private _dtActiveData As DataTable
+        Private _currentPage As Integer = 1
+        Private _totalPages As Integer = 1
+        Private _totalRows As Integer = 0
 
         ''' <summary>
         ''' Constructor untuk menginisialisasi komponen UI Form Parkir Aktif.
@@ -34,20 +38,67 @@ Namespace Views
         ''' </summary>
         Private Sub LoadData()
             _dtActiveData = _parkingRepository.GetActiveParkingDataTable()
-            dgvActiveParking.DataSource = _dtActiveData
-            lblTotalCount.Text = $"Total Kendaraan: {_dtActiveData.Rows.Count} Unit"
+            _currentPage = 1
+            ApplyPaginationAndFilter()
+        End Sub
+
+        ''' <summary>
+        ''' Menerapkan penyaringan (filtering), penyembunyian kolom ID, penomoran urut 'No', dan paginasi data.
+        ''' </summary>
+        Private Sub ApplyPaginationAndFilter()
+            If _dtActiveData Is Nothing Then Exit Sub
+
+            Dim filterText As String = txtSearch.Text.Trim().Replace("'", "''")
+            Dim dv As DataView = _dtActiveData.DefaultView
+            dv.RowFilter = $"[Nomor Polisi] LIKE '%{filterText}%'"
+
+            Dim filteredTable As DataTable = dv.ToTable()
+            _totalRows = filteredTable.Rows.Count
+            _totalPages = PaginationHelper.GetTotalPages(_totalRows, PaginationHelper.DEFAULT_PAGE_SIZE)
+
+            If _currentPage > _totalPages Then _currentPage = _totalPages
+            If _currentPage < 1 Then _currentPage = 1
+
+            Dim pagedTable As DataTable = PaginationHelper.GetPagedTable(filteredTable, _currentPage, PaginationHelper.DEFAULT_PAGE_SIZE)
+            dgvActiveParking.DataSource = pagedTable
+
+            ' Sembunyikan kolom ID dan format kolom No
+            If dgvActiveParking.Columns("ID") IsNot Nothing Then dgvActiveParking.Columns("ID").Visible = False
+            If dgvActiveParking.Columns("Id") IsNot Nothing Then dgvActiveParking.Columns("Id").Visible = False
+
+            If dgvActiveParking.Columns("No") IsNot Nothing Then
+                dgvActiveParking.Columns("No").HeaderText = "No"
+                dgvActiveParking.Columns("No").Width = 50
+                dgvActiveParking.Columns("No").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End If
+
+            lblTotalCount.Text = $"Total Kendaraan: {_totalRows} Unit"
+            lblPageInfo.Text = $"HALAMAN {_currentPage} DARI {_totalPages} (TOTAL {_totalRows} DATA)"
+
+            btnPrev.Enabled = (_currentPage > 1)
+            btnNext.Enabled = (_currentPage < _totalPages)
+        End Sub
+
+        Private Sub btnPrev_Click(sender As Object, e As EventArgs) Handles btnPrev.Click
+            If _currentPage > 1 Then
+                _currentPage -= 1
+                ApplyPaginationAndFilter()
+            End If
+        End Sub
+
+        Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+            If _currentPage < _totalPages Then
+                _currentPage += 1
+                ApplyPaginationAndFilter()
+            End If
         End Sub
 
         ''' <summary>
         ''' Penyaringan (filtering) data secara real-time pada DataGridView berdasarkan input nomor polisi.
         ''' </summary>
         Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-            If _dtActiveData IsNot Nothing Then
-                Dim filterText As String = txtSearch.Text.Trim().Replace("'", "''")
-                Dim dv As DataView = _dtActiveData.DefaultView
-                dv.RowFilter = $"[Nomor Polisi] LIKE '%{filterText}%'"
-                lblTotalCount.Text = $"Total Kendaraan: {dv.Count} Unit"
-            End If
+            _currentPage = 1
+            ApplyPaginationAndFilter()
         End Sub
 
         ''' <summary>

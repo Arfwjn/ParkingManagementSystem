@@ -30,10 +30,10 @@ Namespace Controllers
     Public Class DashboardController
         Private ReadOnly _parkingRepository As ParkingRepository
 
-        ''' <summary>Kapasitas maksimum untuk area parkir mobil.</summary>
-        Public Const MAX_CAR_CAPACITY As Integer = AppConstants.CapacityLimits.MaxCarCapacity
-        ''' <summary>Kapasitas maksimum untuk area parkir sepeda motor.</summary>
-        Public Const MAX_MOTORCYCLE_CAPACITY As Integer = AppConstants.CapacityLimits.MaxMotorcycleCapacity
+        ''' <summary>Kapasitas maksimum untuk area parkir mobil (Dinamis di memori).</summary>
+        Public Shared Property MaxCarCapacity As Integer = AppConstants.CapacityLimits.MaxCarCapacity
+        ''' <summary>Kapasitas maksimum untuk area parkir sepeda motor (Dinamis di memori).</summary>
+        Public Shared Property MaxMotorcycleCapacity As Integer = AppConstants.CapacityLimits.MaxMotorcycleCapacity
 
         ''' <summary>
         ''' Inisialisasi controller dan instansiasi repository parkir.
@@ -54,7 +54,7 @@ Namespace Controllers
             summary.ActiveMotorcycleCount = _parkingRepository.GetActiveCountByType(AppConstants.VehicleTypes.Motorcycle)
             summary.TodayRevenue = _parkingRepository.GetTodayRevenue()
 
-            Dim totalCapacity As Integer = MAX_CAR_CAPACITY + MAX_MOTORCYCLE_CAPACITY
+            Dim totalCapacity As Integer = MaxCarCapacity + MaxMotorcycleCapacity
             summary.AvailableSlots = Math.Max(0, totalCapacity - summary.ActiveParkingCount)
             summary.RecentActivityData = _parkingRepository.GetRecentTransactionsDataTable()
 

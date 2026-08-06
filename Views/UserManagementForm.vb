@@ -2,6 +2,7 @@ Imports System
 Imports System.Data
 Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
+Imports ParkingManagementSystem.Helpers
 
 Namespace Views
     ''' <summary>
@@ -12,6 +13,10 @@ Namespace Views
 
         Private ReadOnly _userController As UserController
         Private _selectedUserId As Integer = 0
+        Private _rawUserData As DataTable
+        Private _currentPage As Integer = 1
+        Private _totalPages As Integer = 1
+        Private _totalRows As Integer = 0
 
         ''' <summary>
         ''' Constructor untuk menginisialisasi Form Kelola User.
@@ -28,10 +33,56 @@ Namespace Views
         End Sub
 
         ''' <summary>
-        ''' Memuat seluruh daftar akun pengguna dari database ke DataGridView.
+        ''' Memuat seluruh daftar akun pengguna dari database ke DataGridView terpaginasi.
         ''' </summary>
         Private Sub LoadUserData()
-            dgvUsers.DataSource = _userController.GetAllUsers()
+            _rawUserData = _userController.GetAllUsers()
+            _currentPage = 1
+            ApplyPagination()
+        End Sub
+
+        ''' <summary>
+        ''' Menerapkan paginasi data 20 baris, sembunyikan ID, dan beri penomoran urut 'No'.
+        ''' </summary>
+        Private Sub ApplyPagination()
+            If _rawUserData Is Nothing Then Exit Sub
+
+            _totalRows = _rawUserData.Rows.Count
+            _totalPages = PaginationHelper.GetTotalPages(_totalRows, PaginationHelper.DEFAULT_PAGE_SIZE)
+
+            If _currentPage > _totalPages Then _currentPage = _totalPages
+            If _currentPage < 1 Then _currentPage = 1
+
+            Dim pagedTable As DataTable = PaginationHelper.GetPagedTable(_rawUserData, _currentPage, PaginationHelper.DEFAULT_PAGE_SIZE)
+            dgvUsers.DataSource = Nothing
+            dgvUsers.DataSource = pagedTable
+
+            If dgvUsers.Columns.Contains("ID") Then dgvUsers.Columns("ID").Visible = False
+            If dgvUsers.Columns.Contains("Id") Then dgvUsers.Columns("Id").Visible = False
+
+            If dgvUsers.Columns.Contains("No") Then
+                dgvUsers.Columns("No").HeaderText = "No"
+                dgvUsers.Columns("No").Width = 50
+                dgvUsers.Columns("No").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End If
+
+            lblPageInfo.Text = $"HALAMAN {_currentPage} DARI {_totalPages} (TOTAL {_totalRows} DATA)"
+            btnPrev.Enabled = (_currentPage > 1)
+            btnNext.Enabled = (_currentPage < _totalPages)
+        End Sub
+
+        Private Sub btnPrev_Click(sender As Object, e As EventArgs) Handles btnPrev.Click
+            If _currentPage > 1 Then
+                _currentPage -= 1
+                ApplyPagination()
+            End If
+        End Sub
+
+        Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+            If _currentPage < _totalPages Then
+                _currentPage += 1
+                ApplyPagination()
+            End If
         End Sub
 
         ''' <summary>

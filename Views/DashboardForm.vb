@@ -32,6 +32,61 @@ Namespace Views
 
             ' Memuat data indikator KPI dan grafik kapasitas parkir
             LoadDashboardData()
+
+            ' Penyesuaian tata letak komponen responsif saat form pertama kali dimuat
+            AdjustResponsiveLayout()
+        End Sub
+
+        Private Sub DashboardForm_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+            AdjustResponsiveLayout()
+        End Sub
+
+        ''' <summary>
+        ''' Menyesuaikan tata letak komponen KPI card dan progress bar kapasitas parkir secara dinamis sesuai resolusi layar monitor.
+        ''' </summary>
+        Private Sub AdjustResponsiveLayout()
+            If pnlKpiContainer Is Nothing OrElse pnlKpiContainer.Width <= 0 Then
+                Exit Sub
+            End If
+
+            ' 1. Pengaturan responsif 4 Kartu KPI Ringkasan
+            Dim totalWidth As Integer = pnlKpiContainer.Width
+            Dim cardSpacing As Integer = 15
+            Dim cardWidth As Integer = Math.Max(180, (totalWidth - (cardSpacing * 3)) \ 4)
+
+            pnlCardActive.Width = cardWidth
+            pnlCardToday.Width = cardWidth
+            pnlCardSlots.Width = cardWidth
+            pnlCardRevenue.Width = cardWidth
+
+            pnlCardActive.Left = 0
+            pnlCardToday.Left = cardWidth + cardSpacing
+            pnlCardSlots.Left = (cardWidth + cardSpacing) * 2
+            pnlCardRevenue.Left = (cardWidth + cardSpacing) * 3
+
+            ' 2. Pengaturan responsif Kartu Kapasitas Parkir (Mobil dan Motor)
+            If pnlCapacityCard IsNot Nothing AndAlso pnlCapacityCard.Width > 0 Then
+                Dim leftMargin As Integer = 15
+                Dim rightMargin As Integer = 15
+                Dim titleWidth As Integer = 130
+                Dim valWidth As Integer = 110
+
+                Dim pbLeft As Integer = leftMargin + titleWidth
+                Dim pbWidth As Integer = Math.Max(100, pnlCapacityCard.Width - pbLeft - valWidth - rightMargin)
+                Dim valLeft As Integer = pbLeft + pbWidth + 10
+
+                ' Baris 1: Kapasitas Parkir Mobil (y = 45)
+                lblCarCapacityTitle.Location = New System.Drawing.Point(leftMargin, 45)
+                pbCarCapacity.Location = New System.Drawing.Point(pbLeft, 45)
+                pbCarCapacity.Width = pbWidth
+                lblCarProgressVal.Location = New System.Drawing.Point(valLeft, 45)
+
+                ' Baris 2: Kapasitas Parkir Sepeda Motor (y = 75)
+                lblMotorCapacityTitle.Location = New System.Drawing.Point(leftMargin, 75)
+                pbMotorCapacity.Location = New System.Drawing.Point(pbLeft, 75)
+                pbMotorCapacity.Width = pbWidth
+                lblMotorProgressVal.Location = New System.Drawing.Point(valLeft, 75)
+            End If
         End Sub
 
         ''' <summary>
@@ -84,19 +139,31 @@ Namespace Views
                 lblRevenueValue.Text = $"Rp {summary.TodayRevenue:N0}"
 
                 ' Bind data ke Progress Bar persentase kapasitas Mobil & Motor
-                pbCarCapacity.Maximum = DashboardController.MAX_CAR_CAPACITY
-                pbCarCapacity.Value = Math.Min(summary.ActiveCarCount, DashboardController.MAX_CAR_CAPACITY)
-                Dim carPct As Integer = CInt((summary.ActiveCarCount / CDbl(DashboardController.MAX_CAR_CAPACITY)) * 100)
-                lblCarProgressVal.Text = $"{summary.ActiveCarCount} / {DashboardController.MAX_CAR_CAPACITY} ({carPct}%)"
+                lblCarCapacityTitle.Text = $"Mobil (Max {DashboardController.MaxCarCapacity}):"
+                pbCarCapacity.Maximum = DashboardController.MaxCarCapacity
+                pbCarCapacity.Value = Math.Min(summary.ActiveCarCount, DashboardController.MaxCarCapacity)
+                Dim carPct As Integer = If(DashboardController.MaxCarCapacity > 0, CInt((summary.ActiveCarCount / CDbl(DashboardController.MaxCarCapacity)) * 100), 0)
+                lblCarProgressVal.Text = $"{summary.ActiveCarCount} / {DashboardController.MaxCarCapacity} ({carPct}%)"
 
-                pbMotorCapacity.Maximum = DashboardController.MAX_MOTORCYCLE_CAPACITY
-                pbMotorCapacity.Value = Math.Min(summary.ActiveMotorcycleCount, DashboardController.MAX_MOTORCYCLE_CAPACITY)
-                Dim motorPct As Integer = CInt((summary.ActiveMotorcycleCount / CDbl(DashboardController.MAX_MOTORCYCLE_CAPACITY)) * 100)
-                lblMotorProgressVal.Text = $"{summary.ActiveMotorcycleCount} / {DashboardController.MAX_MOTORCYCLE_CAPACITY} ({motorPct}%)"
+                lblMotorCapacityTitle.Text = $"Motor (Max {DashboardController.MaxMotorcycleCapacity}):"
+                pbMotorCapacity.Maximum = DashboardController.MaxMotorcycleCapacity
+                pbMotorCapacity.Value = Math.Min(summary.ActiveMotorcycleCount, DashboardController.MaxMotorcycleCapacity)
+                Dim motorPct As Integer = If(DashboardController.MaxMotorcycleCapacity > 0, CInt((summary.ActiveMotorcycleCount / CDbl(DashboardController.MaxMotorcycleCapacity)) * 100), 0)
+                lblMotorProgressVal.Text = $"{summary.ActiveMotorcycleCount} / {DashboardController.MaxMotorcycleCapacity} ({motorPct}%)"
 
-                ' Bind data ke DataGridView aktivitas transaksi terbaru
+                ' Bind data ke DataGridView aktivitas transaksi terbaru (Dengan penomoran urut 'No' & sembunyikan 'ID')
+                Dim pagedDt As DataTable = PaginationHelper.GetPagedTable(summary.RecentActivityData, 1, 20)
                 dgvRecentActivity.DataSource = Nothing
-                dgvRecentActivity.DataSource = summary.RecentActivityData
+                dgvRecentActivity.DataSource = pagedDt
+
+                If dgvRecentActivity.Columns("ID") IsNot Nothing Then dgvRecentActivity.Columns("ID").Visible = False
+                If dgvRecentActivity.Columns("Id") IsNot Nothing Then dgvRecentActivity.Columns("Id").Visible = False
+
+                If dgvRecentActivity.Columns("No") IsNot Nothing Then
+                    dgvRecentActivity.Columns("No").HeaderText = "No"
+                    dgvRecentActivity.Columns("No").Width = 50
+                    dgvRecentActivity.Columns("No").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                End If
 
                 ' Formatting format mata uang untuk kolom Total Bayar
                 If dgvRecentActivity.Columns("Total Bayar") IsNot Nothing Then
@@ -185,6 +252,23 @@ Namespace Views
                 Dim loginForm As New LoginForm()
                 loginForm.Show()
                 Me.Close()
+            End If
+        End Sub
+
+        ''' <summary>
+        ''' Event handler saat kartu / label 'Kendaraan Parkir Aktif' diklik untuk membuka modul Parkir Aktif secara langsung.
+        ''' </summary>
+        Private Sub CardActive_Click(sender As Object, e As EventArgs) Handles pnlCardActive.Click, lblActiveTitle.Click, lblActiveValue.Click
+            btnDataAktif_Click(sender, e)
+        End Sub
+
+        ''' <summary>
+        ''' Event handler saat kartu / label 'Sisa Slot Tersedia' diklik untuk membuka dialog update kapasitas slot parkir.
+        ''' </summary>
+        Private Sub CardSlots_Click(sender As Object, e As EventArgs) Handles pnlCardSlots.Click, lblSlotsTitle.Click, lblSlotsValue.Click
+            Dim updateForm As New UpdateCapacityForm()
+            If updateForm.ShowDialog(Me) = DialogResult.OK Then
+                LoadDashboardData()
             End If
         End Sub
 

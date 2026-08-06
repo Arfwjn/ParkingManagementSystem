@@ -140,7 +140,7 @@
             Me.btnLogin.Name = "btnLogin"
             Me.btnLogin.Size = New System.Drawing.Size(413, 52)
             Me.btnLogin.TabIndex = 6
-            Me.btnLogin.Text = "Login"
+            Me.btnLogin.Text = "LOGIN"
             Me.btnLogin.UseVisualStyleBackColor = False
             '
             'txtPassword
