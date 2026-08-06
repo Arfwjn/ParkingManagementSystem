@@ -144,10 +144,10 @@
     <Compile Include="Repositories\UserRepository.vb" />
     <Compile Include="Helpers\SecurityHelper.vb" />
     <Compile Include="Helpers\SessionManager.vb" />
+    <Compile Include="Helpers\AppConstants.vb" />
     <Compile Include="Models\Member.vb" />
     <Compile Include="Models\Parking.vb" />
     <Compile Include="Models\User.vb" />
-    <Compile Include="Models\Vehicle.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -256,6 +256,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ActiveParkingForm.resx">
+      <DependentUpon>ActiveParkingForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\DashboardForm.resx">
       <DependentUpon>DashboardForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -268,6 +271,9 @@
     <EmbeddedResource Include="Views\ExitForm.resx">
       <DependentUpon>ExitForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\HistoryForm.resx">
+      <DependentUpon>HistoryForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -277,8 +283,14 @@
     <EmbeddedResource Include="Views\MemberRegistrationForm.resx">
       <DependentUpon>MemberRegistrationForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PaymentSettingForm.resx">
+      <DependentUpon>PaymentSettingForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\QrisPaymentForm.resx">
       <DependentUpon>QrisPaymentForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportForm.resx">
+      <DependentUpon>ReportForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TariffManagementForm.resx">
       <DependentUpon>TariffManagementForm.vb</DependentUpon>

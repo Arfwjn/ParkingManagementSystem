@@ -14,7 +14,7 @@ Namespace Controllers
         Private ReadOnly _memberLevelRepository As MemberLevelRepository
 
         ''' <summary>
-        ''' Inisialisasi controller member dan instansiasi repository member & level.
+        ''' Inisialisasi controller member dan instansiasi repository member dan level.
         ''' </summary>
         Public Sub New()
             _memberRepository = New MemberRepository()
@@ -200,7 +200,7 @@ Namespace Controllers
         End Function
 
         ''' <summary>
-        ''' Memproses perpanjangan masa aktif berlangganan member (+1 bulan) serta menyimpan log pembayarannya.
+        ''' Memproses pendaftaran transaksi pembayaran member baru dan perpanjangan langganan.
         ''' </summary>
         Public Function RenewSubscriptionWithPayment(memberId As Integer, paymentMethod As String, referenceNumber As String, totalAmount As Decimal, ByRef errorMessage As String) As Boolean
             errorMessage = String.Empty

@@ -1,6 +1,5 @@
 Imports System
-Imports System.Data.SqlClient
-Imports ParkingManagementSystem.Windows.Forms
+Imports System.Windows.Forms
 Imports ParkingManagementSystem.Controllers
 
 Namespace Views

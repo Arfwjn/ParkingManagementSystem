@@ -67,9 +67,9 @@
             Me.lblTitle.Location = New System.Drawing.Point(27, 22)
             Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(222, 28)
+            Me.lblTitle.Size = New System.Drawing.Size(328, 28)
             Me.lblTitle.TabIndex = 0
-            Me.lblTitle.Text = "Manajemen Pengguna"
+            Me.lblTitle.Text = "MANAJEMEN PENGGUNA (USER)"
             '
             'btnClose
             '

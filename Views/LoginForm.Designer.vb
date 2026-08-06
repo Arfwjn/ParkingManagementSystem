@@ -208,9 +208,9 @@
             Me.lblLoginHeader.Location = New System.Drawing.Point(40, 43)
             Me.lblLoginHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblLoginHeader.Name = "lblLoginHeader"
-            Me.lblLoginHeader.Size = New System.Drawing.Size(97, 41)
+            Me.lblLoginHeader.Size = New System.Drawing.Size(110, 41)
             Me.lblLoginHeader.TabIndex = 0
-            Me.lblLoginHeader.Text = "Login"
+            Me.lblLoginHeader.Text = "LOGIN"
             '
             'LoginForm
             '

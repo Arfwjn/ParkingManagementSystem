@@ -3,7 +3,7 @@ Imports ParkingManagementSystem.Repositories
 
 Namespace Controllers
     ''' <summary>
-    ''' Controller TariffController mengelola validasi bisnis dan pembaruan pengaturan tarif per jam & tarif menginap kendaraan.
+    ''' Controller TariffController mengelola validasi bisnis dan pembaruan pengaturan tarif per jam dan tarif menginap kendaraan.
     ''' </summary>
     Public Class TariffController
         Private ReadOnly _tariffRepository As TariffRepository

@@ -97,7 +97,7 @@ Namespace Views
                     cmbTransactionType.Enabled = True
                     cmbPaymentMethod.Enabled = True
 
-                    btnSave.Text = "Proses Transaksi Member"
+                    btnSave.Text = "PROSES TRANSAKSI MEMBER"
                     btnSave.BackColor = Color.FromArgb(16, 185, 129)
 
                 ElseIf cmbTransactionType.SelectedIndex = 1 Then
@@ -111,7 +111,7 @@ Namespace Views
                     cmbTransactionType.Enabled = True
                     cmbPaymentMethod.Enabled = False
 
-                    btnSave.Text = "Perbarui"
+                    btnSave.Text = "PERBARUI"
                     btnSave.BackColor = Color.FromArgb(245, 158, 11)
                 End If
             Else
@@ -125,7 +125,7 @@ Namespace Views
                 cmbTransactionType.Enabled = False
                 cmbPaymentMethod.Enabled = True
 
-                btnSave.Text = "Daftarkan Member / Bayar"
+                btnSave.Text = "DAFTARKAN MEMBER / BAYAR"
                 btnSave.BackColor = Color.FromArgb(37, 99, 235)
             End If
         End Sub

@@ -1,4 +1,4 @@
-﻿Namespace Views
+Namespace Views
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
     Partial Class ExitForm
         Inherits System.Windows.Forms.Form
@@ -76,9 +76,9 @@
             Me.lblTitle.Location = New System.Drawing.Point(27, 22)
             Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(379, 28)
+            Me.lblTitle.Size = New System.Drawing.Size(482, 28)
             Me.lblTitle.TabIndex = 0
-            Me.lblTitle.Text = "Registrasi Parkir Keluar && Pembayaran"
+            Me.lblTitle.Text = "REGISTRASI KENDARAAN KELUAR & PEMBAYARAN"
             '
             'btnClose
             '
@@ -137,7 +137,7 @@
             Me.btnProcessPayment.Name = "btnProcessPayment"
             Me.btnProcessPayment.Size = New System.Drawing.Size(360, 62)
             Me.btnProcessPayment.TabIndex = 4
-            Me.btnProcessPayment.Text = "Proses Pembayaran"
+            Me.btnProcessPayment.Text = "PROSES PEMBAYARAN"
             Me.btnProcessPayment.UseVisualStyleBackColor = False
             '
             'cmbPaymentMethod
@@ -430,7 +430,7 @@
             Me.btnSearch.Name = "btnSearch"
             Me.btnSearch.Size = New System.Drawing.Size(147, 37)
             Me.btnSearch.TabIndex = 2
-            Me.btnSearch.Text = "Cari Data"
+            Me.btnSearch.Text = "CARI DATA"
             Me.btnSearch.UseVisualStyleBackColor = False
             '
             'txtPlateNumber

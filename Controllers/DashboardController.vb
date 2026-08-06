@@ -1,5 +1,6 @@
 Imports System
 Imports System.Data
+Imports ParkingManagementSystem.Helpers
 Imports ParkingManagementSystem.Repositories
 
 Namespace Controllers
@@ -30,9 +31,9 @@ Namespace Controllers
         Private ReadOnly _parkingRepository As ParkingRepository
 
         ''' <summary>Kapasitas maksimum untuk area parkir mobil.</summary>
-        Public Const MAX_CAR_CAPACITY As Integer = 50
+        Public Const MAX_CAR_CAPACITY As Integer = AppConstants.CapacityLimits.MaxCarCapacity
         ''' <summary>Kapasitas maksimum untuk area parkir sepeda motor.</summary>
-        Public Const MAX_MOTORCYCLE_CAPACITY As Integer = 100
+        Public Const MAX_MOTORCYCLE_CAPACITY As Integer = AppConstants.CapacityLimits.MaxMotorcycleCapacity
 
         ''' <summary>
         ''' Inisialisasi controller dan instansiasi repository parkir.
@@ -49,8 +50,8 @@ Namespace Controllers
 
             summary.ActiveParkingCount = _parkingRepository.GetActiveParkingCount()
             summary.TodayEntryCount = _parkingRepository.GetTodayEntryCount()
-            summary.ActiveCarCount = _parkingRepository.GetActiveCountByType("Mobil")
-            summary.ActiveMotorcycleCount = _parkingRepository.GetActiveCountByType("Motor")
+            summary.ActiveCarCount = _parkingRepository.GetActiveCountByType(AppConstants.VehicleTypes.Car)
+            summary.ActiveMotorcycleCount = _parkingRepository.GetActiveCountByType(AppConstants.VehicleTypes.Motorcycle)
             summary.TodayRevenue = _parkingRepository.GetTodayRevenue()
 
             Dim totalCapacity As Integer = MAX_CAR_CAPACITY + MAX_MOTORCYCLE_CAPACITY

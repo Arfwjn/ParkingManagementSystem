@@ -74,6 +74,7 @@ Namespace Views
                     End If
 
                     txtDescription.Text = If(row.Cells("Description").Value IsNot DBNull.Value, row.Cells("Description").Value.ToString(), String.Empty)
+                    btnSave.Text = "PERBARUI"
 
                 Catch ex As Exception
                     MessageBox.Show("Gagal mengambil data baris: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -129,6 +130,7 @@ Namespace Views
             numDiscount.Value = 0
             If numMonthlyFee IsNot Nothing Then numMonthlyFee.Value = 0
             txtDescription.Clear()
+            btnSave.Text = "SIMPAN"
         End Sub
     End Class
 End Namespace

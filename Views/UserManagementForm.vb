@@ -47,7 +47,7 @@ Namespace Views
 
                 txtPassword.Clear()
                 lblPasswordNote.Visible = True
-                btnSave.Text = "UPDATE"
+                btnSave.Text = "PERBARUI"
                 btnDelete.Enabled = True
             End If
         End Sub

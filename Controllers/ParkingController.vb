@@ -14,9 +14,9 @@ Namespace Controllers
         Private ReadOnly _tariffRepository As TariffRepository
 
         ''' <summary>Kapasitas maksimum area parkir mobil (Business Rules 5.9).</summary>
-        Public Const MAX_CAR_CAPACITY As Integer = 50
+        Public Const MAX_CAR_CAPACITY As Integer = AppConstants.CapacityLimits.MaxCarCapacity
         ''' <summary>Kapasitas maksimum area parkir sepeda motor (Business Rules 5.9).</summary>
-        Public Const MAX_MOTORCYCLE_CAPACITY As Integer = 100
+        Public Const MAX_MOTORCYCLE_CAPACITY As Integer = AppConstants.CapacityLimits.MaxMotorcycleCapacity
 
         ''' <summary>
         ''' Constructor untuk menginisialisasi repository parkir, member, dan tarif.

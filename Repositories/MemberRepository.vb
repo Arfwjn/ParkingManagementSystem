@@ -12,7 +12,7 @@ Namespace Repositories
     Public Class MemberRepository
 
         ''' <summary>
-        ''' Mencari data profil member aktif beserta diskon berdasarkan plat nomor kendaraan (mendukung pencarian plat utama & multi-plat terdaftar).
+        ''' Mencari data profil member aktif beserta diskon berdasarkan plat nomor kendaraan (mendukung pencarian plat utama dan multi-plat terdaftar).
         ''' </summary>
         Public Function GetMemberWithLevelByPlate(plateNumber As String) As Tuple(Of Member, String, Decimal)
             Dim cleanPlate As String = plateNumber.Trim().ToLower()

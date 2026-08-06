@@ -70,22 +70,4 @@ Namespace Views
             Me.Close()
         End Sub
     End Class
-End NamespaceEnd Sub
-
-        Private Sub btnFilter_Click(sender As Object, e As EventArgs) Handles btnFilter.Click
-            LoadData()
-        End Sub
-
-        Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
-            dtpStartDate.Value = DateTime.Now.AddDays(-30)
-            dtpEndDate.Value = DateTime.Now
-            cmbVehicleType.SelectedIndex = 0
-            txtSearchPlate.Clear()
-            LoadData()
-        End Sub
-
-        Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-            Me.Close()
-        End Sub
-    End Class
 End Namespace

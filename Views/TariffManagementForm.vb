@@ -3,7 +3,7 @@ Imports ParkingManagementSystem.Models
 
 Namespace Views
     ''' <summary>
-    ''' Form TariffManagementForm menyediakan antarmuka untuk mengubah dan mengatur tarif parkir per jam serta tarif menginap per jenis kendaraan (Mobil & Motor).
+    ''' Form TariffManagementForm menyediakan antarmuka untuk mengubah dan mengatur tarif parkir per jam serta tarif menginap per jenis kendaraan (Mobil dan Motor).
     ''' </summary>
     Public Class TariffManagementForm
         Private ReadOnly _tariffController As TariffController
@@ -57,6 +57,7 @@ Namespace Views
                 txtVehicleType.Text = row.Cells("VehicleType").Value.ToString()
                 numHourlyRate.Value = Convert.ToDecimal(row.Cells("HourlyRate").Value)
                 numOvernightRate.Value = Convert.ToDecimal(row.Cells("OvernightRate").Value)
+                btnSave.Text = "PERBARUI"
             End If
         End Sub
 
@@ -88,6 +89,7 @@ Namespace Views
             txtVehicleType.Clear()
             numHourlyRate.Value = 0
             numOvernightRate.Value = 0
+            btnSave.Text = "SIMPAN"
         End Sub
     End Class
 End Namespace

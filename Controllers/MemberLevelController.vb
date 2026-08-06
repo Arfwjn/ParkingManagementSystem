@@ -4,7 +4,7 @@ Imports ParkingManagementSystem.Repositories
 
 Namespace Controllers
     ''' <summary>
-    ''' Controller MemberLevelController menangani validasi bisnis dan operasi kelola tingkatan member (persentase diskon & iuran bulanan).
+    ''' Controller MemberLevelController menangani validasi bisnis dan operasi kelola tingkatan member (persentase diskon dan iuran bulanan).
     ''' </summary>
     Public Class MemberLevelController
         Private ReadOnly _repository As MemberLevelRepository

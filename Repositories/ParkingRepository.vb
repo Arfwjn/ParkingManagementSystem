@@ -386,23 +386,7 @@ Namespace Repositories
 
                         Using reader As MySqlDataReader = cmd.ExecuteReader()
                             While reader.Read()
-                                Dim item As New Parking() With {
-                                    .Id = Convert.ToInt64(reader("id")),
-                                    .PlateNumber = reader("plate_number").ToString(),
-                                    .VehicleType = reader("vehicle_type").ToString(),
-                                    .EntryTime = Convert.ToDateTime(reader("entry_time")),
-                                    .ExitTime = Convert.ToDateTime(reader("exit_time")),
-                                    .Duration = Convert.ToInt32(reader("duration")),
-                                    .ParkingFee = Convert.ToDecimal(reader("parking_fee")),
-                                    .AdditionalFee = Convert.ToDecimal(reader("additional_fee")),
-                                    .OvernightFee = Convert.ToDecimal(reader("overnight_fee")),
-                                    .LostTicketFine = Convert.ToDecimal(reader("lost_ticket_fine")),
-                                    .Discount = Convert.ToDecimal(reader("discount")),
-                                    .TotalPayment = Convert.ToDecimal(reader("total_payment")),
-                                    .PaymentMethod = If(IsDBNull(reader("payment_method")), "Tunai", reader("payment_method").ToString()),
-                                    .ReferenceNumber = If(IsDBNull(reader("reference_number")), "-", reader("reference_number").ToString())
-                                }
-                                reportList.Add(item)
+                                reportList.Add(MapReaderToParking(reader))
                             End While
                         End Using
                     End Using
@@ -412,6 +396,28 @@ Namespace Repositories
             End Using
 
             Return reportList
+        End Function
+
+        ''' <summary>
+        ''' Helper privat untuk memetakan satu baris data MySqlDataReader ke dalam objek Parking (DRY Mapping Helper).
+        ''' </summary>
+        Private Function MapReaderToParking(reader As MySqlDataReader) As Parking
+            Return New Parking With {
+                .Id = Convert.ToInt64(reader("id")),
+                .PlateNumber = reader("plate_number").ToString(),
+                .VehicleType = reader("vehicle_type").ToString(),
+                .EntryTime = Convert.ToDateTime(reader("entry_time")),
+                .ExitTime = If(IsDBNull(reader("exit_time")), CType(Nothing, DateTime?), Convert.ToDateTime(reader("exit_time"))),
+                .Duration = If(IsDBNull(reader("duration")), 0, Convert.ToInt32(reader("duration"))),
+                .ParkingFee = If(IsDBNull(reader("parking_fee")), 0D, Convert.ToDecimal(reader("parking_fee"))),
+                .AdditionalFee = If(IsDBNull(reader("additional_fee")), 0D, Convert.ToDecimal(reader("additional_fee"))),
+                .OvernightFee = If(IsDBNull(reader("overnight_fee")), 0D, Convert.ToDecimal(reader("overnight_fee"))),
+                .LostTicketFine = If(IsDBNull(reader("lost_ticket_fine")), 0D, Convert.ToDecimal(reader("lost_ticket_fine"))),
+                .Discount = If(IsDBNull(reader("discount")), 0D, Convert.ToDecimal(reader("discount"))),
+                .TotalPayment = If(IsDBNull(reader("total_payment")), 0D, Convert.ToDecimal(reader("total_payment"))),
+                .PaymentMethod = If(IsDBNull(reader("payment_method")), "Tunai", reader("payment_method").ToString()),
+                .ReferenceNumber = If(IsDBNull(reader("reference_number")), "-", reader("reference_number").ToString())
+            }
         End Function
     End Class
 End Namespace

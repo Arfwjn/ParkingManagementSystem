@@ -69,9 +69,9 @@
             Me.lblTitle.Location = New System.Drawing.Point(27, 22)
             Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(263, 28)
+            Me.lblTitle.Size = New System.Drawing.Size(295, 28)
             Me.lblTitle.TabIndex = 0
-            Me.lblTitle.Text = "Manajemen Level Member"
+            Me.lblTitle.Text = "MANAJEMEN LEVEL MEMBER"
             '
             'btnClose
             '

@@ -1,4 +1,4 @@
-﻿Namespace Views
+Namespace Views
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
     Partial Class DebitPaymentForm
         Inherits System.Windows.Forms.Form
@@ -58,9 +58,9 @@
             Me.lblTitle.Location = New System.Drawing.Point(27, 20)
             Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(284, 28)
+            Me.lblTitle.Size = New System.Drawing.Size(330, 28)
             Me.lblTitle.TabIndex = 0
-            Me.lblTitle.Text = "Pembayaran Debit / Transfer"
+            Me.lblTitle.Text = "PEMBAYARAN DEBIT / TRANSFER"
             '
             'pnlMain
             '
@@ -214,7 +214,7 @@
             Me.btnConfirm.Name = "btnConfirm"
             Me.btnConfirm.Size = New System.Drawing.Size(480, 52)
             Me.btnConfirm.TabIndex = 6
-            Me.btnConfirm.Text = "Konfirmasi Pembayaran Debit"
+            Me.btnConfirm.Text = "KONFIRMASI PEMBAYARAN DEBIT"
             Me.btnConfirm.UseVisualStyleBackColor = False
             '
             'btnCancel
@@ -230,7 +230,7 @@
             Me.btnCancel.Name = "btnCancel"
             Me.btnCancel.Size = New System.Drawing.Size(480, 43)
             Me.btnCancel.TabIndex = 7
-            Me.btnCancel.Text = "Batal Pembayaran"
+            Me.btnCancel.Text = "BATAL PEMBAYARAN"
             Me.btnCancel.UseVisualStyleBackColor = False
             '
             'DebitPaymentForm

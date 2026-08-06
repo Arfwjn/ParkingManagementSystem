@@ -8,7 +8,7 @@ Imports ParkingManagementSystem.Database
 Public Class PaymentSettingRepository
 
     ''' <summary>
-    ''' Mengambil data pengaturan pembayaran aktif (QRIS & Rekening Bank) dari baris tunggal (ID = 1).
+    ''' Mengambil data pengaturan pembayaran aktif (QRIS dan Rekening Bank) dari baris tunggal (ID = 1).
     ''' </summary>
     Public Function GetSetting() As PaymentSetting
         Dim setting As PaymentSetting = Nothing

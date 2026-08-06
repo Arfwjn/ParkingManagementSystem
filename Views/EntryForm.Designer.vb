@@ -1,4 +1,4 @@
-﻿Namespace Views
+Namespace Views
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
     Partial Class EntryForm
         Inherits System.Windows.Forms.Form
@@ -42,7 +42,7 @@
             Me.pnlHeader.Controls.Add(Me.btnClose)
             Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
             Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlHeader.Name = "pnlHeader"
             Me.pnlHeader.Size = New System.Drawing.Size(667, 74)
             Me.pnlHeader.TabIndex = 0
@@ -55,9 +55,9 @@
             Me.lblTitle.Location = New System.Drawing.Point(27, 22)
             Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(229, 28)
+            Me.lblTitle.Size = New System.Drawing.Size(332, 28)
             Me.lblTitle.TabIndex = 0
-            Me.lblTitle.Text = "Transaksi Parkir Masuk"
+            Me.lblTitle.Text = "REGISTRASI KENDARAAN MASUK"
             '
             'btnClose
             '
@@ -68,7 +68,7 @@
             Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
             Me.btnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
             Me.btnClose.Location = New System.Drawing.Point(604, 15)
-            Me.btnClose.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnClose.Margin = New System.Windows.Forms.Padding(4)
             Me.btnClose.Name = "btnClose"
             Me.btnClose.Size = New System.Drawing.Size(47, 43)
             Me.btnClose.TabIndex = 1
@@ -81,7 +81,7 @@
             Me.pnlMain.Controls.Add(Me.pnlCard)
             Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
             Me.pnlMain.Location = New System.Drawing.Point(0, 74)
-            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlMain.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlMain.Name = "pnlMain"
             Me.pnlMain.Padding = New System.Windows.Forms.Padding(27, 25, 27, 25)
             Me.pnlMain.Size = New System.Drawing.Size(667, 443)
@@ -99,7 +99,7 @@
             Me.pnlCard.Controls.Add(Me.btnSubmit)
             Me.pnlCard.Dock = System.Windows.Forms.DockStyle.Fill
             Me.pnlCard.Location = New System.Drawing.Point(27, 25)
-            Me.pnlCard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.pnlCard.Margin = New System.Windows.Forms.Padding(4)
             Me.pnlCard.Name = "pnlCard"
             Me.pnlCard.Padding = New System.Windows.Forms.Padding(27, 25, 27, 25)
             Me.pnlCard.Size = New System.Drawing.Size(613, 393)
@@ -123,7 +123,7 @@
             Me.txtPlateNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
             Me.txtPlateNumber.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
             Me.txtPlateNumber.Location = New System.Drawing.Point(31, 49)
-            Me.txtPlateNumber.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.txtPlateNumber.Margin = New System.Windows.Forms.Padding(4)
             Me.txtPlateNumber.Name = "txtPlateNumber"
             Me.txtPlateNumber.Size = New System.Drawing.Size(551, 32)
             Me.txtPlateNumber.TabIndex = 1
@@ -159,7 +159,7 @@
             Me.cmbVehicleType.FormattingEnabled = True
             Me.cmbVehicleType.Items.AddRange(New Object() {"Mobil", "Motor"})
             Me.cmbVehicleType.Location = New System.Drawing.Point(31, 154)
-            Me.cmbVehicleType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.cmbVehicleType.Margin = New System.Windows.Forms.Padding(4)
             Me.cmbVehicleType.Name = "cmbVehicleType"
             Me.cmbVehicleType.Size = New System.Drawing.Size(551, 31)
             Me.cmbVehicleType.TabIndex = 4
@@ -185,11 +185,11 @@
             Me.btnSubmit.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
             Me.btnSubmit.ForeColor = System.Drawing.Color.White
             Me.btnSubmit.Location = New System.Drawing.Point(31, 258)
-            Me.btnSubmit.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.btnSubmit.Margin = New System.Windows.Forms.Padding(4)
             Me.btnSubmit.Name = "btnSubmit"
             Me.btnSubmit.Size = New System.Drawing.Size(552, 52)
             Me.btnSubmit.TabIndex = 6
-            Me.btnSubmit.Text = "Simpan Masuk"
+            Me.btnSubmit.Text = "SIMPAN MASUK"
             Me.btnSubmit.UseVisualStyleBackColor = False
             '
             'EntryForm
@@ -201,7 +201,7 @@
             Me.Controls.Add(Me.pnlMain)
             Me.Controls.Add(Me.pnlHeader)
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-            Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.Margin = New System.Windows.Forms.Padding(4)
             Me.Name = "EntryForm"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
             Me.Text = "Transaksi Parkir Masuk"

@@ -43,15 +43,15 @@ Partial Class PaymentSettingForm
         Me.txtAccountHolder = New System.Windows.Forms.TextBox()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
-
         Me.pnlHeader.SuspendLayout()
         Me.pnlMain.SuspendLayout()
         Me.pnlQrisCard.SuspendLayout()
         CType(Me.picQrisPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlDebitCard.SuspendLayout()
         Me.SuspendLayout()
-
-        '--- pnlHeader ---
+        '
+        'pnlHeader
+        '
         Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.pnlHeader.Controls.Add(Me.lblTitle)
         Me.pnlHeader.Controls.Add(Me.btnClose)
@@ -60,18 +60,20 @@ Partial Class PaymentSettingForm
         Me.pnlHeader.Name = "pnlHeader"
         Me.pnlHeader.Size = New System.Drawing.Size(520, 60)
         Me.pnlHeader.TabIndex = 0
-
-        '--- lblTitle ---
+        '
+        'lblTitle
+        '
         Me.lblTitle.AutoSize = True
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblTitle.ForeColor = System.Drawing.Color.White
         Me.lblTitle.Location = New System.Drawing.Point(20, 18)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(280, 21)
+        Me.lblTitle.Size = New System.Drawing.Size(370, 28)
         Me.lblTitle.TabIndex = 0
-        Me.lblTitle.Text = "Pengelolaan Metode Pembayaran"
-
-        '--- btnClose ---
+        Me.lblTitle.Text = "MANAJEMEN METODE PEMBAYARAN"
+        '
+        'btnClose
+        '
         Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClose.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnClose.FlatAppearance.BorderSize = 0
@@ -84,8 +86,9 @@ Partial Class PaymentSettingForm
         Me.btnClose.TabIndex = 1
         Me.btnClose.Text = "X"
         Me.btnClose.UseVisualStyleBackColor = True
-
-        '--- pnlMain ---
+        '
+        'pnlMain
+        '
         Me.pnlMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.pnlMain.Controls.Add(Me.pnlQrisCard)
         Me.pnlMain.Controls.Add(Me.pnlDebitCard)
@@ -97,8 +100,9 @@ Partial Class PaymentSettingForm
         Me.pnlMain.Padding = New System.Windows.Forms.Padding(20)
         Me.pnlMain.Size = New System.Drawing.Size(520, 560)
         Me.pnlMain.TabIndex = 1
-
-        '--- pnlQrisCard ---
+        '
+        'pnlQrisCard
+        '
         Me.pnlQrisCard.BackColor = System.Drawing.Color.White
         Me.pnlQrisCard.Controls.Add(Me.lblQrisCardTitle)
         Me.pnlQrisCard.Controls.Add(Me.lblQrisMerchant)
@@ -113,51 +117,81 @@ Partial Class PaymentSettingForm
         Me.pnlQrisCard.Name = "pnlQrisCard"
         Me.pnlQrisCard.Size = New System.Drawing.Size(480, 220)
         Me.pnlQrisCard.TabIndex = 0
-
-        ' Control: Card Title QRIS
+        '
+        'lblQrisCardTitle
+        '
         Me.lblQrisCardTitle.AutoSize = True
         Me.lblQrisCardTitle.Font = New System.Drawing.Font("Segoe UI", 10.5!, System.Drawing.FontStyle.Bold)
         Me.lblQrisCardTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.lblQrisCardTitle.Location = New System.Drawing.Point(15, 12)
+        Me.lblQrisCardTitle.Name = "lblQrisCardTitle"
+        Me.lblQrisCardTitle.Size = New System.Drawing.Size(157, 25)
+        Me.lblQrisCardTitle.TabIndex = 0
         Me.lblQrisCardTitle.Text = "Pengaturan QRIS"
-
-        ' Control: Nama Merchant
+        '
+        'lblQrisMerchant
+        '
         Me.lblQrisMerchant.AutoSize = True
         Me.lblQrisMerchant.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblQrisMerchant.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblQrisMerchant.Location = New System.Drawing.Point(15, 42)
+        Me.lblQrisMerchant.Name = "lblQrisMerchant"
+        Me.lblQrisMerchant.Size = New System.Drawing.Size(124, 20)
+        Me.lblQrisMerchant.TabIndex = 1
         Me.lblQrisMerchant.Text = "Nama Merchant:"
-
+        '
+        'txtQrisMerchant
+        '
         Me.txtQrisMerchant.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtQrisMerchant.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtQrisMerchant.Location = New System.Drawing.Point(18, 62)
-        Me.txtQrisMerchant.Size = New System.Drawing.Size(300, 23)
-
-        ' Control: NMID
+        Me.txtQrisMerchant.Name = "txtQrisMerchant"
+        Me.txtQrisMerchant.Size = New System.Drawing.Size(300, 27)
+        Me.txtQrisMerchant.TabIndex = 2
+        '
+        'lblQrisNmid
+        '
         Me.lblQrisNmid.AutoSize = True
         Me.lblQrisNmid.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblQrisNmid.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblQrisNmid.Location = New System.Drawing.Point(15, 92)
+        Me.lblQrisNmid.Name = "lblQrisNmid"
+        Me.lblQrisNmid.Size = New System.Drawing.Size(128, 20)
+        Me.lblQrisNmid.TabIndex = 3
         Me.lblQrisNmid.Text = "NMID (Opsional):"
-
+        '
+        'txtQrisNmid
+        '
         Me.txtQrisNmid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtQrisNmid.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtQrisNmid.Location = New System.Drawing.Point(18, 112)
-        Me.txtQrisNmid.Size = New System.Drawing.Size(300, 23)
-
-        ' Control: Gambar QRIS
+        Me.txtQrisNmid.Name = "txtQrisNmid"
+        Me.txtQrisNmid.Size = New System.Drawing.Size(300, 27)
+        Me.txtQrisNmid.TabIndex = 4
+        '
+        'lblQrisImage
+        '
         Me.lblQrisImage.AutoSize = True
         Me.lblQrisImage.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblQrisImage.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblQrisImage.Location = New System.Drawing.Point(15, 142)
+        Me.lblQrisImage.Name = "lblQrisImage"
+        Me.lblQrisImage.Size = New System.Drawing.Size(103, 20)
+        Me.lblQrisImage.TabIndex = 5
         Me.lblQrisImage.Text = "Gambar QRIS:"
-
+        '
+        'txtQrisImagePath
+        '
         Me.txtQrisImagePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtQrisImagePath.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtQrisImagePath.Location = New System.Drawing.Point(18, 162)
+        Me.txtQrisImagePath.Name = "txtQrisImagePath"
         Me.txtQrisImagePath.ReadOnly = True
-        Me.txtQrisImagePath.Size = New System.Drawing.Size(200, 23)
-
+        Me.txtQrisImagePath.Size = New System.Drawing.Size(200, 27)
+        Me.txtQrisImagePath.TabIndex = 6
+        '
+        'btnBrowseQris
+        '
         Me.btnBrowseQris.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.btnBrowseQris.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnBrowseQris.FlatAppearance.BorderSize = 0
@@ -165,17 +199,24 @@ Partial Class PaymentSettingForm
         Me.btnBrowseQris.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
         Me.btnBrowseQris.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.btnBrowseQris.Location = New System.Drawing.Point(225, 162)
-        Me.btnBrowseQris.Size = New System.Drawing.Size(93, 23)
+        Me.btnBrowseQris.Name = "btnBrowseQris"
+        Me.btnBrowseQris.Size = New System.Drawing.Size(93, 27)
+        Me.btnBrowseQris.TabIndex = 7
         Me.btnBrowseQris.Text = "PILIH..."
         Me.btnBrowseQris.UseVisualStyleBackColor = False
-
-        ' PictureBox QR Preview
+        '
+        'picQrisPreview
+        '
         Me.picQrisPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.picQrisPreview.Location = New System.Drawing.Point(335, 42)
+        Me.picQrisPreview.Name = "picQrisPreview"
         Me.picQrisPreview.Size = New System.Drawing.Size(130, 155)
         Me.picQrisPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-
-        '--- pnlDebitCard ---
+        Me.picQrisPreview.TabIndex = 8
+        Me.picQrisPreview.TabStop = False
+        '
+        'pnlDebitCard
+        '
         Me.pnlDebitCard.BackColor = System.Drawing.Color.White
         Me.pnlDebitCard.Controls.Add(Me.lblDebitCardTitle)
         Me.pnlDebitCard.Controls.Add(Me.lblBankName)
@@ -188,51 +229,80 @@ Partial Class PaymentSettingForm
         Me.pnlDebitCard.Name = "pnlDebitCard"
         Me.pnlDebitCard.Size = New System.Drawing.Size(480, 210)
         Me.pnlDebitCard.TabIndex = 1
-
-        ' Control: Card Title Debit
+        '
+        'lblDebitCardTitle
+        '
         Me.lblDebitCardTitle.AutoSize = True
         Me.lblDebitCardTitle.Font = New System.Drawing.Font("Segoe UI", 10.5!, System.Drawing.FontStyle.Bold)
         Me.lblDebitCardTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.lblDebitCardTitle.Location = New System.Drawing.Point(15, 12)
+        Me.lblDebitCardTitle.Name = "lblDebitCardTitle"
+        Me.lblDebitCardTitle.Size = New System.Drawing.Size(382, 25)
+        Me.lblDebitCardTitle.TabIndex = 0
         Me.lblDebitCardTitle.Text = "Pengaturan Rekening Debit / Transfer Bank"
-
-        ' Control: Bank Name
+        '
+        'lblBankName
+        '
         Me.lblBankName.AutoSize = True
         Me.lblBankName.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblBankName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblBankName.Location = New System.Drawing.Point(15, 42)
+        Me.lblBankName.Name = "lblBankName"
+        Me.lblBankName.Size = New System.Drawing.Size(93, 20)
+        Me.lblBankName.TabIndex = 1
         Me.lblBankName.Text = "Nama Bank:"
-
+        '
+        'txtBankName
+        '
         Me.txtBankName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtBankName.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtBankName.Location = New System.Drawing.Point(18, 62)
-        Me.txtBankName.Size = New System.Drawing.Size(447, 23)
-
-        ' Control: Account Number
+        Me.txtBankName.Name = "txtBankName"
+        Me.txtBankName.Size = New System.Drawing.Size(447, 27)
+        Me.txtBankName.TabIndex = 2
+        '
+        'lblAccountNumber
+        '
         Me.lblAccountNumber.AutoSize = True
         Me.lblAccountNumber.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblAccountNumber.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblAccountNumber.Location = New System.Drawing.Point(15, 92)
+        Me.lblAccountNumber.Name = "lblAccountNumber"
+        Me.lblAccountNumber.Size = New System.Drawing.Size(130, 20)
+        Me.lblAccountNumber.TabIndex = 3
         Me.lblAccountNumber.Text = "Nomor Rekening:"
-
+        '
+        'txtAccountNumber
+        '
         Me.txtAccountNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAccountNumber.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtAccountNumber.Location = New System.Drawing.Point(18, 112)
-        Me.txtAccountNumber.Size = New System.Drawing.Size(447, 23)
-
-        ' Control: Account Holder
+        Me.txtAccountNumber.Name = "txtAccountNumber"
+        Me.txtAccountNumber.Size = New System.Drawing.Size(447, 27)
+        Me.txtAccountNumber.TabIndex = 4
+        '
+        'lblAccountHolder
+        '
         Me.lblAccountHolder.AutoSize = True
         Me.lblAccountHolder.Font = New System.Drawing.Font("Segoe UI Semibold", 8.5!, System.Drawing.FontStyle.Bold)
         Me.lblAccountHolder.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblAccountHolder.Location = New System.Drawing.Point(15, 142)
+        Me.lblAccountHolder.Name = "lblAccountHolder"
+        Me.lblAccountHolder.Size = New System.Drawing.Size(263, 20)
+        Me.lblAccountHolder.TabIndex = 5
         Me.lblAccountHolder.Text = "Nama Pemilik Rekening (Atas Nama):"
-
+        '
+        'txtAccountHolder
+        '
         Me.txtAccountHolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAccountHolder.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtAccountHolder.Location = New System.Drawing.Point(18, 162)
-        Me.txtAccountHolder.Size = New System.Drawing.Size(447, 23)
-
-        '--- btnSave ---
+        Me.txtAccountHolder.Name = "txtAccountHolder"
+        Me.txtAccountHolder.Size = New System.Drawing.Size(447, 27)
+        Me.txtAccountHolder.TabIndex = 6
+        '
+        'btnSave
+        '
         Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.btnSave.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSave.FlatAppearance.BorderSize = 0
@@ -240,12 +310,14 @@ Partial Class PaymentSettingForm
         Me.btnSave.Font = New System.Drawing.Font("Segoe UI Semibold", 9.5!, System.Drawing.FontStyle.Bold)
         Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.Location = New System.Drawing.Point(20, 485)
+        Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(230, 42)
         Me.btnSave.TabIndex = 2
         Me.btnSave.Text = "SIMPAN PENGATURAN"
         Me.btnSave.UseVisualStyleBackColor = False
-
-        '--- btnCancel ---
+        '
+        'btnCancel
+        '
         Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancel.FlatAppearance.BorderSize = 0
@@ -253,12 +325,14 @@ Partial Class PaymentSettingForm
         Me.btnCancel.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
         Me.btnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.btnCancel.Location = New System.Drawing.Point(270, 485)
+        Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(230, 42)
         Me.btnCancel.TabIndex = 3
         Me.btnCancel.Text = "BATAL"
         Me.btnCancel.UseVisualStyleBackColor = False
-
-        '--- Form Settings ---
+        '
+        'PaymentSettingForm
+        '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
@@ -269,7 +343,6 @@ Partial Class PaymentSettingForm
         Me.Name = "PaymentSettingForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Pengelolaan Metode Pembayaran"
-
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlHeader.PerformLayout()
         Me.pnlMain.ResumeLayout(False)
@@ -279,6 +352,7 @@ Partial Class PaymentSettingForm
         Me.pnlDebitCard.ResumeLayout(False)
         Me.pnlDebitCard.PerformLayout()
         Me.ResumeLayout(False)
+
     End Sub
 
     Friend WithEvents pnlHeader As System.Windows.Forms.Panel
